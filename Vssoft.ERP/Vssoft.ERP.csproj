@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9F16909E-46D7-404E-BDE1-BE1ACBD1A5DC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vssoft.ERP</RootNamespace>
+    <AssemblyName>Vssoft.ERP</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ERP\DIC_BENHVIEN.cs" />
+    <Compile Include="ERP\DIC_CANBO.cs" />
+    <Compile Include="ERP\DIC_CHUCVU.cs" />
+    <Compile Include="ERP\DIC_CHUYENKHOA.cs" />
+    <Compile Include="ERP\DIC_DANTOC.cs" />
+    <Compile Include="ERP\DIC_DOITUONG.cs" />
+    <Compile Include="ERP\DIC_DTBN.cs" />
+    <Compile Include="ERP\DIC_DUONGDUNG.cs" />
+    <Compile Include="ERP\DIC_HUYEN.cs" />
+    <Compile Include="ERP\DIC_NGHENGHIEP.cs" />
+    <Compile Include="ERP\DIC_NHACUNGCAP.cs" />
+    <Compile Include="ERP\DIC_NHOMDICHVU.cs" />
+    <Compile Include="ERP\DIC_PHONGBAN.cs" />
+    <Compile Include="ERP\DIC_TIEUNHOMDICHVU.cs" />
+    <Compile Include="ERP\DIC_TINH.cs" />
+    <Compile Include="ERP\DIC_XAPHUONG.cs" />
+    <Compile Include="Models\ADMIN.cs" />
+    <Compile Include="Models\Bang20.cs" />
+    <Compile Include="Models\Bang79a.cs" />
+    <Compile Include="Models\BBHC.cs" />
+    <Compile Include="Models\BenhNhan.cs" />
+    <Compile Include="Models\BenhVien.cs" />
+    <Compile Include="Models\BNBHYT.cs" />
+    <Compile Include="Models\BNKB.cs" />
+    <Compile Include="Models\C5084.cs" />
+    <Compile Include="Models\CanBo.cs" />
+    <Compile Include="Models\CapBac.cs" />
+    <Compile Include="Models\CBICD.cs" />
+    <Compile Include="Models\ChiDinh.cs" />
+    <Compile Include="Models\ChiPhiDV.cs" />
+    <Compile Include="Models\ChucVu.cs" />
+    <Compile Include="Models\ChuyenKhoa.cs" />
+    <Compile Include="Models\CL.cs" />
+    <Compile Include="Models\CLSct.cs" />
+    <Compile Include="Models\DanToc.cs" />
+    <Compile Include="Models\DichVu.cs" />
+    <Compile Include="Models\DichVuct.cs" />
+    <Compile Include="Models\DichVuEx.cs" />
+    <Compile Include="Models\DienBien.cs" />
+    <Compile Include="Models\DmHuyen.cs" />
+    <Compile Include="Models\DmTinh.cs" />
+    <Compile Include="Models\DmXa.cs" />
+    <Compile Include="Models\DonVi.cs" />
+    <Compile Include="Models\DTBN.cs" />
+    <Compile Include="Models\DThuoc.cs" />
+    <Compile Include="Models\DThuocct.cs" />
+    <Compile Include="Models\DTuong.cs" />
+    <Compile Include="Models\DuongDung.cs" />
+    <Compile Include="Models\DuTru.cs" />
+    <Compile Include="Models\DuTruct.cs" />
+    <Compile Include="Models\DVMoi.cs" />
+    <Compile Include="Models\GiaUT.cs" />
+    <Compile Include="Models\HoiDong.cs" />
+    <Compile Include="Models\Hospital.cs" />
+    <Compile Include="Models\HoTro.cs" />
+    <Compile Include="Models\HTHONG.cs" />
+    <Compile Include="Models\ICD10.cs" />
+    <Compile Include="Models\ICD10_2465.cs" />
+    <Compile Include="Models\ICD11.cs" />
+    <Compile Include="Models\KHO.cs" />
+    <Compile Include="Models\KhoaDL.cs" />
+    <Compile Include="Models\KPhong.cs" />
+    <Compile Include="Models\KQMau.cs" />
+    <Compile Include="Models\MBICD.cs" />
+    <Compile Include="Models\MenuBC.cs" />
+    <Compile Include="Models\MucTT.cs" />
+    <Compile Include="Models\NhaCC.cs" />
+    <Compile Include="Models\NhapD.cs" />
+    <Compile Include="Models\NhapDct.cs" />
+    <Compile Include="Models\NhomDV.cs" />
+    <Compile Include="Models\Permission.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PhanUngT.cs" />
+    <Compile Include="Models\PhieuLinh.cs" />
+    <Compile Include="Models\PhieuLinhct.cs" />
+    <Compile Include="Models\RaVien.cs" />
+    <Compile Include="Models\SDT.cs" />
+    <Compile Include="Models\SoBienLai.cs" />
+    <Compile Include="Models\SoTT.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\TaiSan.cs" />
+    <Compile Include="Models\TamUng.cs" />
+    <Compile Include="Models\TamUngct.cs" />
+    <Compile Include="Models\TDinh.cs" />
+    <Compile Include="Models\TDinhct.cs" />
+    <Compile Include="Models\TieuNhomDV.cs" />
+    <Compile Include="Models\TTboXung.cs" />
+    <Compile Include="Models\VaoVien.cs" />
+    <Compile Include="Models\VienPhi.cs" />
+    <Compile Include="Models\VienPhict.cs" />
+    <Compile Include="Models\XuatD.cs" />
+    <Compile Include="Models\XuatDct.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
