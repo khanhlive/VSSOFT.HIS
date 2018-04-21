@@ -63,7 +63,16 @@
             this._commandType = System.Data.CommandType.StoredProcedure;
             this._connectionString = _GlobalConnectString;
             this._connection = new SqlConnection();
+            SetServerData();
             Count++;
+        }
+        private void SetServerData()
+        {
+            SqlConnectionStringBuilder stringBuilder = new SqlConnectionStringBuilder(this._connectionString);
+            this._server = stringBuilder.DataSource;
+            this._database = stringBuilder.InitialCatalog;
+            this._userid = stringBuilder.UserID;
+            this._password = stringBuilder.Password;
         }
 
         public SqlHelper(SqlConnection connection)

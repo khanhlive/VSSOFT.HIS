@@ -3,6 +3,7 @@ using DevExpress.UserSkins;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -88,6 +89,8 @@ namespace Vssoft.His
                 Options.FormLoading.SetProgressValue(80, "Đang tạo dữ liệu...");
                 Thread.Sleep(1000);
                 Options.FormLoading.Hide();
+                
+                
                 Data.Helper.SqlHelper.ConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["HospitalAdo"].ConnectionString;
                 log.Info(string.Format("Start Program."));
                 BonusSkins.Register();

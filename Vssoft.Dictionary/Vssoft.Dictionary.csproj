@@ -366,6 +366,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UI\Core\Actions\ucAddDepartment.resx">
       <DependentUpon>ucAddDepartment.cs</DependentUpon>
     </EmbeddedResource>
@@ -375,7 +376,6 @@
     <EmbeddedResource Include="controls\xucPosition.resx">
       <DependentUpon>xucPosition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>

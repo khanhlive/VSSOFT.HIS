@@ -12,6 +12,7 @@ using Vssoft.Dictionary;
 using System.Reflection;
 using DevExpress.Skins;
 using DevExpress.LookAndFeel;
+using Vssoft.Data.Helper;
 
 namespace Vssoft.His
 {
@@ -21,6 +22,7 @@ namespace Vssoft.His
         #region Local Variable
 
         Form1 xfmSalary;
+        private SqlHelper sqlHelper;
         Form2 form2;
         xfmDictionary _xfmDictionary;
 
@@ -31,6 +33,7 @@ namespace Vssoft.His
             //Vssoft.Logonui.xfmLoginClassic _xfmLoginClassic = new Logonui.xfmLoginClassic();
             //_xfmLoginClassic.LoginSuccess += new Logonui.xfmLoginClassic.LoginSuccessEventHander(this.formLoginSuccess);
             //_xfmLoginClassic.ShowDialog(this);
+            
         }
         
 
@@ -106,6 +109,10 @@ namespace Vssoft.His
         {
             this.lblInfo.Caption = "Phiên bản: 2.2.1" ;
             this.LoadSkin();
+            this.sqlHelper = new SqlHelper();
+            this.lblServer.Caption = this.sqlHelper.Server + " ";
+            this.lblDatabase.Caption = this.sqlHelper.Database + " ";
+            this.lblAccount.Caption = "Người sử dụng: "+"Nguyễn Đình Khánh";
         }
 
         void OnPaintStyleClick(object sender, ItemClickEventArgs e)
