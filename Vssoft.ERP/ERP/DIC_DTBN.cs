@@ -17,7 +17,8 @@ namespace Vssoft.ERP.ERP
         public byte IDDTBN { get; set; }
         public string TenDTBN { get; set; }
         public string MoTa { get; set; }
-        public int Status { get; set; }
         public byte HinhThucThanhToan { get; set; }
+        public int Status { get; set; }
+        
     }
 }

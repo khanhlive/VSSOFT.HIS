@@ -27,7 +27,7 @@
         private NavBarItem bbiHoliday;
         private NavBarItem bbiJob;
         private NavBarItem bbiMachine;
-        private NavBarItem bbiNationality;
+        private NavBarItem bbiPatientObject;
         private NavBarItem bbiPosition;
         private NavBarItem bbiProduct;
         private NavBarItem bbiProductGroup;
@@ -162,9 +162,9 @@
             this.Execute("xucMachine", "");
         }
 
-        private void bbiNationality_LinkClicked(object sender, NavBarLinkEventArgs e)
+        private void bbiPatientObject_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            this.Execute("xucNationality", "");
+            this.Execute(DictionaryModuleType.DIC_DOITUONGBENHNHAN, ((NavBarItem)sender).Caption);
         }
 
         private void bbiPosition_LinkClicked(object sender, NavBarLinkEventArgs e)
@@ -289,6 +289,25 @@
                 case DictionaryModuleType.DIC_DoiTuongBHYT:
                     this.dic_ModuleControl = new UI.Core.ucDIC_DoiTuong();
                     break;
+                case DictionaryModuleType.DIC_DOITUONGBENHNHAN:
+                    this.dic_ModuleControl = new UI.Core.ucDIC_DTBN();
+                    break;
+                case DictionaryModuleType.DIC_DUONGDUNG:
+                    break;
+                case DictionaryModuleType.DIC_HUYEN:
+                    break;
+                case DictionaryModuleType.DIC_TINHTHANH:
+                    break;
+                case DictionaryModuleType.DIC_XAPHUONG:
+                    break;
+                case DictionaryModuleType.DIC_NGHENGHIEP:
+                    break;
+                case DictionaryModuleType.DIC_NHACUNGCAP:
+                    break;
+                case DictionaryModuleType.DIC_NHOMDICHVU:
+                    break;
+                case DictionaryModuleType.DIC_TIEUNHOMDICHVU:
+                    break;
                 default:
                     break;
             }
@@ -330,22 +349,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(xfmDictionary));
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navTimekeeping = new DevExpress.XtraNavBar.NavBarGroup();
-            this.bbiShift = new DevExpress.XtraNavBar.NavBarItem();
-            this.bbiSymbol = new DevExpress.XtraNavBar.NavBarItem();
-            this.bbiMachine = new DevExpress.XtraNavBar.NavBarItem();
-            this.bbiHoliday = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiOpenNewTab = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiThuNho = new System.Windows.Forms.ToolStripMenuItem();
             this.navEmployee = new DevExpress.XtraNavBar.NavBarGroup();
             this.bbiPosition = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiProfessional = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiDegree = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiJob = new DevExpress.XtraNavBar.NavBarItem();
-            this.bbiNationality = new DevExpress.XtraNavBar.NavBarItem();
+            this.bbiPatientObject = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiEthnic = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiDoiTuongBHYT = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiRelative = new DevExpress.XtraNavBar.NavBarItem();
@@ -356,6 +365,13 @@
             this.bbiBranch = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiDepartment = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiGroup = new DevExpress.XtraNavBar.NavBarItem();
+            this.navTimekeeping = new DevExpress.XtraNavBar.NavBarGroup();
+            this.bbiShift = new DevExpress.XtraNavBar.NavBarItem();
+            this.bbiSymbol = new DevExpress.XtraNavBar.NavBarItem();
+            this.bbiMachine = new DevExpress.XtraNavBar.NavBarItem();
+            this.bbiHoliday = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiRank = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiStep = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiAllowance = new DevExpress.XtraNavBar.NavBarItem();
@@ -367,11 +383,14 @@
             this.bbiState = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiSalaryIncome = new DevExpress.XtraNavBar.NavBarItem();
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiOpenNewTab = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiThuNho = new System.Windows.Forms.ToolStripMenuItem();
             this.gcControl = new DevExpress.XtraEditors.GroupControl();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcControl)).BeginInit();
             this.SuspendLayout();
             // 
@@ -392,7 +411,7 @@
             this.bbiProfessional,
             this.bbiEthnic,
             this.bbiEducation,
-            this.bbiNationality,
+            this.bbiPatientObject,
             this.bbiDoiTuongBHYT,
             this.bbiJob,
             this.bbiShift,
@@ -429,89 +448,6 @@
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
             this.navBarControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.navBarControl1_MouseDown);
             // 
-            // navTimekeeping
-            // 
-            this.navTimekeeping.Caption = "Nhóm Dịch Vụ";
-            this.navTimekeeping.ImageOptions.LargeImageIndex = 2;
-            this.navTimekeeping.ImageOptions.SmallImageIndex = 1;
-            this.navTimekeeping.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiShift),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiSymbol),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiMachine),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiHoliday),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
-            this.navTimekeeping.Name = "navTimekeeping";
-            // 
-            // bbiShift
-            // 
-            this.bbiShift.Caption = "Dịch Vụ";
-            this.bbiShift.ImageOptions.SmallImageIndex = 5;
-            this.bbiShift.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.bbiShift.Name = "bbiShift";
-            this.bbiShift.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiShift_LinkClicked);
-            // 
-            // bbiSymbol
-            // 
-            this.bbiSymbol.Caption = "Nhóm Dịch Vụ";
-            this.bbiSymbol.ImageOptions.SmallImageIndex = 5;
-            this.bbiSymbol.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.bbiSymbol.Name = "bbiSymbol";
-            this.bbiSymbol.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiSymbol_LinkClicked);
-            // 
-            // bbiMachine
-            // 
-            this.bbiMachine.Caption = "Tiểu Nhóm Dịch Vụ";
-            this.bbiMachine.ImageOptions.SmallImageIndex = 5;
-            this.bbiMachine.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.bbiMachine.Name = "bbiMachine";
-            this.bbiMachine.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiMachine_LinkClicked);
-            // 
-            // bbiHoliday
-            // 
-            this.bbiHoliday.Caption = "Kết Quả Mẫu";
-            this.bbiHoliday.ImageOptions.SmallImageIndex = 5;
-            this.bbiHoliday.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.bbiHoliday.Name = "bbiHoliday";
-            this.bbiHoliday.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiHoliday_LinkClicked);
-            // 
-            // navBarItem1
-            // 
-            this.navBarItem1.Caption = "Dịch Vụ Chi Tiết";
-            this.navBarItem1.ImageOptions.SmallImageIndex = 5;
-            this.navBarItem1.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.navBarItem1.Name = "navBarItem1";
-            // 
-            // navBarItem2
-            // 
-            this.navBarItem2.Caption = "Biên Lai";
-            this.navBarItem2.ImageOptions.SmallImageIndex = 5;
-            this.navBarItem2.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.navBarItem2.Name = "navBarItem2";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiOpenNewTab,
-            this.tsmiThuNho});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(180, 48);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // tsmiOpenNewTab
-            // 
-            this.tsmiOpenNewTab.Name = "tsmiOpenNewTab";
-            this.tsmiOpenNewTab.Size = new System.Drawing.Size(179, 22);
-            this.tsmiOpenNewTab.Text = "Mở trong trang mới";
-            this.tsmiOpenNewTab.Click += new System.EventHandler(this.tsmiOpenNewTab_Click);
-            // 
-            // tsmiThuNho
-            // 
-            this.tsmiThuNho.Name = "tsmiThuNho";
-            this.tsmiThuNho.Size = new System.Drawing.Size(179, 22);
-            this.tsmiThuNho.Text = "Thu nhỏ";
-            this.tsmiThuNho.Click += new System.EventHandler(this.tsmiThuNho_Click);
-            // 
             // navEmployee
             // 
             this.navEmployee.Caption = "Danh Mục Hành Chính";
@@ -524,7 +460,7 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiProfessional),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDegree),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiJob),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiNationality),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiPatientObject),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiEthnic),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDoiTuongBHYT),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiRelative),
@@ -565,13 +501,13 @@
             this.bbiJob.Name = "bbiJob";
             this.bbiJob.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiJob_LinkClicked);
             // 
-            // bbiNationality
+            // bbiPatientObject
             // 
-            this.bbiNationality.Caption = "Đối Tượng Bệnh Nhân";
-            this.bbiNationality.ImageOptions.SmallImageIndex = 3;
-            this.bbiNationality.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.bbiNationality.Name = "bbiNationality";
-            this.bbiNationality.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiNationality_LinkClicked);
+            this.bbiPatientObject.Caption = "Đối Tượng Bệnh Nhân";
+            this.bbiPatientObject.ImageOptions.SmallImageIndex = 3;
+            this.bbiPatientObject.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiPatientObject.Name = "bbiPatientObject";
+            this.bbiPatientObject.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiPatientObject_LinkClicked);
             // 
             // bbiEthnic
             // 
@@ -656,6 +592,66 @@
             this.bbiGroup.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
             this.bbiGroup.Name = "bbiGroup";
             this.bbiGroup.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiGroup_LinkClicked);
+            // 
+            // navTimekeeping
+            // 
+            this.navTimekeeping.Caption = "Nhóm Dịch Vụ";
+            this.navTimekeeping.ImageOptions.LargeImageIndex = 2;
+            this.navTimekeeping.ImageOptions.SmallImageIndex = 1;
+            this.navTimekeeping.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiShift),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiSymbol),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiMachine),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiHoliday),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
+            this.navTimekeeping.Name = "navTimekeeping";
+            // 
+            // bbiShift
+            // 
+            this.bbiShift.Caption = "Dịch Vụ";
+            this.bbiShift.ImageOptions.SmallImageIndex = 5;
+            this.bbiShift.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiShift.Name = "bbiShift";
+            this.bbiShift.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiShift_LinkClicked);
+            // 
+            // bbiSymbol
+            // 
+            this.bbiSymbol.Caption = "Nhóm Dịch Vụ";
+            this.bbiSymbol.ImageOptions.SmallImageIndex = 5;
+            this.bbiSymbol.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiSymbol.Name = "bbiSymbol";
+            this.bbiSymbol.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiSymbol_LinkClicked);
+            // 
+            // bbiMachine
+            // 
+            this.bbiMachine.Caption = "Tiểu Nhóm Dịch Vụ";
+            this.bbiMachine.ImageOptions.SmallImageIndex = 5;
+            this.bbiMachine.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiMachine.Name = "bbiMachine";
+            this.bbiMachine.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiMachine_LinkClicked);
+            // 
+            // bbiHoliday
+            // 
+            this.bbiHoliday.Caption = "Kết Quả Mẫu";
+            this.bbiHoliday.ImageOptions.SmallImageIndex = 5;
+            this.bbiHoliday.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiHoliday.Name = "bbiHoliday";
+            this.bbiHoliday.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiHoliday_LinkClicked);
+            // 
+            // navBarItem1
+            // 
+            this.navBarItem1.Caption = "Dịch Vụ Chi Tiết";
+            this.navBarItem1.ImageOptions.SmallImageIndex = 5;
+            this.navBarItem1.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.navBarItem1.Name = "navBarItem1";
+            // 
+            // navBarItem2
+            // 
+            this.navBarItem2.Caption = "Biên Lai";
+            this.navBarItem2.ImageOptions.SmallImageIndex = 5;
+            this.navBarItem2.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.navBarItem2.Name = "navBarItem2";
             // 
             // bbiRank
             // 
@@ -744,6 +740,29 @@
             this.imageCollection1.InsertGalleryImage("bosale_32x32.png", "images/business%20objects/bosale_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/business%20objects/bosale_32x32.png"), 5);
             this.imageCollection1.Images.SetKeyName(5, "bosale_32x32.png");
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiOpenNewTab,
+            this.tsmiThuNho});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(180, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // tsmiOpenNewTab
+            // 
+            this.tsmiOpenNewTab.Name = "tsmiOpenNewTab";
+            this.tsmiOpenNewTab.Size = new System.Drawing.Size(179, 22);
+            this.tsmiOpenNewTab.Text = "Mở trong trang mới";
+            this.tsmiOpenNewTab.Click += new System.EventHandler(this.tsmiOpenNewTab_Click);
+            // 
+            // tsmiThuNho
+            // 
+            this.tsmiThuNho.Name = "tsmiThuNho";
+            this.tsmiThuNho.Size = new System.Drawing.Size(179, 22);
+            this.tsmiThuNho.Text = "Thu nhỏ";
+            this.tsmiThuNho.Click += new System.EventHandler(this.tsmiThuNho_Click);
+            // 
             // gcControl
             // 
             this.gcControl.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 11F);
@@ -773,8 +792,8 @@
             this.Text = "Quản lý danh mục";
             this.Load += new System.EventHandler(this.xfmDictionary_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcControl)).EndInit();
             this.ResumeLayout(false);
 

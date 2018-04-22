@@ -79,6 +79,12 @@
     <Compile Include="UI\Core\Actions\ucAddDepartment.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_DTBN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_DTBN.Designer.cs">
+      <DependentUpon>ucAddDIC_DTBN.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Core\Actions\ucAddEmployee.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -124,6 +130,12 @@
     </Compile>
     <Compile Include="UI\Core\ucDIC_DoiTuong.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\ucDIC_DTBN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\ucDIC_DTBN.Designer.cs">
+      <DependentUpon>ucDIC_DTBN.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Core\ucDIC_Specialty.cs">
       <SubType>UserControl</SubType>
@@ -370,6 +382,9 @@
     <EmbeddedResource Include="UI\Core\Actions\ucAddDepartment.resx">
       <DependentUpon>ucAddDepartment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_DTBN.resx">
+      <DependentUpon>ucAddDIC_DTBN.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Core\Actions\ucAddEmployee.resx">
       <DependentUpon>ucAddEmployee.cs</DependentUpon>
     </EmbeddedResource>
@@ -394,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Core\ucDanToc.resx">
       <DependentUpon>ucDanToc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\ucDIC_DTBN.resx">
+      <DependentUpon>ucDIC_DTBN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\CLS.resx">
       <DependentUpon>CLS.cs</DependentUpon>

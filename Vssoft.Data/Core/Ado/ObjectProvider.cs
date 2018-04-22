@@ -69,7 +69,7 @@ namespace Vssoft.Data.Core.Ado
             }
             catch (Exception e)
             {
-                log.Error("Generate PHONG BAN", e);
+                log.Error("Generate DOI TUONG", e);
                 return null;
             }
 

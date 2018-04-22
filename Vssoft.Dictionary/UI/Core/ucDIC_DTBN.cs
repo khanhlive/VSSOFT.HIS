@@ -1,28 +1,34 @@
-﻿using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraGrid.Views.BandedGrid;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Vssoft.Data.Core.Ado;
+using DevExpress.XtraGrid.Views.BandedGrid;
+using DevExpress.XtraEditors.Repository;
 
 namespace Vssoft.Dictionary.UI.Core
 {
-
-    /// <summary>
-    /// DANH MỤC CHUYÊN KHOA
-    /// </summary>
-    public partial class ucDIC_Specialty : Common.ucBaseBasicView
+    public partial class ucDIC_DTBN : Common.ucBaseBasicView
     {
-        private Actions.ucAddSpecialty addSpecialty;
-        public ucDIC_Specialty()
+        private Actions.ucAddDIC_DTBN dic_dtbn;
+        public ucDIC_DTBN()
         {
-            this.addSpecialty = new Actions.ucAddSpecialty();
+            this.dic_dtbn = new Actions.ucAddDIC_DTBN();
             InitializeComponent();
-            this.SetViewData(this.addSpecialty);
+            this.SetViewData(this.dic_dtbn);
         }
+
         protected override void SetDataSource()
         {
-            SpecialtyProvider specialtyProvider = new SpecialtyProvider();
-            this.dataSource = specialtyProvider.GetAll();
+            PatientObjectProvider patientObjectProvider = new PatientObjectProvider();
+            this.dataSource = patientObjectProvider.GetAll();
         }
-        
+
         protected override void List_Init(AdvBandedGridView dt)
         {
             RepositoryItemCheckEdit ckbStatus = new RepositoryItemCheckEdit();
@@ -36,21 +42,22 @@ namespace Vssoft.Dictionary.UI.Core
                 dt.Columns[i].OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
                 switch (dt.Columns[i].FieldName)
                 {
-                    case "MaCK":
-                        dt.Columns[i].Caption = "Mã chuyên khoa";
+                    case "IDDTBN":
+                        dt.Columns[i].Caption = "Mã đối tượng";
                         dt.Columns[i].Width = 20;
                         continue;
-                    case "TenCK":
-                        dt.Columns[i].Caption = "Tên chuyên khoa";
+                    case "TenDTBN":
+                        dt.Columns[i].Caption = "Tên đối tượng";
                         continue;
-                    case "TenChiTiet":
-                        dt.Columns[i].Caption = "Nội dung chi tiết";
+                    case "MoTa":
+                        dt.Columns[i].Caption = "Mô tả";
                         continue;
-                    case "MaQuyetDinh":
-                        dt.Columns[i].Caption = "Mã quyết định";
+                    case "HinhThucThanhToan":
+                        dt.Columns[i].Caption = "Hình thức thanh toán";
                         continue;
                     case "Status":
                         dt.Columns[i].Caption = "Sử dụng";
+                        //dt.Columns[i].OptionsColumn.= DevExpress.Utils.HorzAlignment.Center;
                         dt.Columns[i].Width = 20;
                         dt.Columns[i].ColumnEdit = ckbStatus;
                         continue;
