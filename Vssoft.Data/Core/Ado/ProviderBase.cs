@@ -7,7 +7,7 @@ using Vssoft.Data.Enum;
 
 namespace Vssoft.Data.Core.Ado
 {
-    public abstract class ProviderBase
+    public abstract class ProviderBase : IDisposable
     {
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -15,6 +15,11 @@ namespace Vssoft.Data.Core.Ado
         public ProviderBase()
         {
             this.sqlHelper = new Helper.SqlHelper();
+        }
+
+        public void Dispose()
+        {
+            this.sqlHelper = null;
         }
 
         protected SqlResultType GetResult(int result)

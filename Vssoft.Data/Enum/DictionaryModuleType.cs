@@ -2,11 +2,12 @@
 {
     public enum DictionaryModuleType
     {
-        DIC_CanBo,
-        DIC_DanToc,
-        DIC_ChuyenKhoa,
-        DIC_PhongBan,
-        DIC_DoiTuongBHYT,
+        DIC_CANBO,
+        DIC_BENHVIEN,
+        DIC_DANTOC,
+        DIC_CHUYENKHOA,
+        DIC_PHONGBAN,
+        DIC_DOITUONGBHYT,
         DIC_DOITUONGBENHNHAN,
         DIC_DUONGDUNG,
         DIC_HUYEN,

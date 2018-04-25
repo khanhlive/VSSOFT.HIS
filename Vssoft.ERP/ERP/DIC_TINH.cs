@@ -9,25 +9,15 @@
 
 namespace Vssoft.ERP.ERP
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class DIC_TINH
+
+    public class DIC_TINH
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        
         public DIC_TINH()
         {
-            this.DIC_BENHVIEN = new HashSet<DIC_BENHVIEN>();
-            this.DIC_HUYEN = new HashSet<DIC_HUYEN>();
         }
-    
         public string MaTinh { get; set; }
         public string TenTinh { get; set; }
         public int Status { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DIC_BENHVIEN> DIC_BENHVIEN { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DIC_HUYEN> DIC_HUYEN { get; set; }
     }
 }

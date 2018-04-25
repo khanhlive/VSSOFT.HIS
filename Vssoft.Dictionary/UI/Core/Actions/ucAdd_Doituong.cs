@@ -98,6 +98,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                     }
                     return resultType == SqlResultType.OK;
                 }
+                
             }
             return false;
         }

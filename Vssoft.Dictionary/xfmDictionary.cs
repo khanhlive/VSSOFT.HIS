@@ -31,7 +31,7 @@
         private NavBarItem bbiPosition;
         private NavBarItem bbiProduct;
         private NavBarItem bbiProductGroup;
-        private NavBarItem bbiProfessional;
+        private NavBarItem bbiDIC_Hospital;
         private NavBarItem bbiRank;
         private NavBarItem bbiRate;
         private NavBarItem bbiRelative;
@@ -74,6 +74,9 @@
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem tsmiOpenNewTab;
         private ToolStripMenuItem tsmiThuNho;
+        private NavBarItem ppiDIC_Province;
+        private NavBarItem bbiDIC_Huyen;
+        private NavBarItem bbiDIC_XaPhuong;
         private Common.xucBase dic_ModuleControl;
         //private Perfect.Dictionary.xucProduct xucProduct;
         //private Perfect.Dictionary.xucProductGroup xucProductGroup;
@@ -109,7 +112,7 @@
 
         private void bbiDegree_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            this.Execute(DictionaryModuleType.DIC_PhongBan, ((NavBarItem)sender).Caption);
+            this.Execute(DictionaryModuleType.DIC_PHONGBAN, ((NavBarItem)sender).Caption);
         }
 
         private void bbiDepartment_LinkClicked(object sender, NavBarLinkEventArgs e)
@@ -124,7 +127,7 @@
 
         private void bbiEthnic_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            this.Execute(DictionaryModuleType.DIC_DanToc, ((NavBarItem)sender).Caption);
+            this.Execute(DictionaryModuleType.DIC_DANTOC, ((NavBarItem)sender).Caption);
         }
 
         private void bbiGroup_LinkClicked(object sender, NavBarLinkEventArgs e)
@@ -169,7 +172,7 @@
 
         private void bbiPosition_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            this.Execute(DictionaryModuleType.DIC_CanBo, ((NavBarItem)sender).Caption);
+            this.Execute(DictionaryModuleType.DIC_CANBO, ((NavBarItem)sender).Caption);
         }
 
         private void bbiProduct_LinkClicked(object sender, NavBarLinkEventArgs e)
@@ -182,9 +185,9 @@
             this.Execute("xucProductGroup", "");
         }
 
-        private void bbiProfessional_LinkClicked(object sender, NavBarLinkEventArgs e)
+        private void bbiDIC_Hospital_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            this.Execute("xucProfessional", "");
+            this.Execute(DictionaryModuleType.DIC_BENHVIEN, ((NavBarItem)sender).Caption);
         }
 
         private void bbiRank_LinkClicked(object sender, NavBarLinkEventArgs e)
@@ -204,7 +207,7 @@
 
         private void bbiDoiTuongBHYT_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            this.Execute(DictionaryModuleType.DIC_DoiTuongBHYT, ((NavBarItem)sender).Caption);
+            this.Execute(DictionaryModuleType.DIC_DOITUONGBHYT, ((NavBarItem)sender).Caption);
         }
 
         private void bbiShift_LinkClicked(object sender, NavBarLinkEventArgs e)
@@ -274,19 +277,19 @@
             }
             switch (id)
             {
-                case DictionaryModuleType.DIC_CanBo:
+                case DictionaryModuleType.DIC_CANBO:
                     this.dic_ModuleControl = new UI.Core.ucCanBo();
                     break;
-                case DictionaryModuleType.DIC_DanToc:
+                case DictionaryModuleType.DIC_DANTOC:
                     this.dic_ModuleControl = new UI.Core.ucDanToc();
                     break;
-                case DictionaryModuleType.DIC_ChuyenKhoa:
+                case DictionaryModuleType.DIC_CHUYENKHOA:
                     this.dic_ModuleControl = new UI.Core.ucDIC_Specialty();
                     break;
-                case DictionaryModuleType.DIC_PhongBan:
+                case DictionaryModuleType.DIC_PHONGBAN:
                     this.dic_ModuleControl = new UI.Core.ucDIC_Department();
                     break;
-                case DictionaryModuleType.DIC_DoiTuongBHYT:
+                case DictionaryModuleType.DIC_DOITUONGBHYT:
                     this.dic_ModuleControl = new UI.Core.ucDIC_DoiTuong();
                     break;
                 case DictionaryModuleType.DIC_DOITUONGBENHNHAN:
@@ -295,10 +298,13 @@
                 case DictionaryModuleType.DIC_DUONGDUNG:
                     break;
                 case DictionaryModuleType.DIC_HUYEN:
+                    this.dic_ModuleControl = new UI.Core.ucDIC_HUYEN();
                     break;
                 case DictionaryModuleType.DIC_TINHTHANH:
+                    this.dic_ModuleControl = new UI.Core.ucDIC_TINHTHANH();
                     break;
                 case DictionaryModuleType.DIC_XAPHUONG:
+                    this.dic_ModuleControl = new UI.Core.ucDIC_XAPHUONG();
                     break;
                 case DictionaryModuleType.DIC_NGHENGHIEP:
                     break;
@@ -307,6 +313,9 @@
                 case DictionaryModuleType.DIC_NHOMDICHVU:
                     break;
                 case DictionaryModuleType.DIC_TIEUNHOMDICHVU:
+                    break;
+                case DictionaryModuleType.DIC_BENHVIEN:
+                    this.dic_ModuleControl = new UI.Core.ucDIC_BENHVIEN();
                     break;
                 default:
                     break;
@@ -321,16 +330,16 @@
             ucBaseBasicView view;
             switch (id)
             {
-                case DictionaryModuleType.DIC_CanBo:
+                case DictionaryModuleType.DIC_CANBO:
                     view = new UI.Core.ucCanBo();
                     break;
-                case DictionaryModuleType.DIC_DanToc:
+                case DictionaryModuleType.DIC_DANTOC:
                     view = new UI.Core.ucDanToc();
                     break;
-                case DictionaryModuleType.DIC_ChuyenKhoa:
+                case DictionaryModuleType.DIC_CHUYENKHOA:
                     view = new UI.Core.ucDIC_Specialty();
                     break;
-                case DictionaryModuleType.DIC_PhongBan:
+                case DictionaryModuleType.DIC_PHONGBAN:
                     view = new UI.Core.ucDIC_Department();
                     break;
                 default:view = new ucBaseBasicView();
@@ -347,11 +356,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(xfmDictionary));
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navEmployee = new DevExpress.XtraNavBar.NavBarGroup();
             this.bbiPosition = new DevExpress.XtraNavBar.NavBarItem();
-            this.bbiProfessional = new DevExpress.XtraNavBar.NavBarItem();
+            this.bbiDIC_Hospital = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiDegree = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiJob = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiPatientObject = new DevExpress.XtraNavBar.NavBarItem();
@@ -360,6 +371,9 @@
             this.bbiRelative = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiEducation = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiSpecialty = new DevExpress.XtraNavBar.NavBarItem();
+            this.ppiDIC_Province = new DevExpress.XtraNavBar.NavBarItem();
+            this.bbiDIC_Huyen = new DevExpress.XtraNavBar.NavBarItem();
+            this.bbiDIC_XaPhuong = new DevExpress.XtraNavBar.NavBarItem();
             this.navOrganization = new DevExpress.XtraNavBar.NavBarGroup();
             this.bbiSubsidiary = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiBranch = new DevExpress.XtraNavBar.NavBarItem();
@@ -408,7 +422,7 @@
             this.navTimekeeping});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.bbiPosition,
-            this.bbiProfessional,
+            this.bbiDIC_Hospital,
             this.bbiEthnic,
             this.bbiEducation,
             this.bbiPatientObject,
@@ -436,7 +450,10 @@
             this.bbiSalaryIncome,
             this.navBarItem1,
             this.navBarItem2,
-            this.bbiSpecialty});
+            this.bbiSpecialty,
+            this.ppiDIC_Province,
+            this.bbiDIC_Huyen,
+            this.bbiDIC_XaPhuong});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 5;
@@ -457,7 +474,7 @@
             this.navEmployee.ImageOptions.SmallImageIndex = 0;
             this.navEmployee.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiPosition),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiProfessional),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDIC_Hospital),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDegree),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiJob),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiPatientObject),
@@ -465,8 +482,12 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDoiTuongBHYT),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiRelative),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiEducation),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiSpecialty)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiSpecialty),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.ppiDIC_Province),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDIC_Huyen),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDIC_XaPhuong)});
             this.navEmployee.Name = "navEmployee";
+            this.navEmployee.TopVisibleLinkIndex = 1;
             // 
             // bbiPosition
             // 
@@ -477,13 +498,13 @@
             this.bbiPosition.Name = "bbiPosition";
             this.bbiPosition.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiPosition_LinkClicked);
             // 
-            // bbiProfessional
+            // bbiDIC_Hospital
             // 
-            this.bbiProfessional.Caption = "Bệnh Viện";
-            this.bbiProfessional.ImageOptions.SmallImageIndex = 3;
-            this.bbiProfessional.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.bbiProfessional.Name = "bbiProfessional";
-            this.bbiProfessional.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiProfessional_LinkClicked);
+            this.bbiDIC_Hospital.Caption = "Bệnh Viện";
+            this.bbiDIC_Hospital.ImageOptions.SmallImageIndex = 3;
+            this.bbiDIC_Hospital.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiDIC_Hospital.Name = "bbiDIC_Hospital";
+            this.bbiDIC_Hospital.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiDIC_Hospital_LinkClicked);
             // 
             // bbiDegree
             // 
@@ -548,6 +569,33 @@
             this.bbiSpecialty.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
             this.bbiSpecialty.Name = "bbiSpecialty";
             this.bbiSpecialty.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiSpecialty_LinkClicked);
+            // 
+            // ppiDIC_Province
+            // 
+            this.ppiDIC_Province.Caption = "Tỉnh/Thành";
+            this.ppiDIC_Province.ImageOptions.SmallImageIndex = 3;
+            this.ppiDIC_Province.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.ppiDIC_Province.Name = "ppiDIC_Province";
+            toolTipTitleItem1.Text = "Danh Mục Tỉnh Thành";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            this.ppiDIC_Province.SuperTip = superToolTip1;
+            this.ppiDIC_Province.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ppiDIC_Province_LinkClicked);
+            // 
+            // bbiDIC_Huyen
+            // 
+            this.bbiDIC_Huyen.Caption = "Huyện/Thị Xã";
+            this.bbiDIC_Huyen.ImageOptions.SmallImageIndex = 3;
+            this.bbiDIC_Huyen.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiDIC_Huyen.Name = "bbiDIC_Huyen";
+            this.bbiDIC_Huyen.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiDIC_Huyen_LinkClicked);
+            // 
+            // bbiDIC_XaPhuong
+            // 
+            this.bbiDIC_XaPhuong.Caption = "Xã/Phường";
+            this.bbiDIC_XaPhuong.ImageOptions.SmallImageIndex = 3;
+            this.bbiDIC_XaPhuong.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiDIC_XaPhuong.Name = "bbiDIC_XaPhuong";
+            this.bbiDIC_XaPhuong.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiDIC_XaPhuong_LinkClicked);
             // 
             // navOrganization
             // 
@@ -861,7 +909,7 @@
 
         private void bbiSpecialty_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            this.Execute(DictionaryModuleType.DIC_ChuyenKhoa, ((NavBarItem)sender).Caption);
+            this.Execute(DictionaryModuleType.DIC_CHUYENKHOA, ((NavBarItem)sender).Caption);
         }
 
         private void navBarControl1_MouseDown(object sender, MouseEventArgs e)
@@ -893,6 +941,21 @@
                 tsmiThuNho.Text = "Phóng to";
             else
                 tsmiThuNho.Text = "Thu nhỏ";
+        }
+
+        private void ppiDIC_Province_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            this.Execute(DictionaryModuleType.DIC_TINHTHANH, ((NavBarItem)sender).Caption);
+        }
+
+        private void bbiDIC_Huyen_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            this.Execute(DictionaryModuleType.DIC_HUYEN, ((NavBarItem)sender).Caption);
+        }
+
+        private void bbiDIC_XaPhuong_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            this.Execute(DictionaryModuleType.DIC_XAPHUONG, ((NavBarItem)sender).Caption);
         }
     }
 }

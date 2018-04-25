@@ -1,20 +1,26 @@
 ﻿using DevExpress.XtraEditors;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using Vssoft.Common;
 using Vssoft.Data.Core.Ado;
 using Vssoft.Data.Enum;
 using Vssoft.ERP.ERP;
-using Vssoft.ERP.Models;
 
 namespace Vssoft.Dictionary.UI.Core.Actions
 {
-    public partial class ucAddDIC_DTBN : Common.ucBaseView
+    public partial class ucAddDIC_HUYEN : ucBaseView
     {
-        public ucAddDIC_DTBN()
+        public ucAddDIC_HUYEN()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            using (ProvinceProvider provinceProvider = new ProvinceProvider())
+            {
+                cmbProvince.Properties.DataSource = provinceProvider.GetAllActive();
+            }
         }
 
         public override void SetModel(object model)
@@ -41,8 +47,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         {
             txtID.ReadOnly = readOnly;
             txtName.ReadOnly = readOnly;
-            txtDescription.ReadOnly = readOnly;
-            cmbFormPayment.ReadOnly = readOnly;
+            cmbProvince.ReadOnly = readOnly;
             ckbStatus.ReadOnly = readOnly;
         }
 
@@ -50,12 +55,11 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         {
             this.isUpdated = false;
             this.isEdited = false;
-            DIC_DTBN doituongbenhnhan = (DIC_DTBN)this.Model;
-            txtID.Text = doituongbenhnhan.IDDTBN.ToString();
-            txtName.Text = doituongbenhnhan.TenDTBN;
-            txtDescription.Text = doituongbenhnhan.MoTa;
-            cmbFormPayment.SelectedIndex = doituongbenhnhan.HinhThucThanhToan;
-            ckbStatus.Checked = doituongbenhnhan.Status == 1;
+            DIC_HUYEN huyen = (DIC_HUYEN)this.Model;
+            txtID.Text = huyen.MaHuyen.ToString();
+            txtName.Text = huyen.TenHuyen;
+            cmbProvince.EditValue = huyen.MaTinh;
+            ckbStatus.Checked = huyen.Status == 1;
             txtID.ReadOnly = true;
             this.isUpdated = true;
         }
@@ -66,8 +70,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             {
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
-                    DIC_DTBN doituongbenhnhan = (DIC_DTBN)this.Model;
-                    SqlResultType resultType = new PatientObjectProvider().Delete(doituongbenhnhan);
+                    DIC_HUYEN tinhthanh = (DIC_HUYEN)this.Model;
+                    SqlResultType resultType = new DistrictProvider().Delete(tinhthanh);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
@@ -88,13 +92,12 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         public override object GetModel()
         {
-            DIC_DTBN doituongbenhnhan = new DIC_DTBN();
-            doituongbenhnhan.IDDTBN = Convert.ToByte(txtID.EditValue);
-            doituongbenhnhan.TenDTBN = txtName.Text;
-            doituongbenhnhan.MoTa= txtDescription.Text;
-            doituongbenhnhan.HinhThucThanhToan= (byte)cmbFormPayment.SelectedIndex;
-            doituongbenhnhan.Status = ckbStatus.Checked ? 1 : 0;
-            return doituongbenhnhan;
+            DIC_HUYEN huyen = new DIC_HUYEN();
+            huyen.MaHuyen = txtID.EditValue as string;
+            huyen.TenHuyen = txtName.Text;
+            huyen.MaTinh = cmbProvince.EditValue as string;
+            huyen.Status = ckbStatus.Checked ? 1 : 0;
+            return huyen;
         }
 
         public override void ClearModel()
@@ -103,8 +106,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.isEdited = false;
             txtID.Text = string.Empty;
             txtName.Text = string.Empty;
-            txtDescription.Text = string.Empty;
-            cmbFormPayment.SelectedIndex= 0;
+            cmbProvince.EditValue = null;
             ckbStatus.CheckState = CheckState.Unchecked;
             this.isUpdated = true;
         }
@@ -113,15 +115,15 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         {
             if (this.Validation())
             {
-                DIC_DTBN doituongbenhnhan = (DIC_DTBN)this.GetModel();
+                DIC_HUYEN huyen = (DIC_HUYEN)this.GetModel();
                 SqlResultType flag;
-                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new PatientObjectProvider().Insert(doituongbenhnhan);
-                else flag = new PatientObjectProvider().Update(doituongbenhnhan);
+                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new DistrictProvider().Insert(huyen);
+                else flag = new DistrictProvider().Update(huyen);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
-                args.Model = doituongbenhnhan;
-                args.Message = "Không lưu được thông tin đối tượng bệnh nhân";
-                this.SaveCompleteSuccess(doituongbenhnhan, args);
+                args.Model = huyen;
+                args.Message = "Không lưu được thông tin huyện";
+                this.SaveCompleteSuccess(huyen, args);
             }
             else
             {
@@ -136,9 +138,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             bool flag = this.txtID.DoValidate();
             if (!flag) this.isValidModel = false;
             this.Validate_EmptyStringRule(txtName);
-            //this.Validate_EmptyStringRule(txtCode);
-            //bool flag2 = this.txtCode.DoValidate();
-            //if (!flag2) this.isValidModel = false;
+
             return this.isValidModel;
         }
 
@@ -152,14 +152,6 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             if (this.isUpdated && !this.isEdited)
             {
                 this.isEdited = true;
-            }
-        }
-
-        private void ucAddDIC_DTBN_Load(object sender, EventArgs e)
-        {
-            foreach (var item in new HinhThucThanhToan().GetList())
-            {
-                cmbFormPayment.Properties.Items.Add(item.Name);
             }
         }
     }

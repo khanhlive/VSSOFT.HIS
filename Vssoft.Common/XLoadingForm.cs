@@ -61,122 +61,153 @@
 
         private void InitializeComponent()
         {
-            this.lblTitle = new LabelControl();
-            this.labelControl7 = new LabelControl();
-            this.labelControl6 = new LabelControl();
-            this.labelControl5 = new LabelControl();
-            this.lbTitle = new LabelControl();
-            this.labelControl3 = new LabelControl();
-            this.labelControl2 = new LabelControl();
-            this.lblVersion = new LabelControl();
-            this.pictureBox2 = new PictureBox();
-            this.labelControl4 = new LabelControl();
-            ((ISupportInitialize) this.pictureBox2).BeginInit();
-            base.SuspendLayout();
-            this.lblTitle.Anchor = AnchorStyles.Left;
-            this.lblTitle.Appearance.ForeColor = Color.Moccasin;
+            this.lblTitle = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.lbTitle = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.lblVersion = new DevExpress.XtraEditors.LabelControl();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblTitle.Appearance.ForeColor = System.Drawing.Color.Moccasin;
             this.lblTitle.Appearance.Options.UseForeColor = true;
-            this.lblTitle.Location = new Point(14, 0xe8);
+            this.lblTitle.Location = new System.Drawing.Point(14, 232);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new Size(0x49, 13);
-            this.lblTitle.TabIndex = 0x43;
+            this.lblTitle.Size = new System.Drawing.Size(73, 13);
+            this.lblTitle.TabIndex = 67;
             this.lblTitle.Text = "Đang tải... 0%";
-            this.labelControl7.Appearance.ForeColor = Color.Khaki;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.ForeColor = System.Drawing.Color.Khaki;
             this.labelControl7.Appearance.Options.UseForeColor = true;
-            this.labelControl7.Location = new Point(0xd8, 0x58);
+            this.labelControl7.Location = new System.Drawing.Point(216, 88);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new Size(0x6c, 13);
-            this.labelControl7.TabIndex = 0x4f;
+            this.labelControl7.Size = new System.Drawing.Size(103, 13);
+            this.labelControl7.TabIndex = 79;
             this.labelControl7.Text = "sales@Vssoft.com.vn";
-            this.labelControl6.Appearance.ForeColor = Color.Khaki;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Khaki;
             this.labelControl6.Appearance.Options.UseForeColor = true;
-            this.labelControl6.Location = new Point(0x3a, 0x58);
+            this.labelControl6.Location = new System.Drawing.Point(58, 88);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new Size(0x66, 13);
-            this.labelControl6.TabIndex = 0x4e;
+            this.labelControl6.Size = new System.Drawing.Size(97, 13);
+            this.labelControl6.TabIndex = 78;
             this.labelControl6.Text = "www.Vssoft.com.vn";
-            this.labelControl5.Appearance.ForeColor = Color.LightSkyBlue;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.ForeColor = System.Drawing.Color.LightSkyBlue;
             this.labelControl5.Appearance.Options.UseForeColor = true;
-            this.labelControl5.Location = new Point(170, 0x58);
+            this.labelControl5.Location = new System.Drawing.Point(170, 88);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new Size(0x2c, 13);
-            this.labelControl5.TabIndex = 0x4d;
+            this.labelControl5.Size = new System.Drawing.Size(44, 13);
+            this.labelControl5.TabIndex = 77;
             this.labelControl5.Text = "-   Email: ";
+            // 
+            // lbTitle
+            // 
             this.lbTitle.AllowHtmlString = true;
-            this.lbTitle.Appearance.Font = new Font("Tahoma", 16f);
-            this.lbTitle.Appearance.ForeColor = Color.Snow;
+            this.lbTitle.Appearance.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.lbTitle.Appearance.ForeColor = System.Drawing.Color.Snow;
             this.lbTitle.Appearance.Options.UseFont = true;
             this.lbTitle.Appearance.Options.UseForeColor = true;
-            this.lbTitle.Location = new Point(12, 13);
+            this.lbTitle.Location = new System.Drawing.Point(12, 13);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new Size(0xa7, 0x1a);
-            this.lbTitle.TabIndex = 0x4c;
-            this.lbTitle.Text = "Perfect HRM 2012";
-            this.labelControl3.Appearance.ForeColor = Color.LightSkyBlue;
+            this.lbTitle.Size = new System.Drawing.Size(148, 25);
+            this.lbTitle.TabIndex = 76;
+            this.lbTitle.Text = "Vssoft HIS 2018";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.LightSkyBlue;
             this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new Point(12, 0x58);
+            this.labelControl3.Location = new System.Drawing.Point(12, 88);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new Size(0x2e, 13);
-            this.labelControl3.TabIndex = 0x4b;
+            this.labelControl3.Size = new System.Drawing.Size(46, 13);
+            this.labelControl3.TabIndex = 75;
             this.labelControl3.Text = "Website: ";
-            this.labelControl2.Appearance.ForeColor = Color.LightSkyBlue;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.LightSkyBlue;
             this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new Point(12, 0x45);
+            this.labelControl2.Location = new System.Drawing.Point(12, 69);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new Size(0x12d, 13);
-            this.labelControl2.TabIndex = 0x4a;
-            this.labelControl2.Text = "\x00a9 Bản quyền 2011 - 2014 bởi C\x00d4NG TY PHẦN MỀM HO\x00c0N HẢO";
-            this.lblVersion.Appearance.ForeColor = Color.Snow;
+            this.labelControl2.Size = new System.Drawing.Size(401, 13);
+            this.labelControl2.TabIndex = 74;
+            this.labelControl2.Text = "© Bản quyền 2014 - 2018 bởi CÔNG TY CP PHÁT TRIỂN GIẢI PHÁP PHẦN MỀM VIỆT";
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.Appearance.ForeColor = System.Drawing.Color.Snow;
             this.lblVersion.Appearance.Options.UseForeColor = true;
-            this.lblVersion.Location = new Point(12, 0x31);
+            this.lblVersion.Location = new System.Drawing.Point(12, 49);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new Size(0xa7, 13);
-            this.lblVersion.TabIndex = 0x49;
+            this.lblVersion.Size = new System.Drawing.Size(167, 13);
+            this.lblVersion.TabIndex = 73;
             this.lblVersion.Text = "Version: 1.0.0.0  -  Build 00000000";
-            this.pictureBox2.BackColor = Color.Transparent;
-            //this.pictureBox2.Image = Resources.logo;
-            this.pictureBox2.Location = new Point(0xff, 0xc0);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Location = new System.Drawing.Point(279, 194);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new Size(0xce, 0x48);
-            this.pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            this.pictureBox2.Size = new System.Drawing.Size(206, 72);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 80;
             this.pictureBox2.TabStop = false;
-            this.labelControl4.Appearance.ForeColor = Color.SteelBlue;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.SteelBlue;
             this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.labelControl4.Location = new Point(14, 0xd6);
+            this.labelControl4.Location = new System.Drawing.Point(14, 214);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new Size(0x85, 13);
-            this.labelControl4.TabIndex = 0x52;
-            this.labelControl4.Text = "Vui l\x00f2ng đợi trong gi\x00e2y l\x00e1t...";
-            base.Appearance.BackColor = Color.FromArgb(0x20, 0x4f, 150);
-            base.Appearance.Options.UseBackColor = true;
-            this.AutoScaleBaseSize = new Size(5, 14);
-            base.BackgroundImageLayoutStore = ImageLayout.Tile;
-            //base.BackgroundImageStore = Resources.flash_screen;
-            base.ClientSize = new Size(0x1c9, 0x103);
-            base.ControlBox = false;
-            base.Controls.Add(this.labelControl4);
-            base.Controls.Add(this.pictureBox2);
-            base.Controls.Add(this.labelControl7);
-            base.Controls.Add(this.labelControl6);
-            base.Controls.Add(this.labelControl5);
-            base.Controls.Add(this.lbTitle);
-            base.Controls.Add(this.labelControl3);
-            base.Controls.Add(this.labelControl2);
-            base.Controls.Add(this.lblVersion);
-            base.Controls.Add(this.lblTitle);
+            this.labelControl4.Size = new System.Drawing.Size(133, 13);
+            this.labelControl4.TabIndex = 82;
+            this.labelControl4.Text = "Vui lòng đợi trong giây lát...";
+            // 
+            // XLoadingForm
+            // 
+            this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(79)))), ((int)(((byte)(150)))));
+            this.Appearance.Options.UseBackColor = true;
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
+            this.ClientSize = new System.Drawing.Size(485, 259);
+            this.ControlBox = false;
+            this.Controls.Add(this.labelControl4);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.labelControl7);
+            this.Controls.Add(this.labelControl6);
+            this.Controls.Add(this.labelControl5);
+            this.Controls.Add(this.lbTitle);
+            this.Controls.Add(this.labelControl3);
+            this.Controls.Add(this.labelControl2);
+            this.Controls.Add(this.lblVersion);
+            this.Controls.Add(this.lblTitle);
             this.DoubleBuffered = true;
-            base.FormBorderStyle = FormBorderStyle.None;
-            base.MaximizeBox = false;
-            base.MinimizeBox = false;
-            base.Name = "XLoadingForm";
-            base.ShowInTaskbar = false;
-            base.StartPosition = FormStartPosition.CenterScreen;
-            base.TopMost = true;
-            base.TransparencyKey = Color.Transparent;
-            ((ISupportInitialize) this.pictureBox2).EndInit();
-            base.ResumeLayout(false);
-            base.PerformLayout();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "XLoadingForm";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TopMost = true;
+            this.TransparencyKey = System.Drawing.Color.Transparent;
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         protected override void OnPaint(PaintEventArgs e)

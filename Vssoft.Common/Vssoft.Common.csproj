@@ -248,6 +248,9 @@
     <EmbeddedResource Include="ucBaseView.resx">
       <DependentUpon>ucBaseView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="XLoadingForm.resx">
+      <DependentUpon>XLoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="xucBaseBasic.resx">
       <DependentUpon>xucBaseBasic.cs</DependentUpon>
     </EmbeddedResource>

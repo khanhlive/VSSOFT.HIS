@@ -14,6 +14,7 @@ namespace Vssoft.Data.Core.Ado
     public class SpecialtyProvider : ProviderBase
     {
         public SpecialtyProvider() : base() { }
+
         public List<ChuyenKhoa> GetAllActive()
         {
             try

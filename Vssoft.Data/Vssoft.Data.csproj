@@ -60,11 +60,15 @@
     <Compile Include="Common.cs" />
     <Compile Include="CommonHelper.cs" />
     <Compile Include="Core\Ado\DepartmentProvider.cs" />
+    <Compile Include="Core\Ado\DistrictProvider.cs" />
     <Compile Include="Core\Ado\EmployeeProvider.cs" />
     <Compile Include="Core\Ado\EthnicProvider.cs" />
+    <Compile Include="Core\Ado\HospitalProvider.cs" />
     <Compile Include="Core\Ado\ObjectProvider.cs" />
     <Compile Include="Core\Ado\PatientObjectProvider.cs" />
     <Compile Include="Core\Ado\ProviderBase.cs" />
+    <Compile Include="Core\Ado\ProvinceProvider.cs" />
+    <Compile Include="Core\Ado\RuralCommuneProvider.cs" />
     <Compile Include="Core\Ado\SpecialtyProvider.cs" />
     <Compile Include="Core\BangKeReportProvider.cs" />
     <Compile Include="Core\BenhNhanProvider.cs" />

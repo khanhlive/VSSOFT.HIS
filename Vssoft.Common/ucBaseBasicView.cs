@@ -166,6 +166,10 @@
             {
                 this.ReLoad();
             }
+            else
+            {
+                XtraMessageBox.Show("Không xóa được bản ghi này, thử lại sau.", "Xóa bản ghi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void DisableMenu(bool disable)
