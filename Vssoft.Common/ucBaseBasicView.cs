@@ -36,6 +36,7 @@
         public GridBand gridBand1;
         private ucBaseView _ucbaseview;
         private PanelControl pnlViewData;
+        private DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager toastNotificationsManager;
         protected Actions m_Status = Actions.Add;
 
         public event ButtonClickEventHander CloseClick;
@@ -72,7 +73,25 @@
 
         void ActionSaveComplete(object sender, SaveCompleteEventArgs e)
         {
-            if (e.Result) this.ReLoad();
+            if (e.Result)
+            {
+                this.ReLoad();
+                if (e.Action== Actions.AddNew || e.Action == Actions.Add)
+                {
+                    toastNotificationsManager.ShowNotification(toastNotificationsManager.Notifications[0]);
+                }
+                else if(e.Action == Actions.Update)
+                {
+                    toastNotificationsManager.ShowNotification(toastNotificationsManager.Notifications[1]);
+                }
+                else
+                    toastNotificationsManager.ShowNotification(toastNotificationsManager.Notifications[1]);
+
+            }
+            else
+            {
+                toastNotificationsManager.ShowNotification(toastNotificationsManager.Notifications[3]);
+            }
         }
 
         protected virtual void SetViewData(ucBaseView controlView)
@@ -165,6 +184,7 @@
             if(this._ucbaseview.DeleteModel())
             {
                 this.ReLoad();
+                toastNotificationsManager.ShowNotification(toastNotificationsManager.Notifications[2]);
             }
             else
             {
@@ -418,17 +438,20 @@
             Vssoft.Common.ItemCommand itemCommand27 = new Vssoft.Common.ItemCommand();
             Vssoft.Common.ItemCommand itemCommand28 = new Vssoft.Common.ItemCommand();
             Vssoft.Common.ItemCommand itemCommand29 = new Vssoft.Common.ItemCommand();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBaseBasicView));
             this.pnlGroupView = new DevExpress.XtraEditors.PanelControl();
             this.pnlViewData = new DevExpress.XtraEditors.PanelControl();
             this.ucToolBar = new Vssoft.Common.Base.XucToolBar();
             this.gcList = new DevExpress.XtraGrid.GridControl();
             this.gbList = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
             this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.toastNotificationsManager = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager();
             ((System.ComponentModel.ISupportInitialize)(this.pnlGroupView)).BeginInit();
             this.pnlGroupView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsManager)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlGroupView
@@ -666,6 +689,17 @@
             this.gridBand1.ToolTip = "DANH MỤC";
             this.gridBand1.VisibleIndex = 0;
             // 
+            // toastNotificationsManager
+            // 
+            this.toastNotificationsManager.ApplicationId = "8397c21b-3d47-48a4-8c8e-8ff3217d1fb2";
+            this.toastNotificationsManager.ApplicationName = "Vssoft.Common";
+            this.toastNotificationsManager.Notifications.AddRange(new DevExpress.XtraBars.ToastNotifications.IToastNotificationProperties[] {
+            new DevExpress.XtraBars.ToastNotifications.ToastNotification("a84d28f6-2e00-4134-a39d-d4effbacd468", ((System.Drawing.Image)(resources.GetObject("toastNotificationsManager.Notifications"))), "", "Thêm mới thành công", "", DevExpress.XtraBars.ToastNotifications.ToastNotificationTemplate.ImageAndText01),
+            new DevExpress.XtraBars.ToastNotifications.ToastNotification("a67f5081-87b8-4df8-aeed-5679d7ddedec", ((System.Drawing.Image)(resources.GetObject("toastNotificationsManager.Notifications1"))), "", "Cập nhật thành công", "", DevExpress.XtraBars.ToastNotifications.ToastNotificationTemplate.ImageAndText01),
+            new DevExpress.XtraBars.ToastNotifications.ToastNotification("74366fee-5902-4a5f-8d09-f2a26c08ac23", ((System.Drawing.Image)(resources.GetObject("toastNotificationsManager.Notifications2"))), "", "Xóa bản ghi thành công", "", DevExpress.XtraBars.ToastNotifications.ToastNotificationTemplate.ImageAndText01),
+            new DevExpress.XtraBars.ToastNotifications.ToastNotification("d445bb91-4fda-41f9-9fe4-92c2ad47745e", ((System.Drawing.Image)(resources.GetObject("toastNotificationsManager.Notifications3"))), "", "Thao tác chưa được thực hiện thành công, thử lại sau.", "", DevExpress.XtraBars.ToastNotifications.ToastNotificationTemplate.ImageAndText01),
+            new DevExpress.XtraBars.ToastNotifications.ToastNotification("8e062083-d7a4-48ba-bb43-144c45a8783d", ((System.Drawing.Image)(resources.GetObject("toastNotificationsManager.Notifications4"))), "", "Không xóa được bản ghi này, kiểm tra lại dữ liệu.", "", DevExpress.XtraBars.ToastNotifications.ToastNotificationTemplate.ImageAndText01)});
+            // 
             // ucBaseBasicView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -680,6 +714,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlViewData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsManager)).EndInit();
             this.ResumeLayout(false);
 
         }

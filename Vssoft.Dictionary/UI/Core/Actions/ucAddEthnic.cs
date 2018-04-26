@@ -45,6 +45,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         private void BindingModel()
         {
+            this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
             this.isEdited = false;
             DanToc dantoc = (DanToc)this.Model;
@@ -93,6 +94,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         public override void ClearModel()
         {
+            this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
             this.isEdited = false;
             txtID.Text = string.Empty;

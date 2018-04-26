@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Common.cs" />
     <Compile Include="CommonHelper.cs" />
+    <Compile Include="CommonVariable.cs" />
     <Compile Include="Core\Ado\DepartmentProvider.cs" />
     <Compile Include="Core\Ado\DistrictProvider.cs" />
     <Compile Include="Core\Ado\EmployeeProvider.cs" />

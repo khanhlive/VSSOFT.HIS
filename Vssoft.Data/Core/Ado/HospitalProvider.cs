@@ -121,5 +121,61 @@ namespace Vssoft.Data.Core.Ado
                 return null;
             }
         }
+
+        public SqlResultType Insert(DIC_BENHVIEN benhvien)
+        {
+            try
+            {
+                this.sqlHelper.CommandType = CommandType.StoredProcedure;
+                object result = this.sqlHelper.ExecuteScalar("InsertBenhVien",
+                    new string[] { "@MaBenhVien", "@MaTinh", "@MaHuyen", "@MaChuQuan", "@TenBenhVien", "@TuyenBenhVien", "@HangBenhVien", "@DiaChi", "@Connect", "@Status" },
+                    new object[] { benhvien.MaBenhVien, benhvien.MaTinh, benhvien.MaHuyen, benhvien.MaChuQuan, benhvien.TenBenhVien, benhvien.TuyenBenhVien, benhvien.HangBenhVien, benhvien.DiaChi, benhvien.Connect, benhvien.Status });
+                int kq = Convert.ToInt32(result);
+                return this.GetResult(kq);
+            }
+            catch (Exception e)
+            {
+                log.Error("Insert BENH VIEN", e);
+                return SqlResultType.Exception;
+            }
+
+
+        }
+
+        public SqlResultType Update(DIC_BENHVIEN benhvien)
+        {
+            try
+            {
+                this.sqlHelper.CommandType = CommandType.StoredProcedure;
+                object result = this.sqlHelper.ExecuteScalar("UpdateBenhVien",
+                    new string[] { "@MaBenhVien", "@MaTinh", "@MaHuyen", "@MaChuQuan", "@TenBenhVien", "@TuyenBenhVien", "@HangBenhVien", "@DiaChi", "@Connect", "@Status" },
+                    new object[] { benhvien.MaBenhVien, benhvien.MaTinh, benhvien.MaHuyen, benhvien.MaChuQuan, benhvien.TenBenhVien, benhvien.TuyenBenhVien, benhvien.HangBenhVien, benhvien.DiaChi, benhvien.Connect, benhvien.Status });
+                int kq = Convert.ToInt32(result);
+                return this.GetResult(kq);
+            }
+            catch (Exception e)
+            {
+                log.Error("Update BENH VIEN", e);
+                return SqlResultType.Exception;
+            }
+
+
+        }
+
+        public SqlResultType Delete(DIC_BENHVIEN benhvien)
+        {
+            try
+            {
+                this.sqlHelper.CommandType = CommandType.StoredProcedure;
+                object result = this.sqlHelper.ExecuteScalar("DeleteBenhVien", new string[] { "@MaBenhVien" }, new object[] { benhvien.MaBenhVien });
+                int kq = Convert.ToInt32(result);
+                return this.GetResult(kq);
+            }
+            catch (Exception e)
+            {
+                log.Error("Delete BENH VIEN", e);
+                return SqlResultType.Exception;
+            }
+        }
     }
 }

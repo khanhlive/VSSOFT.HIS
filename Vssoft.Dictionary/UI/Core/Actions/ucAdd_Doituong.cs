@@ -69,6 +69,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         private void BindingModel()
         {
+            this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
             this.isEdited = false;
             DIC_DOITUONG doituong = (DIC_DOITUONG)this.Model;
@@ -124,6 +125,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         public override void ClearModel()
         {
+            this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
             this.isEdited = false;
             txtID.Text = string.Empty;

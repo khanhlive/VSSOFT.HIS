@@ -30,12 +30,16 @@
         {
             this.SuspendLayout();
             // 
+            // ucToolBar
+            // 
+            this.ucToolBar.Size = new System.Drawing.Size(1048, 43);
+            // 
             // ucDIC_BENHVIEN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "ucDIC_BENHVIEN";
-            this.Size = new System.Drawing.Size(970, 381);
+            this.Size = new System.Drawing.Size(1048, 486);
             this.ResumeLayout(false);
 
         }

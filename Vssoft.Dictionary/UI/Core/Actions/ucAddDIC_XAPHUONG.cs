@@ -59,6 +59,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         private void BindingModel()
         {
+            this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
             this.isEdited = false;
             DIC_XAPHUONG xa = (DIC_XAPHUONG)this.Model;
@@ -110,6 +111,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         public override void ClearModel()
         {
+            this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
             this.isEdited = false;
             txtID.Text = string.Empty;

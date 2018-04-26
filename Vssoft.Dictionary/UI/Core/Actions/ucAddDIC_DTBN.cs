@@ -48,6 +48,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         private void BindingModel()
         {
+            this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
             this.isEdited = false;
             DIC_DTBN doituongbenhnhan = (DIC_DTBN)this.Model;
@@ -99,6 +100,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         public override void ClearModel()
         {
+            this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
             this.isEdited = false;
             txtID.Text = string.Empty;

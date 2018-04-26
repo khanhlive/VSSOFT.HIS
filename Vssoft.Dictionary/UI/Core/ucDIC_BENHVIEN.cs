@@ -1,6 +1,6 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
-using Vssoft.Common;
+using Vssoft.Data;
 using Vssoft.Data.Core.Ado;
 
 namespace Vssoft.Dictionary.UI.Core
@@ -27,10 +27,13 @@ namespace Vssoft.Dictionary.UI.Core
             RepositoryItemCheckEdit ckbStatus = new RepositoryItemCheckEdit();
             RepositoryItemCheckEdit ckbConnect = new RepositoryItemCheckEdit();
             RepositoryItemLookUpEdit lookUpEditHuyen = new RepositoryItemLookUpEdit();
+            RepositoryItemComboBox itemComboBoxHang = new RepositoryItemComboBox();
+            itemComboBoxHang.Items.AddRange(CommonVariable.HangBenhVien);
             lookUpEditHuyen.ValueMember = "MaHuyen";
             lookUpEditHuyen.DisplayMember = "TenHuyen";
             lookUpEditHuyen.ShowHeader = false;
             lookUpEditHuyen.DropDownRows = 12;
+            lookUpEditHuyen.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo { FieldName = "TenHuyen", Caption = "Tên Huyện" });
             using (DistrictProvider provider=new DistrictProvider())
             {
                 lookUpEditHuyen.DataSource = provider.GetAll();
@@ -40,6 +43,7 @@ namespace Vssoft.Dictionary.UI.Core
             lookUpEditTinh.DisplayMember = "TenTinh";
             lookUpEditTinh.ShowHeader = false;
             lookUpEditTinh.DropDownRows = 12;
+            lookUpEditTinh.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo { FieldName = "TenTinh", Caption = "Tên Tỉnh" });
             using (ProvinceProvider provider = new ProvinceProvider())
             {
                 lookUpEditTinh.DataSource = provider.GetAll();
@@ -75,6 +79,8 @@ namespace Vssoft.Dictionary.UI.Core
                     case "HangBenhVien":
                         dt.Columns[i].Caption = "Hạng";
                         dt.Columns[i].Width = 15;
+                        dt.Columns[i].ColumnEdit = itemComboBoxHang;
+
                         continue;
                     case "MaHuyen":
                         dt.Columns[i].Caption = "Tên huyện";
@@ -100,7 +106,6 @@ namespace Vssoft.Dictionary.UI.Core
                     default:
                         break;
                 }
-
                 dt.Columns[i].Visible = false;
             }
         }
