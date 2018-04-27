@@ -8,9 +8,9 @@ using Vssoft.ERP.Models;
 
 namespace Vssoft.Dictionary.UI.Core.Actions
 {
-    public partial class ucAddEthnic : ucBaseView
+    public partial class ucAddDIC_DANTOC : ucBaseView
     {
-        public ucAddEthnic()
+        public ucAddDIC_DANTOC()
         {
             InitializeComponent();
         }

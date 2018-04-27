@@ -9,7 +9,7 @@ using Vssoft.ERP.ERP;
 
 namespace Vssoft.Dictionary.UI.Core.Actions
 {
-    public class ucAdd_Doituong : Common.ucBaseView
+    public class ucAddDIC_DOITUONGBAOHIEM : Common.ucBaseView
     {
         #region Private control Items
         
@@ -31,7 +31,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         #endregion
 
-        public ucAdd_Doituong():base()
+        public ucAddDIC_DOITUONGBAOHIEM():base()
         {
             InitializeComponent();
         }

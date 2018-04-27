@@ -278,19 +278,19 @@
             switch (id)
             {
                 case DictionaryModuleType.DIC_CANBO:
-                    this.dic_ModuleControl = new UI.Core.ucCanBo();
+                    this.dic_ModuleControl = new UI.Core.ucDIC_CANBO();
                     break;
                 case DictionaryModuleType.DIC_DANTOC:
-                    this.dic_ModuleControl = new UI.Core.ucDanToc();
+                    this.dic_ModuleControl = new UI.Core.ucDIC_DANTOC();
                     break;
                 case DictionaryModuleType.DIC_CHUYENKHOA:
-                    this.dic_ModuleControl = new UI.Core.ucDIC_Specialty();
+                    this.dic_ModuleControl = new UI.Core.ucDIC_CHUYENKHOA();
                     break;
                 case DictionaryModuleType.DIC_PHONGBAN:
-                    this.dic_ModuleControl = new UI.Core.ucDIC_Department();
+                    this.dic_ModuleControl = new UI.Core.ucDIC_PHONGBAN();
                     break;
                 case DictionaryModuleType.DIC_DOITUONGBHYT:
-                    this.dic_ModuleControl = new UI.Core.ucDIC_DoiTuong();
+                    this.dic_ModuleControl = new UI.Core.ucDIC_DOITUONGBAOHIEM();
                     break;
                 case DictionaryModuleType.DIC_DOITUONGBENHNHAN:
                     this.dic_ModuleControl = new UI.Core.ucDIC_DTBN();
@@ -331,16 +331,16 @@
             switch (id)
             {
                 case DictionaryModuleType.DIC_CANBO:
-                    view = new UI.Core.ucCanBo();
+                    view = new UI.Core.ucDIC_CANBO();
                     break;
                 case DictionaryModuleType.DIC_DANTOC:
-                    view = new UI.Core.ucDanToc();
+                    view = new UI.Core.ucDIC_DANTOC();
                     break;
                 case DictionaryModuleType.DIC_CHUYENKHOA:
-                    view = new UI.Core.ucDIC_Specialty();
+                    view = new UI.Core.ucDIC_CHUYENKHOA();
                     break;
                 case DictionaryModuleType.DIC_PHONGBAN:
-                    view = new UI.Core.ucDIC_Department();
+                    view = new UI.Core.ucDIC_PHONGBAN();
                     break;
                 default:view = new ucBaseBasicView();
                     break;

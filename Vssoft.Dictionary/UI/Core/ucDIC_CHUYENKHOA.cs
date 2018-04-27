@@ -8,12 +8,12 @@ namespace Vssoft.Dictionary.UI.Core
     /// <summary>
     /// DANH MỤC CHUYÊN KHOA
     /// </summary>
-    public partial class ucDIC_Specialty : Common.ucBaseBasicView
+    public partial class ucDIC_CHUYENKHOA : Common.ucBaseBasicView
     {
-        private Actions.ucAddSpecialty addSpecialty;
-        public ucDIC_Specialty()
+        private Actions.ucAddDIC_CHUYENKHOA addSpecialty;
+        public ucDIC_CHUYENKHOA()
         {
-            this.addSpecialty = new Actions.ucAddSpecialty();
+            this.addSpecialty = new Actions.ucAddDIC_CHUYENKHOA();
             InitializeComponent();
             this.SetViewData(this.addSpecialty);
         }

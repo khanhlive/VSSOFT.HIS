@@ -2,20 +2,17 @@
 using DevExpress.XtraGrid.Views.BandedGrid;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Windows.Forms;
 using Vssoft.Common;
-using Vssoft.Common.Common.Class;
 using Vssoft.Dictionary.UI.Core.Actions;
 using Vssoft.ERP.Models;
 
 namespace Vssoft.Dictionary.UI.Core
 {
-    public partial class ucCanBo : ucBaseBasicView
+    public partial class ucDIC_CANBO : ucBaseBasicView
     {
 
         private ucAddEmployee addEmployee;
-        public ucCanBo()
+        public ucDIC_CANBO()
         {
             InitializeComponent();
             this.addEmployee = new ucAddEmployee();

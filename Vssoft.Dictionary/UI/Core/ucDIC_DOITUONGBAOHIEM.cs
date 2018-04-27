@@ -5,12 +5,12 @@ using Vssoft.Dictionary.UI.Core.Actions;
 
 namespace Vssoft.Dictionary.UI.Core
 {
-    public class ucDIC_DoiTuong : Common.ucBaseBasicView
+    public class ucDIC_DOITUONGBAOHIEM : Common.ucBaseBasicView
     {
-        private ucAdd_Doituong add_Doituong;
-        public ucDIC_DoiTuong()
+        private ucAddDIC_DOITUONGBAOHIEM add_Doituong;
+        public ucDIC_DOITUONGBAOHIEM()
         {
-            this.add_Doituong = new ucAdd_Doituong();
+            this.add_Doituong = new ucAddDIC_DOITUONGBAOHIEM();
             //InitializeComponent();
             this.SetViewData(this.add_Doituong);
         }

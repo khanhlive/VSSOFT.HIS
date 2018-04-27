@@ -11,7 +11,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
     /// <summary>
     /// THÊM MỚI, SỬA CHUYÊN KHOA
     /// </summary>
-    public class ucAddSpecialty : Common.ucBaseView
+    public class ucAddDIC_CHUYENKHOA : Common.ucBaseView
     {
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private TextEdit txtID;
@@ -26,7 +26,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
 
-        public ucAddSpecialty() : base()
+        public ucAddDIC_CHUYENKHOA() : base()
         {
             this.InitializeComponent();
         }

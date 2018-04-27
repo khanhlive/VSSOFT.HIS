@@ -12,9 +12,9 @@ namespace Vssoft.Dictionary.UI.Core.Actions
     /// <summary>
     /// DANH MỤC PHÒNG BAN
     /// </summary>
-    public class ucAddDepartment : Common.ucBaseView
+    public class ucAddDIC_PHONGBAN : Common.ucBaseView
     {
-        public ucAddDepartment() : base()
+        public ucAddDIC_PHONGBAN() : base()
         {
             InitializeComponent();
         }

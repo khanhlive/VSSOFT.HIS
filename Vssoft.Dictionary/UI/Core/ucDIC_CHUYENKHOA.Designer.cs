@@ -1,6 +1,6 @@
 ﻿namespace Vssoft.Dictionary.UI.Core
 {
-    partial class ucCanBo
+    partial class ucDIC_CHUYENKHOA
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,27 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            //((System.ComponentModel.ISupportInitialize)(this.pnlViewData)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // ucToolBar
-            // 
-            this.ucToolBar.Size = new System.Drawing.Size(1079, 43);
-            // 
-            // pnlViewData
-            // 
-            //this.pnlViewData.Size = new System.Drawing.Size(1079, 100);
-            // 
-            // ucCanBo
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "ucCanBo";
-            this.Size = new System.Drawing.Size(1079, 614);
-            this.Load += new System.EventHandler(this.ucCanBo_Load);
-            //((System.ComponentModel.ISupportInitialize)(this.pnlViewData)).EndInit();
-            this.ResumeLayout(false);
-
         }
 
         #endregion

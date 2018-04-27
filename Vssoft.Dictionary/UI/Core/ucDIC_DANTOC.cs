@@ -6,12 +6,12 @@ using Vssoft.Dictionary.UI.Core.Actions;
 
 namespace Vssoft.Dictionary.UI.Core
 {
-    public partial class ucDanToc : Common.ucBaseBasicView
+    public partial class ucDIC_DANTOC : Common.ucBaseBasicView
     {
-        private ucAddEthnic addEthnic;
-        public ucDanToc()
+        private ucAddDIC_DANTOC addEthnic;
+        public ucDIC_DANTOC()
         {
-            this.addEthnic = new ucAddEthnic();
+            this.addEthnic = new ucAddDIC_DANTOC();
             InitializeComponent();
             this.SetViewData(this.addEthnic);
         }

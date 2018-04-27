@@ -5,13 +5,13 @@ using Vssoft.Dictionary.UI.Core.Actions;
 
 namespace Vssoft.Dictionary.UI.Core
 {
-    public class ucDIC_Department : Common.ucBaseBasicView
+    public class ucDIC_PHONGBAN : Common.ucBaseBasicView
     {
-        private ucAddDepartment addDepartment;
+        private ucAddDIC_PHONGBAN addDepartment;
 
-        public ucDIC_Department()
+        public ucDIC_PHONGBAN()
         {
-            this.addDepartment = new ucAddDepartment();
+            this.addDepartment = new ucAddDIC_PHONGBAN();
             //InitializeComponent();
             this.SetViewData(this.addDepartment);
         }

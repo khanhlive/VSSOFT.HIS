@@ -1,6 +1,6 @@
 ﻿namespace Vssoft.Dictionary.UI.Core.Actions
 {
-    partial class ucAddEthnic
+    partial class ucAddDIC_DANTOC
     {
         /// <summary> 
         /// Required designer variable.
