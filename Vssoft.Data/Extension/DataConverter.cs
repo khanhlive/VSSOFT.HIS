@@ -68,5 +68,24 @@ namespace Vssoft.Data.Extension
             else return null;
         }
 
+        public static byte? ToByte(string value)
+        {
+            byte obj = 0;
+            if (byte.TryParse(value, out obj))
+            {
+                return obj;
+            }
+            else return null;
+        }
+
+        public static string ToUpper(string value)
+        {
+            if (!string.IsNullOrEmpty(value) && !string.IsNullOrWhiteSpace(value))
+            {
+                return value.ToUpper();
+            }
+            else return string.Empty ;
+        }
+
     }
 }

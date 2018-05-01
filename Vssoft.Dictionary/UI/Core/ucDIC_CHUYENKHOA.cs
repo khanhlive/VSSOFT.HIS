@@ -36,11 +36,11 @@ namespace Vssoft.Dictionary.UI.Core
                 dt.Columns[i].OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
                 switch (dt.Columns[i].FieldName)
                 {
-                    case "MaCK":
+                    case "MaChuyenKhoa":
                         dt.Columns[i].Caption = "Mã chuyên khoa";
                         dt.Columns[i].Width = 20;
                         continue;
-                    case "TenCK":
+                    case "TenChuyenKhoa":
                         dt.Columns[i].Caption = "Tên chuyên khoa";
                         continue;
                     case "TenChiTiet":

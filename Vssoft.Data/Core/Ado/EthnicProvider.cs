@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vssoft.Data.Enum;
 using Vssoft.Data.Extension;
-using Vssoft.ERP.Models;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Data.Core.Ado
 {
@@ -15,7 +12,7 @@ namespace Vssoft.Data.Core.Ado
     {
         public EthnicProvider() : base() { }
 
-        public List<DanToc> GetAllActive()
+        public List<DIC_DANTOC> GetAllActive()
         {
             try
             {
@@ -30,16 +27,16 @@ namespace Vssoft.Data.Core.Ado
             }
         }
 
-        protected List<DanToc> DataReaderToList(SqlDataReader dataReader)
+        protected List<DIC_DANTOC> DataReaderToList(SqlDataReader dataReader)
         {
             try
             {
-                List<DanToc> dsdantoc = new List<DanToc>();
+                List<DIC_DANTOC> dsdantoc = new List<DIC_DANTOC>();
                 while (dataReader.Read())
                 {
-                    DanToc danToc = new DanToc();
-                    danToc.MaDT = dataReader["MaDanToc"].ToString();
-                    danToc.TenDT = dataReader["TenDanToc"].ToString();
+                    DIC_DANTOC danToc = new DIC_DANTOC();
+                    danToc.MaDanToc = dataReader["MaDanToc"].ToString();
+                    danToc.TenDanToc = dataReader["TenDanToc"].ToString();
                     danToc.MoTa = dataReader["MoTa"].ToString();
                     danToc.Status = DataConverter.StringToInt(dataReader["Status"].ToString());
                     dsdantoc.Add(danToc);
@@ -54,7 +51,7 @@ namespace Vssoft.Data.Core.Ado
             
         }
 
-        public List<DanToc> GetAll()
+        public List<DIC_DANTOC> GetAll()
         {
             try
             {
@@ -69,12 +66,12 @@ namespace Vssoft.Data.Core.Ado
             }
         }
 
-        public SqlResultType Insert(DanToc danToc)
+        public SqlResultType Insert(DIC_DANTOC danToc)
         {
             try
             {
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
-                object result = this.sqlHelper.ExecuteScalar("InsertDanToc", new string[] { "@MaDanToc", "@TenDanToc", "@MoTa", "@Status" }, new object[] { danToc.MaDT, danToc.TenDT, danToc.MoTa, danToc.Status });
+                object result = this.sqlHelper.ExecuteScalar("InsertDanToc", new string[] { "@MaDanToc", "@TenDanToc", "@MoTa", "@Status" }, new object[] { danToc.MaDanToc, danToc.TenDanToc, danToc.MoTa, danToc.Status });
                 int kq = Convert.ToInt32(result);
                 return this.GetResult(kq);
             }
@@ -87,12 +84,12 @@ namespace Vssoft.Data.Core.Ado
 
         }
 
-        public SqlResultType Update(DanToc danToc)
+        public SqlResultType Update(DIC_DANTOC danToc)
         {
             try
             {
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
-                object result = this.sqlHelper.ExecuteScalar("UpdateDanToc", new string[] { "@MaDanToc", "@TenDanToc", "@MoTa", "@Status" }, new object[] { danToc.MaDT, danToc.TenDT, danToc.MoTa, danToc.Status });
+                object result = this.sqlHelper.ExecuteScalar("UpdateDanToc", new string[] { "@MaDanToc", "@TenDanToc", "@MoTa", "@Status" }, new object[] { danToc.MaDanToc, danToc.TenDanToc, danToc.MoTa, danToc.Status });
                 int kq = Convert.ToInt32(result);
                 return this.GetResult(kq);
             }
@@ -105,12 +102,12 @@ namespace Vssoft.Data.Core.Ado
 
         }
 
-        public SqlResultType Delete(DanToc danToc)
+        public SqlResultType Delete(DIC_DANTOC danToc)
         {
             try
             {
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
-                object result = this.sqlHelper.ExecuteScalar("DeleteDanToc", new string[] { "@MaDanToc" }, new object[] { danToc.MaDT });
+                object result = this.sqlHelper.ExecuteScalar("DeleteDanToc", new string[] { "@MaDanToc" }, new object[] { danToc.MaDanToc });
                 int kq = Convert.ToInt32(result);
                 return this.GetResult(kq);
             }

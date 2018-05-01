@@ -24,7 +24,7 @@ namespace Vssoft.His
         Form1 xfmSalary;
         private SqlHelper sqlHelper;
         Form2 form2;
-        xfmDictionary _xfmDictionary;
+        frmDictionary _frmDictionary;
 
         #endregion
         public frmMain()
@@ -42,9 +42,11 @@ namespace Vssoft.His
 
         }
 
-        void xfmSalary_FormClosing(object sender, FormClosingEventArgs e)
+        void frmDictionary_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            //this._frmDictionary.Dispose();
+            this._frmDictionary = null;
+            //GC.SuppressFinalize(this._frmDictionary);
         }
         private void bbiWorkdesk_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -58,7 +60,7 @@ namespace Vssoft.His
                 MdiParent = this
             };
             this.xfmSalary = salary;
-            this.xfmSalary.FormClosing += new FormClosingEventHandler(this.xfmSalary_FormClosing);
+            this.xfmSalary.FormClosing += new FormClosingEventHandler(this.frmDictionary_FormClosing);
             this.xfmSalary.Show();
         }
 
@@ -74,37 +76,40 @@ namespace Vssoft.His
                 MdiParent = this
             };
             this.form2 = form12;
-            this.form2.FormClosing += new FormClosingEventHandler(this.xfmSalary_FormClosing);
+            this.form2.FormClosing += new FormClosingEventHandler(this.frmDictionary_FormClosing);
             this.form2.Show();
         }
 
         private void bbiDictionary_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (this._xfmDictionary != null && !this._xfmDictionary.IsDisposed)
+            if (this._frmDictionary != null && !this._frmDictionary.IsDisposed)
             {
-                this.tabMdi.Pages[this._xfmDictionary].MdiChild.Activate();
+                this.tabMdi.Pages[this._frmDictionary].MdiChild.Activate();
                 return;
             }
-            xfmDictionary form = new xfmDictionary
+            frmDictionary form = new frmDictionary
             {
                 MdiParent = this
             };
-            this._xfmDictionary = form;
-            this._xfmDictionary.FormClosing += new FormClosingEventHandler(this.xfmSalary_FormClosing);
-            this._xfmDictionary.Show();
+            this._frmDictionary = form;
+            this._frmDictionary.FormClosing += new FormClosingEventHandler(this.frmDictionary_FormClosing);
+            this._frmDictionary.Show();
         }
         
         private void timer_Tick_1(object sender, EventArgs e)
         {
             this.lblToday.Caption = "Thời gian: " + System.DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss");
+            this.bbiNumlock.Caption = SqlHelper.Count.ToString();
         }
+
         public void OpenFormNewTab(Form frm)
         {
             frm.MdiParent = this;
 
-            frm.FormClosing += new FormClosingEventHandler(this.xfmSalary_FormClosing);
+            frm.FormClosing += new FormClosingEventHandler(this.frmDictionary_FormClosing);
             frm.Show();
         }
+
         private void frmMain_Load(object sender, EventArgs e)
         {
             this.lblInfo.Caption = "Phiên bản: 2.2.1" ;
@@ -119,6 +124,7 @@ namespace Vssoft.His
         {   
             UserLookAndFeel.Default.SkinName = e.Item.Tag.ToString();
         }
+
         private void LoadSkin()
         {
             foreach (SkinContainer container in SkinManager.Default.Skins)

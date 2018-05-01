@@ -2,8 +2,10 @@
 using System;
 using System.Windows.Forms;
 using Vssoft.Common;
+using Vssoft.Common.Common.Class;
 using Vssoft.Data.Core.Ado;
 using Vssoft.Data.Enum;
+using Vssoft.Data.ERP.Dictionary;
 using Vssoft.ERP.Models;
 
 namespace Vssoft.Dictionary.UI.Core.Actions
@@ -15,20 +17,6 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             InitializeComponent();
         }
         
-        public override void SetModel(object model)
-        {
-            this.Model = model;
-            if (this.Model == null)
-            {
-                this.ClearModel();
-            }
-            else
-            {
-                BindingModel();
-            }
-            this.Update();
-        }
-
         public override void UpdateModel()
         {
             base.UpdateModel();
@@ -43,37 +31,38 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             ckbStatus.ReadOnly = readOnly;
         }
 
-        private void BindingModel()
+        protected override void BindingModel()
         {
             this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
             this.isEdited = false;
-            DanToc dantoc = (DanToc)this.Model;
-            txtID.Text = dantoc.MaDT;
-            txtName.Text = dantoc.TenDT;
+            DIC_DANTOC dantoc = (DIC_DANTOC)this.Model;
+            txtID.Text = dantoc.MaDanToc;
+            txtName.Text = dantoc.TenDanToc;
             txtDescription.Text = dantoc.MoTa;
             ckbStatus.Checked = dantoc.Status == 1 ;
             txtID.ReadOnly = true;
             this.isUpdated = true;
         }
 
-        public override bool DeleteModel()
+        public override UserActionType DeleteModel()
         {
             if (this.Model != null)
             {
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
-                    DanToc danToc = (DanToc)this.Model;
+                    DIC_DANTOC danToc = (DIC_DANTOC)this.Model;
                     SqlResultType resultType = new EthnicProvider().Delete(danToc);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
                         this.DisabledLayout(true);
                     }
-                    return resultType == SqlResultType.OK;
+                    return resultType == SqlResultType.OK ? UserActionType.Success : UserActionType.Failed;
                 }
+                else return UserActionType.None;
             }
-            return false;
+            return UserActionType.None;
         }
 
         public override void AddNew()
@@ -84,9 +73,9 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         public override object GetModel()
         {
-            DanToc danToc = new DanToc();
-            danToc.MaDT = txtID.EditValue.ToString();
-            danToc.TenDT = txtName.Text;
+            DIC_DANTOC danToc = new DIC_DANTOC();
+            danToc.MaDanToc = txtID.EditValue.ToString();
+            danToc.TenDanToc = txtName.Text;
             danToc.MoTa = txtDescription.Text;
             danToc.Status = ckbStatus.Checked ? 1 : 0;
             return danToc;
@@ -108,14 +97,15 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         {
             if (this.Validation())
             {
-                DanToc danToc = (DanToc)this.GetModel();
+                DIC_DANTOC danToc = (DIC_DANTOC)this.GetModel();
                 SqlResultType flag;
                 if(this.actions== Common.Common.Class.Actions.AddNew) flag = new EthnicProvider().Insert(danToc);
                 else flag = new EthnicProvider().Update(danToc);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag== SqlResultType.OK;
                 args.Model = danToc;
-                args.Message = "Không lưu được thông tin dân tộc";
+                args.Action = this.actions;
+                args.Message = "Không xóa được thông tin dân tộc";
                 this.SaveCompleteSuccess(danToc, args);
             }
             else

@@ -23,7 +23,7 @@
         #region Component Designer generated code
 
         /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// Required method for Designer support - do not modify  
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -130,7 +130,6 @@
             this.txtDiachi.StyleController = this.layoutControl1;
             this.txtDiachi.TabIndex = 2;
             this.txtDiachi.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.txtDiachi.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // txtChuquan
             // 
@@ -145,7 +144,6 @@
             this.txtChuquan.StyleController = this.layoutControl1;
             this.txtChuquan.TabIndex = 3;
             this.txtChuquan.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.txtChuquan.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // ckbConnect
             // 
@@ -156,7 +154,6 @@
             this.ckbConnect.StyleController = this.layoutControl1;
             this.ckbConnect.TabIndex = 6;
             this.ckbConnect.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.ckbConnect.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // ckbStatus
             // 
@@ -167,7 +164,6 @@
             this.ckbStatus.StyleController = this.layoutControl1;
             this.ckbStatus.TabIndex = 7;
             this.ckbStatus.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.ckbStatus.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // cmbHuyen
             // 

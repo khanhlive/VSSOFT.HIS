@@ -54,13 +54,18 @@
             base.SetWaitDialogCaption("Đang khởi tạo dữ liệu.");
             this.InitializeComponent();
             this._search = false;
-            //this.dataSource = new List<object>();
             this._ucbaseview = new ucBaseView();
             this.ucToolBar.ButtonSaveNew = BarItemVisibility.Always;
             this.ucToolBar.ButtonCancel = BarItemVisibility.Always;
             this.ucToolBar.bbiSaveNew.Enabled = false;
             this.ucToolBar.bbiCancel.Enabled = false;
             this.DisableMenu(true);
+            
+        }
+
+        protected virtual void InitComponent()
+        {
+
         }
 
         protected virtual void Add()
@@ -181,15 +186,14 @@
 
         public virtual void Delete()
         {
-            if(this._ucbaseview.DeleteModel())
+            UserActionType result = this._ucbaseview.DeleteModel();
+            if (result == UserActionType.Success)
             {
                 this.ReLoad();
                 toastNotificationsManager.ShowNotification(toastNotificationsManager.Notifications[2]);
             }
-            else
-            {
+            else if (result == UserActionType.Failed)
                 XtraMessageBox.Show("Không xóa được bản ghi này, thử lại sau.", "Xóa bản ghi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         public void DisableMenu(bool disable)
@@ -226,6 +230,8 @@
             }
             base.Dispose(disposing);
         }
+
+        
 
         protected void DoShowMenu(GridHitInfo hi)
         {
@@ -644,6 +650,7 @@
             this.gcList.UseEmbeddedNavigator = true;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gbList});
+            this.gcList.Load += new System.EventHandler(this.gcList_Load);
             this.gcList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gcList_MouseUp);
             // 
             // gbList
@@ -854,12 +861,15 @@
         {
             base.SetWaitDialogCaption("Đang nạp dữ liệu...");
             this.SetDataSource();
+            if(this.dataSource!=null)
             this.gcList.DataSource = this.dataSource;
             base.SetWaitDialogCaption("Đang nạp cấu hình...");
             this.List_Init(this.gbList);
             base.SetWaitDialogCaption("Nạp quyền sử dụng...");
             base.SetWaitDialogCaption("Đã xong...");
             this.DoHide();
+            if(this.dataSource!=null)
+            GC.SuppressFinalize(this.dataSource);
         }
 
         protected virtual void SetDataSource()
@@ -1128,6 +1138,16 @@
                 this.ucToolBar.bbiCancel.Enabled = false;
                 this._ucbaseview.Cancel();
             }
+        }
+
+        protected virtual void List_OnLoad(AdvBandedGridView bandedGridView)
+        {
+            
+        }
+
+        private void gcList_Load(object sender, EventArgs e)
+        {
+            this.List_OnLoad(this.gbList);
         }
     }
 }

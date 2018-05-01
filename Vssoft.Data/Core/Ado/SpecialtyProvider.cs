@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Vssoft.Data.Enum;
 using Vssoft.Data.Extension;
-using Vssoft.ERP.Models;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Data.Core.Ado
 {
@@ -15,7 +15,7 @@ namespace Vssoft.Data.Core.Ado
     {
         public SpecialtyProvider() : base() { }
 
-        public List<ChuyenKhoa> GetAllActive()
+        public List<DIC_CHUYENKHOA> GetAllActive()
         {
             try
             {
@@ -31,16 +31,16 @@ namespace Vssoft.Data.Core.Ado
             
         }
 
-        protected List<ChuyenKhoa> DataReaderToList(SqlDataReader dataReader)
+        protected List<DIC_CHUYENKHOA> DataReaderToList(SqlDataReader dataReader)
         {
             try
             {
-                List<ChuyenKhoa> dsChuyenKhoa = new List<ChuyenKhoa>();
+                List<DIC_CHUYENKHOA> dsChuyenKhoa = new List<DIC_CHUYENKHOA>();
                 while (dataReader.Read())
                 {
-                    ChuyenKhoa chuyenKhoa = new ChuyenKhoa();
-                    chuyenKhoa.MaCK = Convert.ToInt32(dataReader["MaChuyenKhoa"].ToString());
-                    chuyenKhoa.TenCK = dataReader["TenChuyenKhoa"].ToString();
+                    DIC_CHUYENKHOA chuyenKhoa = new DIC_CHUYENKHOA();
+                    chuyenKhoa.MaChuyenKhoa = Convert.ToInt32(dataReader["MaChuyenKhoa"].ToString());
+                    chuyenKhoa.TenChuyenKhoa = dataReader["TenChuyenKhoa"].ToString();
                     chuyenKhoa.TenChiTiet = dataReader["TenChiTiet"].ToString();
                     chuyenKhoa.Status = DataConverter.StringToInt(dataReader["Status"].ToString());
                     chuyenKhoa.MaQuyetDinh = dataReader["MaQuyetDinh"].ToString();
@@ -55,7 +55,7 @@ namespace Vssoft.Data.Core.Ado
             }
         }
 
-        public List<ChuyenKhoa> GetAll()
+        public List<DIC_CHUYENKHOA> GetAll()
         {
             try
             {
@@ -70,14 +70,14 @@ namespace Vssoft.Data.Core.Ado
             }
         }
 
-        public SqlResultType Insert(ChuyenKhoa chuyenKhoa)
+        public SqlResultType Insert(DIC_CHUYENKHOA chuyenKhoa)
         {
             try
             {
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("InsertChuyenKhoa",
                     new string[] { "@MaChuyenKhoa", "@TenChuyenKhoa", "@TenChiTiet", "@Status", "@MaQuyetDinh" },
-                    new object[] { chuyenKhoa.MaCK, chuyenKhoa.TenCK, chuyenKhoa.TenChiTiet, chuyenKhoa.Status, chuyenKhoa.MaQuyetDinh }
+                    new object[] { chuyenKhoa.MaChuyenKhoa, chuyenKhoa.TenChuyenKhoa, chuyenKhoa.TenChiTiet, chuyenKhoa.Status, chuyenKhoa.MaQuyetDinh }
                     );
                 int kq = Convert.ToInt32(result);
                 return this.GetResult(kq);
@@ -89,14 +89,14 @@ namespace Vssoft.Data.Core.Ado
             }
         }
 
-        public SqlResultType Update(ChuyenKhoa chuyenKhoa)
+        public SqlResultType Update(DIC_CHUYENKHOA chuyenKhoa)
         {
             try
             {
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("UpdateChuyenKhoa",
                     new string[] { "@MaChuyenKhoa", "@TenChuyenKhoa", "@TenChiTiet", "@Status", "@MaQuyetDinh" },
-                    new object[] { chuyenKhoa.MaCK, chuyenKhoa.TenCK, chuyenKhoa.TenChiTiet, chuyenKhoa.Status, chuyenKhoa.MaQuyetDinh }
+                    new object[] { chuyenKhoa.MaChuyenKhoa, chuyenKhoa.TenChuyenKhoa, chuyenKhoa.TenChiTiet, chuyenKhoa.Status, chuyenKhoa.MaQuyetDinh }
                     );
                 int kq = Convert.ToInt32(result);
                 return this.GetResult(kq);
@@ -108,12 +108,12 @@ namespace Vssoft.Data.Core.Ado
             }
         }
 
-        public SqlResultType Delete(ChuyenKhoa ChuyenKhoa)
+        public SqlResultType Delete(DIC_CHUYENKHOA chuyenKhoa)
         {
             try
             {
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
-                object result = this.sqlHelper.ExecuteScalar("DeleteChuyenKhoa", new string[] { "@MaChuyenKhoa" }, new object[] { ChuyenKhoa.MaCK });
+                object result = this.sqlHelper.ExecuteScalar("DeleteChuyenKhoa", new string[] { "@MaChuyenKhoa" }, new object[] { chuyenKhoa.MaChuyenKhoa });
                 int kq = Convert.ToInt32(result);
                 return this.GetResult(kq);
             }

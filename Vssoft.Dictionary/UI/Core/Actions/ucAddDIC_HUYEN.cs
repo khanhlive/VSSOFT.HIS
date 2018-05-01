@@ -2,9 +2,10 @@
 using System;
 using System.Windows.Forms;
 using Vssoft.Common;
+using Vssoft.Common.Common.Class;
 using Vssoft.Data.Core.Ado;
 using Vssoft.Data.Enum;
-using Vssoft.ERP.ERP;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core.Actions
 {
@@ -22,21 +23,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 cmbProvince.Properties.DataSource = provinceProvider.GetAllActive();
             }
         }
-
-        public override void SetModel(object model)
-        {
-            this.Model = model;
-            if (this.Model == null)
-            {
-                this.ClearModel();
-            }
-            else
-            {
-                BindingModel();
-            }
-            this.Update();
-        }
-
+        
         public override void UpdateModel()
         {
             base.UpdateModel();
@@ -51,7 +38,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             ckbStatus.ReadOnly = readOnly;
         }
 
-        private void BindingModel()
+        protected override void BindingModel()
         {
             this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
@@ -65,24 +52,24 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.isUpdated = true;
         }
 
-        public override bool DeleteModel()
+        public override UserActionType DeleteModel()
         {
             if (this.Model != null)
             {
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
-                    DIC_HUYEN tinhthanh = (DIC_HUYEN)this.Model;
-                    SqlResultType resultType = new DistrictProvider().Delete(tinhthanh);
+                    DIC_HUYEN huyen = (DIC_HUYEN)this.Model;
+                    SqlResultType resultType = new DistrictProvider().Delete(huyen);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
                         this.DisabledLayout(true);
                     }
-                    return resultType == SqlResultType.OK;
+                    return resultType == SqlResultType.OK ? UserActionType.Success : UserActionType.Failed;
                 }
-                
+                else return UserActionType.None;
             }
-            return false;
+            return UserActionType.None;
         }
 
         public override void AddNew()
@@ -124,7 +111,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Model = huyen;
-                args.Message = "Không lưu được thông tin huyện";
+                args.Action = this.actions;
                 this.SaveCompleteSuccess(huyen, args);
             }
             else

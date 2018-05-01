@@ -1,7 +1,5 @@
 ﻿namespace Vssoft.Common.Common.Class
 {
-    using System;
-
     public enum Actions
     {
         Add,
@@ -9,6 +7,13 @@
         Change,
         Delete,
         AddNew,
+        None
+    }
+    public enum UserActionType
+    {
+        Success,
+        Failed,
+        Cancel,
         None
     }
 }

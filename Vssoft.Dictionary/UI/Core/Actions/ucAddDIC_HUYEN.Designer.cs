@@ -68,11 +68,11 @@
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(73, 12);
+            this.txtID.Location = new System.Drawing.Point(87, 12);
             this.txtID.Name = "txtID";
             this.txtID.Properties.Mask.EditMask = "[0-9A-Z]{1,2}";
             this.txtID.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.txtID.Size = new System.Drawing.Size(51, 20);
+            this.txtID.Size = new System.Drawing.Size(50, 20);
             this.txtID.StyleController = this.layoutControl1;
             this.txtID.TabIndex = 4;
             this.txtID.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
@@ -80,10 +80,10 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(189, 12);
+            this.txtName.Location = new System.Drawing.Point(216, 12);
             this.txtName.Name = "txtName";
             this.txtName.Properties.MaxLength = 100;
-            this.txtName.Size = new System.Drawing.Size(247, 20);
+            this.txtName.Size = new System.Drawing.Size(227, 20);
             this.txtName.StyleController = this.layoutControl1;
             this.txtName.TabIndex = 5;
             this.txtName.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
@@ -91,7 +91,7 @@
             // 
             // cmbProvince
             // 
-            this.cmbProvince.Location = new System.Drawing.Point(501, 12);
+            this.cmbProvince.Location = new System.Drawing.Point(522, 12);
             this.cmbProvince.Name = "cmbProvince";
             this.cmbProvince.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.cmbProvince.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -104,7 +104,7 @@
             this.cmbProvince.Properties.ShowHeader = false;
             this.cmbProvince.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbProvince.Properties.ValueMember = "MaTinh";
-            this.cmbProvince.Size = new System.Drawing.Size(247, 20);
+            this.cmbProvince.Size = new System.Drawing.Size(228, 20);
             this.cmbProvince.StyleController = this.layoutControl1;
             this.cmbProvince.TabIndex = 6;
             this.cmbProvince.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
@@ -112,14 +112,13 @@
             // 
             // ckbStatus
             // 
-            this.ckbStatus.Location = new System.Drawing.Point(752, 12);
+            this.ckbStatus.Location = new System.Drawing.Point(754, 12);
             this.ckbStatus.Name = "ckbStatus";
             this.ckbStatus.Properties.Caption = "Sử dụng";
-            this.ckbStatus.Size = new System.Drawing.Size(88, 19);
+            this.ckbStatus.Size = new System.Drawing.Size(86, 19);
             this.ckbStatus.StyleController = this.layoutControl1;
             this.ckbStatus.TabIndex = 7;
             this.ckbStatus.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.ckbStatus.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // layoutControlGroup1
             // 
@@ -139,34 +138,34 @@
             this.layoutControlItem1.Control = this.txtID;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(116, 26);
-            this.layoutControlItem1.Text = "Mã:";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(58, 13);
+            this.layoutControlItem1.Size = new System.Drawing.Size(129, 26);
+            this.layoutControlItem1.Text = "Mã(*):";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(72, 13);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtName;
-            this.layoutControlItem2.Location = new System.Drawing.Point(116, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(129, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(312, 26);
-            this.layoutControlItem2.Text = "Tên huyện:";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(58, 13);
+            this.layoutControlItem2.Size = new System.Drawing.Size(306, 26);
+            this.layoutControlItem2.Text = "Tên huyện(*):";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(72, 13);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.cmbProvince;
-            this.layoutControlItem3.Location = new System.Drawing.Point(428, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(435, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(312, 26);
-            this.layoutControlItem3.Text = "Tỉnh/Thành:";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(58, 13);
+            this.layoutControlItem3.Size = new System.Drawing.Size(307, 26);
+            this.layoutControlItem3.Text = "Tỉnh/Thành(*):";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(72, 13);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.ckbStatus;
-            this.layoutControlItem4.Location = new System.Drawing.Point(740, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(742, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(92, 26);
+            this.layoutControlItem4.Size = new System.Drawing.Size(90, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 

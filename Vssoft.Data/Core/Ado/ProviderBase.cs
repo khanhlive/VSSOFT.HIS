@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vssoft.Data.Enum;
+using Vssoft.Data.Helper;
 
 namespace Vssoft.Data.Core.Ado
 {
@@ -15,6 +16,7 @@ namespace Vssoft.Data.Core.Ado
         public ProviderBase()
         {
             this.sqlHelper = new Helper.SqlHelper();
+            this.sqlHelper.Error += new Helper.SqlHelper.ErrorEventHander(this.EventError_Hander);
         }
 
         public void Dispose()
@@ -37,6 +39,11 @@ namespace Vssoft.Data.Core.Ado
                 default:
                     return SqlResultType.Failed;
             }
+        }
+
+        private void EventError_Hander(object sender, SqlHelperException e)
+        {
+            log.Error("SqlException: " + e.Message, e);
         }
     }
 }

@@ -4,13 +4,13 @@ using System.Data;
 using System.Data.SqlClient;
 using Vssoft.Data.Enum;
 using Vssoft.Data.Extension;
-using Vssoft.ERP.ERP;
-using Vssoft.ERP.Models;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Data.Core.Ado
 {
     public class DepartmentProvider : ProviderBase
     {
+        
         public DepartmentProvider() : base() { }
 
         public List<DIC_PHONGBAN> GetAllActive()
@@ -19,11 +19,11 @@ namespace Vssoft.Data.Core.Ado
             {
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 SqlDataReader dt = this.sqlHelper.ExecuteReader("GetPhongBan");
-                List<DIC_PHONGBAN> dsphongban = this.DataReaderToList(dt);
-                return dsphongban;
+                return this.DataReaderToList(dt);
             }
             catch (Exception e)
             {
+                this.sqlHelper.Close();
                 log.Error("GetAllActive", e);
                 return null;
             }
@@ -54,8 +54,11 @@ namespace Vssoft.Data.Core.Ado
                     phongban.DiaChi = dataReader["DiaChi"].ToString();
                     phongban.MaBenhVien = dataReader["MaBenhVien"].ToString();
                     phongban.Status = DataConverter.StringToInt(dataReader["Status"].ToString());
+                    phongban.PhanLoai_ID = DataConverter.StringToInt(dataReader["PhanLoai_ID"].ToString());
                     dsphongban.Add(phongban);
                 }
+                dataReader.Close();
+                this.sqlHelper.Close();
                 return dsphongban;
             }
             catch (Exception e)
@@ -72,10 +75,12 @@ namespace Vssoft.Data.Core.Ado
             {
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 SqlDataReader dt = this.sqlHelper.ExecuteReader("GetAllPhongBan");
+                
                 return this.DataReaderToList(dt);
             }
             catch (Exception ex)
             {
+                this.sqlHelper.Close();
                 log.Error("GetAll PHONG BAN", ex);
                 return null;
             }
@@ -87,13 +92,15 @@ namespace Vssoft.Data.Core.Ado
             {
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("InsertPhongBan",
-                    new string[] { "@TenPhongBan", "@NhomPhongBan", "@ChuyenKhoa", "@QuanLy", "@BuongGiuong", "@PhanLoai", "@MaQuyetDinh", "@MaPhongBanCu", "@MaChuyenKhoa", "@TuTruc", "@TrongBenhVien", "@PhuongPhapXuatDuoc", "@PhuongPhapHuHaoDongY", "@DiaChi", "@@MaBenhVien", "@Status" },
-                    new object[] { phongban.TenPhongBan, phongban.NhomPhongBan, phongban.ChuyenKhoa, phongban.QuanLy, phongban.BuongGiuong, phongban.PhanLoai, phongban.MaQuyetDinh, phongban.MaPhongBanCu, phongban.MaChuyenKhoa, phongban.TuTruc, phongban.TrongBenhVien, phongban.PhuongPhapXuatDuoc, phongban.PhuongPhapHuHaoDongY, phongban.DiaChi, phongban.MaBenhVien, phongban.Status });
+                    new string[] { "@TenPhongBan", "@NhomPhongBan", "@QuanLy", "@BuongGiuong", "@PhanLoai_ID", "@MaQuyetDinh", "@MaPhongBanCu", "@MaChuyenKhoa", "@TuTruc", "@TrongBenhVien", "@PhuongPhapXuatDuoc", "@PhuongPhapHuHaoDongY", "@DiaChi", "@MaBenhVien", "@Status" },
+                    new object[] { phongban.TenPhongBan, phongban.NhomPhongBan, phongban.QuanLy, phongban.BuongGiuong, phongban.PhanLoai_ID, phongban.MaQuyetDinh, "'NULL'", phongban.MaChuyenKhoa, phongban.TuTruc, phongban.TrongBenhVien, phongban.PhuongPhapXuatDuoc, phongban.PhuongPhapHuHaoDongY, phongban.DiaChi, phongban.MaBenhVien, phongban.Status });
                 int kq = Convert.ToInt32(result);
+                this.sqlHelper.Close();
                 return this.GetResult(kq);
             }
             catch (Exception e)
             {
+                this.sqlHelper.Close();
                 log.Error("Insert PHONG BAN", e);
                 return SqlResultType.Exception;
             }
@@ -107,13 +114,15 @@ namespace Vssoft.Data.Core.Ado
             {
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("UpdatePhongBan",
-                    new string[] { "@MaPhongBan", "@TenPhongBan", "@NhomPhongBan", "@ChuyenKhoa", "@QuanLy", "@BuongGiuong", "@PhanLoai", "@MaQuyetDinh", "@MaPhongBanCu", "@MaChuyenKhoa", "@TuTruc", "@TrongBenhVien", "@PhuongPhapXuatDuoc", "@PhuongPhapHuHaoDongY", "@DiaChi", "@@MaBenhVien", "@Status" },
-                    new object[] { phongban.MaPhongBan, phongban.TenPhongBan, phongban.NhomPhongBan, phongban.ChuyenKhoa, phongban.QuanLy, phongban.BuongGiuong, phongban.PhanLoai, phongban.MaQuyetDinh, phongban.MaPhongBanCu, phongban.MaChuyenKhoa, phongban.TuTruc, phongban.TrongBenhVien, phongban.PhuongPhapXuatDuoc, phongban.PhuongPhapHuHaoDongY, phongban.DiaChi, phongban.MaBenhVien, phongban.Status });
+                    new string[] { "@MaPhongBan", "@TenPhongBan", "@NhomPhongBan", "@QuanLy", "@BuongGiuong", "@PhanLoai_ID", "@MaQuyetDinh", "@MaPhongBanCu", "@MaChuyenKhoa", "@TuTruc", "@TrongBenhVien", "@PhuongPhapXuatDuoc", "@PhuongPhapHuHaoDongY", "@DiaChi", "@MaBenhVien", "@Status" },
+                    new object[] { phongban.MaPhongBan,phongban.TenPhongBan, phongban.NhomPhongBan, phongban.QuanLy, phongban.BuongGiuong, phongban.PhanLoai_ID, phongban.MaQuyetDinh, "'NULL'", phongban.MaChuyenKhoa, phongban.TuTruc, phongban.TrongBenhVien, phongban.PhuongPhapXuatDuoc, phongban.PhuongPhapHuHaoDongY, phongban.DiaChi, phongban.MaBenhVien, phongban.Status });
                 int kq = Convert.ToInt32(result);
+                this.sqlHelper.Close();
                 return this.GetResult(kq);
             }
             catch (Exception e)
             {
+                this.sqlHelper.Close();
                 log.Error("Update PHONG BAN", e);
                 return SqlResultType.Exception;
             }
@@ -128,12 +137,31 @@ namespace Vssoft.Data.Core.Ado
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("DeletePhongBan", new string[] { "@MaPhongBan" }, new object[] { phongban.MaPhongBan });
                 int kq = Convert.ToInt32(result);
+                this.sqlHelper.Close();
                 return this.GetResult(kq);
             }
             catch (Exception e)
             {
+                this.sqlHelper.Close();
                 log.Error("Delete PHONG BAN", e);
                 return SqlResultType.Exception;
+            }
+        }
+
+        public DataTable GetList()
+        {
+            try
+            {
+                return this.sqlHelper.ExecuteDataTable("GetAllPhongBan");
+            }
+            catch (Exception e)
+            {
+                log.Error("Get PHONG Ban: ", e);
+                return null;
+            }
+            finally
+            {
+                this.sqlHelper.Close();
             }
         }
     }

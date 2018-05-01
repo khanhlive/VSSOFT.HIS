@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vssoft.Data.Enum;
 using Vssoft.Data.Extension;
-using Vssoft.ERP.ERP;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Data.Core.Ado
 {

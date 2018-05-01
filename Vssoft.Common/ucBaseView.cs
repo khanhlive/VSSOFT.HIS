@@ -1,13 +1,8 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.DXErrorProvider;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vssoft.Common.Common.Class;
-using Vssoft.Data.Helper;
 
 namespace Vssoft.Common
 {
@@ -30,8 +25,19 @@ namespace Vssoft.Common
 
         public virtual void SetModel(object model)
         {
-
+            this.Model = model;
+            if (this.Model == null)
+            {
+                this.ClearModel();
+            }
+            else
+            {
+                BindingModel();
+            }
+            this.Update();
         }
+
+        protected virtual void BindingModel() { }
 
         public virtual void SetModel(object key, object dataSource)
         {
@@ -74,9 +80,9 @@ namespace Vssoft.Common
 
         }
 
-        public virtual bool DeleteModel()
+        public virtual UserActionType DeleteModel()
         {
-            return true;
+            return UserActionType.None;
         }
 
         public virtual void SaveModel()
@@ -143,6 +149,7 @@ namespace Vssoft.Common
             // ucBaseView
             // 
             this.Name = "ucBaseView";
+            this.Size = new System.Drawing.Size(251, 235);
             this.ResumeLayout(false);
 
         }

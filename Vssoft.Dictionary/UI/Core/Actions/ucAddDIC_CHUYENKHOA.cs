@@ -2,8 +2,10 @@
 using System;
 using System.Windows.Forms;
 using Vssoft.Common;
+using Vssoft.Common.Common.Class;
 using Vssoft.Data.Core.Ado;
 using Vssoft.Data.Enum;
+using Vssoft.Data.ERP.Dictionary;
 using Vssoft.ERP.Models;
 
 namespace Vssoft.Dictionary.UI.Core.Actions
@@ -31,20 +33,6 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.InitializeComponent();
         }
         
-        public override void SetModel(object model)
-        {
-            this.Model = model;
-            if (this.Model == null)
-            {
-                this.ClearModel();
-            }
-            else
-            {
-                BindingModel();
-            }
-            this.Update();
-        }
-
         public override void UpdateModel()
         {
             base.UpdateModel();
@@ -60,14 +48,14 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             ckbStatus.ReadOnly = readOnly;
         }
 
-        private void BindingModel()
+        protected override void BindingModel()
         {
             this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
             this.isEdited = false;
-            ChuyenKhoa chuyenKhoa = (ChuyenKhoa)this.Model;
-            txtID.Text = chuyenKhoa.MaCK.ToString();
-            txtName.Text = chuyenKhoa.TenCK;
+            DIC_CHUYENKHOA chuyenKhoa = (DIC_CHUYENKHOA)this.Model;
+            txtID.Text = chuyenKhoa.MaChuyenKhoa.ToString();
+            txtName.Text = chuyenKhoa.TenChuyenKhoa;
             txtCode.Text = chuyenKhoa.MaQuyetDinh;
             txtDetails.Text = chuyenKhoa.TenChiTiet;
             ckbStatus.Checked = chuyenKhoa.Status == 1;
@@ -75,23 +63,24 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.isUpdated = true;
         }
 
-        public override bool DeleteModel()
+        public override UserActionType DeleteModel()
         {
             if (this.Model != null)
             {
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
-                    ChuyenKhoa ChuyenKhoa = (ChuyenKhoa)this.Model;
-                    SqlResultType resultType = new SpecialtyProvider().Delete(ChuyenKhoa);
+                    DIC_CHUYENKHOA chuyenKhoa = (DIC_CHUYENKHOA)this.Model;
+                    SqlResultType resultType = new SpecialtyProvider().Delete(chuyenKhoa);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
                         this.DisabledLayout(true);
                     }
-                    return resultType == SqlResultType.OK;
+                    return resultType == SqlResultType.OK ? UserActionType.Success : UserActionType.Failed;
                 }
+                else return UserActionType.None;
             }
-            return false;
+            return UserActionType.None;
         }
 
         public override void AddNew()
@@ -102,9 +91,9 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         public override object GetModel()
         {
-            ChuyenKhoa chuyenKhoa = new ChuyenKhoa();
-            chuyenKhoa.MaCK = Convert.ToInt32(txtID.EditValue);
-            chuyenKhoa.TenCK = txtName.Text;
+            DIC_CHUYENKHOA chuyenKhoa = new DIC_CHUYENKHOA();
+            chuyenKhoa.MaChuyenKhoa = Convert.ToInt32(txtID.EditValue);
+            chuyenKhoa.TenChuyenKhoa = txtName.Text;
             chuyenKhoa.MaQuyetDinh = txtCode.Text;
             chuyenKhoa.TenChiTiet = txtDetails.Text;
             chuyenKhoa.Status = ckbStatus.Checked ? 1 : 0;
@@ -128,14 +117,14 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         {
             if (this.Validation())
             {
-                ChuyenKhoa chuyenKhoa = (ChuyenKhoa)this.GetModel();
+                DIC_CHUYENKHOA chuyenKhoa = (DIC_CHUYENKHOA)this.GetModel();
                 SqlResultType flag;
                 if (this.actions == Common.Common.Class.Actions.AddNew) flag = new SpecialtyProvider().Insert(chuyenKhoa);
                 else flag = new SpecialtyProvider().Update(chuyenKhoa);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Model = chuyenKhoa;
-                args.Message = "Không lưu được thông tin chuyên khoa";
+                args.Action = this.actions;
                 this.SaveCompleteSuccess(chuyenKhoa, args);
             }
             else

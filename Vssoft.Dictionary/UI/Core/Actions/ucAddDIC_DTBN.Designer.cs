@@ -29,30 +29,30 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.txtID = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.txtDescription = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.cmbFormPayment = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.ckbStatus = new DevExpress.XtraEditors.CheckEdit();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProviderModel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbFormPayment.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckbStatus.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +71,61 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(121, 12);
+            this.txtID.Name = "txtID";
+            this.txtID.Properties.Mask.EditMask = "\\d{1,2}";
+            this.txtID.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtID.Size = new System.Drawing.Size(65, 20);
+            this.txtID.StyleController = this.layoutControl1;
+            this.txtID.TabIndex = 4;
+            this.txtID.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
+            this.txtID.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(299, 12);
+            this.txtName.Name = "txtName";
+            this.txtName.Properties.MaxLength = 250;
+            this.txtName.Size = new System.Drawing.Size(170, 20);
+            this.txtName.StyleController = this.layoutControl1;
+            this.txtName.TabIndex = 5;
+            this.txtName.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(121, 36);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Properties.MaxLength = 250;
+            this.txtDescription.Size = new System.Drawing.Size(348, 20);
+            this.txtDescription.StyleController = this.layoutControl1;
+            this.txtDescription.TabIndex = 6;
+            this.txtDescription.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
+            // 
+            // cmbFormPayment
+            // 
+            this.cmbFormPayment.Location = new System.Drawing.Point(582, 12);
+            this.cmbFormPayment.Name = "cmbFormPayment";
+            this.cmbFormPayment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbFormPayment.Size = new System.Drawing.Size(175, 20);
+            this.cmbFormPayment.StyleController = this.layoutControl1;
+            this.cmbFormPayment.TabIndex = 7;
+            this.cmbFormPayment.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
+            this.cmbFormPayment.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
+            // 
+            // ckbStatus
+            // 
+            this.ckbStatus.Location = new System.Drawing.Point(511, 36);
+            this.ckbStatus.Name = "ckbStatus";
+            this.ckbStatus.Properties.Caption = "Sử dụng";
+            this.ckbStatus.Size = new System.Drawing.Size(246, 19);
+            this.ckbStatus.StyleController = this.layoutControl1;
+            this.ckbStatus.TabIndex = 8;
+            this.ckbStatus.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -85,57 +140,14 @@
             this.layoutControlGroup1.Size = new System.Drawing.Size(769, 71);
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // txtID
-            // 
-            this.txtID.Location = new System.Drawing.Point(122, 12);
-            this.txtID.Name = "txtID";
-            this.txtID.Properties.Mask.EditMask = "\\d{1,2}";
-            this.txtID.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.txtID.Size = new System.Drawing.Size(64, 20);
-            this.txtID.StyleController = this.layoutControl1;
-            this.txtID.TabIndex = 4;
-            this.txtID.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.txtID.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
-            // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.txtID;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(178, 24);
-            this.layoutControlItem1.Text = "Mã số:";
+            this.layoutControlItem1.Text = "Mã số(*):";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(106, 13);
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(300, 12);
-            this.txtName.Name = "txtName";
-            this.txtName.Properties.MaxLength = 250;
-            this.txtName.Size = new System.Drawing.Size(169, 20);
-            this.txtName.StyleController = this.layoutControl1;
-            this.txtName.TabIndex = 5;
-            this.txtName.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.txtName;
-            this.layoutControlItem2.Location = new System.Drawing.Point(178, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(283, 24);
-            this.layoutControlItem2.Text = "Tên đối tượng:";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(106, 13);
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Location = new System.Drawing.Point(122, 36);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Properties.MaxLength = 250;
-            this.txtDescription.Size = new System.Drawing.Size(347, 20);
-            this.txtDescription.StyleController = this.layoutControl1;
-            this.txtDescription.TabIndex = 6;
-            this.txtDescription.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.txtDescription.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // layoutControlItem3
             // 
@@ -146,17 +158,14 @@
             this.layoutControlItem3.Text = "Mô tả:";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(106, 13);
             // 
-            // cmbFormPayment
+            // layoutControlItem2
             // 
-            this.cmbFormPayment.Location = new System.Drawing.Point(583, 12);
-            this.cmbFormPayment.Name = "cmbFormPayment";
-            this.cmbFormPayment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbFormPayment.Size = new System.Drawing.Size(174, 20);
-            this.cmbFormPayment.StyleController = this.layoutControl1;
-            this.cmbFormPayment.TabIndex = 7;
-            this.cmbFormPayment.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.cmbFormPayment.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
+            this.layoutControlItem2.Control = this.txtName;
+            this.layoutControlItem2.Location = new System.Drawing.Point(178, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(283, 24);
+            this.layoutControlItem2.Text = "Tên đối tượng(*):";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(106, 13);
             // 
             // layoutControlItem4
             // 
@@ -166,17 +175,6 @@
             this.layoutControlItem4.Size = new System.Drawing.Size(288, 24);
             this.layoutControlItem4.Text = "Hình thức thanh toán:";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(106, 13);
-            // 
-            // ckbStatus
-            // 
-            this.ckbStatus.Location = new System.Drawing.Point(511, 36);
-            this.ckbStatus.Name = "ckbStatus";
-            this.ckbStatus.Properties.Caption = "Sử dụng";
-            this.ckbStatus.Size = new System.Drawing.Size(246, 19);
-            this.ckbStatus.StyleController = this.layoutControl1;
-            this.ckbStatus.TabIndex = 8;
-            this.ckbStatus.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.ckbStatus.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // layoutControlItem5
             // 
@@ -199,16 +197,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProviderModel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbFormPayment.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckbStatus.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             this.ResumeLayout(false);
 

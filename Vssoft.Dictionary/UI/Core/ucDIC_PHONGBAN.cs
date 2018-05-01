@@ -1,7 +1,11 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
+using System.Collections.Generic;
+using System.Linq;
 using Vssoft.Data.Core.Ado;
+using Vssoft.Data.Enum;
 using Vssoft.Dictionary.UI.Core.Actions;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core
 {
@@ -12,22 +16,68 @@ namespace Vssoft.Dictionary.UI.Core
         public ucDIC_PHONGBAN()
         {
             this.addDepartment = new ucAddDIC_PHONGBAN();
-            //InitializeComponent();
             this.SetViewData(this.addDepartment);
         }
 
         protected override void SetDataSource()
         {
-            DepartmentProvider departmentProvider = new DepartmentProvider();
-            this.dataSource = departmentProvider.GetAll();
+            using (DepartmentProvider departmentProvider = new DepartmentProvider())
+            {
+                
+                this.dataSource = departmentProvider.GetAll();
+            }
+            
         }
 
         protected override void List_Init(AdvBandedGridView dt)
         {
             RepositoryItemCheckEdit ckbStatus = new RepositoryItemCheckEdit();
+            RepositoryItemLookUpEdit lookEdit = new RepositoryItemLookUpEdit();
+            lookEdit.ValueMember = "MaPhongBan";
+            lookEdit.DisplayMember = "TenPhongBan";
+            lookEdit.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenPhongBan", "Tên phòng ban"));
+            lookEdit.ShowHeader = false;
+            using (DepartmentProvider departmentProvider = new DepartmentProvider())
+            {
+                List<DIC_PHONGBAN> phongban = new List<DIC_PHONGBAN>();
+                phongban.Add(new DIC_PHONGBAN { MaPhongBan = 0, TenPhongBan = "Không" });
+                phongban.AddRange(departmentProvider.GetAllActive().Where(p => p.PhanLoai == LoaiPhongBan.PhongBan[0] || p.PhanLoai == LoaiPhongBan.PhongBan[3]).ToList());
+                lookEdit.DataSource = phongban;
+            }
             ckbStatus.ValueChecked = 1;
             ckbStatus.ValueUnchecked = 0;
             ckbStatus.ValueGrayed = null;
+            //chuyen khoa
+            RepositoryItemLookUpEdit lookEditChuyenkhoa = new RepositoryItemLookUpEdit();
+            lookEditChuyenkhoa.ValueMember = "MaChuyenKhoa";
+            lookEditChuyenkhoa.DisplayMember = "TenChuyenKhoa";
+            lookEditChuyenkhoa.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenChuyenKhoa", "Tên chuyên khoa"));
+            lookEditChuyenkhoa.ShowHeader = false;
+            using (SpecialtyProvider specialtyProvider=new SpecialtyProvider())
+            {
+                lookEditChuyenkhoa.DataSource = specialtyProvider.GetAll();
+            }
+
+            //benh vien
+            RepositoryItemLookUpEdit lookEditBenhvien = new RepositoryItemLookUpEdit();
+            lookEditBenhvien.ValueMember = "MaBenhVien";
+            lookEditBenhvien.DisplayMember = "TenBenhVien";
+            lookEditBenhvien.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenBenhVien", "Tên bệnh viện"));
+            lookEditBenhvien.ShowHeader = false;
+            using (HospitalProvider hospitalProvider = new HospitalProvider())
+            {
+                lookEditBenhvien.DataSource = hospitalProvider.GetAll();
+            }
+            //phân loại
+            RepositoryItemLookUpEdit lookEditphanloai = new RepositoryItemLookUpEdit();
+            lookEditphanloai.ValueMember = "ID";
+            lookEditphanloai.DisplayMember = "PhanLoai";
+            lookEditphanloai.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PhanLoai", "Tên"));
+            lookEditphanloai.ShowHeader = false;
+            using (PhanLoaiPhongBanProvider provider= new PhanLoaiPhongBanProvider())
+            {
+                lookEditphanloai.DataSource = provider.GetAll();
+            }
             for (int i = 0; i < dt.Columns.Count; i++)
             {
                 dt.Columns[i].OptionsColumn.ReadOnly = true;
@@ -43,16 +93,16 @@ namespace Vssoft.Dictionary.UI.Core
                         dt.Columns[i].Caption = "Tên";
                         continue;
                     case "NhomPhongBan":
-                        dt.Columns[i].Caption = "Nhóm";
+                        dt.Columns[i].Caption = "Nhóm phòng";
+                        dt.Columns[i].ColumnEdit = lookEdit;
                         continue;
-                    case "ChuyenKhoa":
+                    case "MaChuyenKhoa":
                         dt.Columns[i].Caption = "Chuyên khoa";
+                        dt.Columns[i].ColumnEdit = lookEditChuyenkhoa;
                         continue;
-                    case "PhanLoai":
+                    case "PhanLoai_ID":
                         dt.Columns[i].Caption = "Phân loại";
-                        continue;
-                    case "MaQuyetDinh":
-                        dt.Columns[i].Caption = "Mã QĐ";
+                        dt.Columns[i].ColumnEdit = lookEditphanloai;
                         continue;
                     case "TrongBenhVien":
                         dt.Columns[i].Caption = "Trong bệnh viện";
@@ -65,6 +115,7 @@ namespace Vssoft.Dictionary.UI.Core
                         continue;
                     case "MaBenhVien":
                         dt.Columns[i].Caption = "Đơn vị";
+                        dt.Columns[i].ColumnEdit = lookEditBenhvien;
                         continue;
                     case "Status":
                         dt.Columns[i].Caption = "Sử dụng";

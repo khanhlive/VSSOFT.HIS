@@ -2,10 +2,11 @@
 using System;
 using System.Windows.Forms;
 using Vssoft.Common;
+using Vssoft.Common.Common.Class;
 using Vssoft.Data.Core.Ado;
 using Vssoft.Data.Enum;
 using Vssoft.Data.Extension;
-using Vssoft.ERP.ERP;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core.Actions
 {
@@ -36,19 +37,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             InitializeComponent();
         }
 
-        public override void SetModel(object model)
-        {
-            this.Model = model;
-            if (this.Model == null)
-            {
-                this.ClearModel();
-            }
-            else
-            {
-                BindingModel();
-            }
-            this.Update();
-        }
+        
 
         public override void UpdateModel()
         {
@@ -67,7 +56,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             txtGroup.ReadOnly = readOnly;
         }
 
-        private void BindingModel()
+        protected override void BindingModel()
         {
             this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
@@ -84,7 +73,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.isUpdated = true;
         }
 
-        public override bool DeleteModel()
+        public override UserActionType DeleteModel()
         {
             if (this.Model != null)
             {
@@ -97,11 +86,11 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                         this.ClearModel();
                         this.DisabledLayout(true);
                     }
-                    return resultType == SqlResultType.OK;
+                    return resultType == SqlResultType.OK ? UserActionType.Success : UserActionType.Failed;
                 }
-                
+                else return UserActionType.None;
             }
-            return false;
+            return UserActionType.None;
         }
 
         public override void AddNew()
@@ -148,7 +137,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 else flag = new ObjectProvider().Update(doituong);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
-                args.Model = doituong;
+                args.Model = doituong; args.Action = this.actions;
                 args.Message = "Không lưu được thông tin đối tượng";
                 this.SaveCompleteSuccess(doituong, args);
             }
@@ -240,11 +229,11 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(86, 12);
+            this.txtID.Location = new System.Drawing.Point(100, 12);
             this.txtID.Name = "txtID";
             this.txtID.Properties.Mask.EditMask = "[0-9A-Z]{2}";
             this.txtID.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.txtID.Size = new System.Drawing.Size(138, 20);
+            this.txtID.Size = new System.Drawing.Size(124, 20);
             this.txtID.StyleController = this.layoutControl1;
             this.txtID.TabIndex = 4;
             this.txtID.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
@@ -252,9 +241,9 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(302, 12);
+            this.txtName.Location = new System.Drawing.Point(316, 12);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(336, 20);
+            this.txtName.Size = new System.Drawing.Size(322, 20);
             this.txtName.StyleController = this.layoutControl1;
             this.txtName.TabIndex = 5;
             this.txtName.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
@@ -262,33 +251,30 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             // 
             // txtGroup
             // 
-            this.txtGroup.Location = new System.Drawing.Point(86, 36);
+            this.txtGroup.Location = new System.Drawing.Point(100, 36);
             this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(138, 20);
+            this.txtGroup.Size = new System.Drawing.Size(124, 20);
             this.txtGroup.StyleController = this.layoutControl1;
             this.txtGroup.TabIndex = 6;
             this.txtGroup.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.txtGroup.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // txtCurrentLevel
             // 
-            this.txtCurrentLevel.Location = new System.Drawing.Point(302, 36);
+            this.txtCurrentLevel.Location = new System.Drawing.Point(316, 36);
             this.txtCurrentLevel.Name = "txtCurrentLevel";
-            this.txtCurrentLevel.Size = new System.Drawing.Size(129, 20);
+            this.txtCurrentLevel.Size = new System.Drawing.Size(115, 20);
             this.txtCurrentLevel.StyleController = this.layoutControl1;
             this.txtCurrentLevel.TabIndex = 7;
             this.txtCurrentLevel.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.txtCurrentLevel.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // txtOldLevel
             // 
-            this.txtOldLevel.Location = new System.Drawing.Point(509, 36);
+            this.txtOldLevel.Location = new System.Drawing.Point(523, 36);
             this.txtOldLevel.Name = "txtOldLevel";
-            this.txtOldLevel.Size = new System.Drawing.Size(129, 20);
+            this.txtOldLevel.Size = new System.Drawing.Size(115, 20);
             this.txtOldLevel.StyleController = this.layoutControl1;
             this.txtOldLevel.TabIndex = 8;
             this.txtOldLevel.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.txtOldLevel.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // ckbMoving
             // 
@@ -299,7 +285,6 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.ckbMoving.StyleController = this.layoutControl1;
             this.ckbMoving.TabIndex = 9;
             this.ckbMoving.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.ckbMoving.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // ckbStatus
             // 
@@ -310,7 +295,6 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.ckbStatus.StyleController = this.layoutControl1;
             this.ckbStatus.TabIndex = 10;
             this.ckbStatus.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.ckbStatus.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // layoutControlGroup1
             // 
@@ -334,8 +318,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.layoutcontrolitem1.Location = new System.Drawing.Point(0, 0);
             this.layoutcontrolitem1.Name = "layoutcontrolitem1";
             this.layoutcontrolitem1.Size = new System.Drawing.Size(216, 24);
-            this.layoutcontrolitem1.Text = "Mã:";
-            this.layoutcontrolitem1.TextSize = new System.Drawing.Size(71, 13);
+            this.layoutcontrolitem1.Text = "Mã(*):";
+            this.layoutcontrolitem1.TextSize = new System.Drawing.Size(85, 13);
             // 
             // layoutControlItem3
             // 
@@ -344,7 +328,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(216, 27);
             this.layoutControlItem3.Text = "Nhóm";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(71, 13);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(85, 13);
             // 
             // layoutControlItem2
             // 
@@ -352,8 +336,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.layoutControlItem2.Location = new System.Drawing.Point(216, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(414, 24);
-            this.layoutControlItem2.Text = "Tên đối tượng:";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(71, 13);
+            this.layoutControlItem2.Text = "Tên đối tượng(*):";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(85, 13);
             // 
             // layoutControlItem6
             // 
@@ -372,7 +356,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(207, 27);
             this.layoutControlItem4.Text = "Mức hiện tại:";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(71, 13);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(85, 13);
             // 
             // layoutControlItem5
             // 
@@ -381,7 +365,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(207, 27);
             this.layoutControlItem5.Text = "Mức cũ:";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(71, 13);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(85, 13);
             // 
             // layoutControlItem7
             // 
@@ -393,10 +377,10 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
-            // ucAdd_Doituong
+            // ucAddDIC_DOITUONGBAOHIEM
             // 
             this.Controls.Add(this.layoutControl1);
-            this.Name = "ucAdd_Doituong";
+            this.Name = "ucAddDIC_DOITUONGBAOHIEM";
             this.Size = new System.Drawing.Size(942, 71);
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProviderModel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

@@ -45,8 +45,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "ucCanBo";
             this.Size = new System.Drawing.Size(1079, 614);
-            this.Load += new System.EventHandler(this.ucCanBo_Load);
-            //((System.ComponentModel.ISupportInitialize)(this.pnlViewData)).EndInit();
+            
             this.ResumeLayout(false);
 
         }

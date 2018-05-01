@@ -63,11 +63,11 @@
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(58, 12);
+            this.txtID.Location = new System.Drawing.Point(72, 12);
             this.txtID.Name = "txtID";
             this.txtID.Properties.Mask.EditMask = "[0-9A-Z]{1,2}";
             this.txtID.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.txtID.Size = new System.Drawing.Size(80, 20);
+            this.txtID.Size = new System.Drawing.Size(66, 20);
             this.txtID.StyleController = this.layoutControl1;
             this.txtID.TabIndex = 4;
             this.txtID.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
@@ -75,10 +75,10 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(188, 12);
+            this.txtName.Location = new System.Drawing.Point(202, 12);
             this.txtName.Name = "txtName";
             this.txtName.Properties.MaxLength = 100;
-            this.txtName.Size = new System.Drawing.Size(327, 20);
+            this.txtName.Size = new System.Drawing.Size(313, 20);
             this.txtName.StyleController = this.layoutControl1;
             this.txtName.TabIndex = 5;
             this.txtName.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
@@ -94,7 +94,6 @@
             this.ckbStatus.TabIndex = 6;
             this.ckbStatus.ToolTip = " ";
             this.ckbStatus.EditValueChanged += new System.EventHandler(this.control_EditValueChanged);
-            this.ckbStatus.Validating += new System.ComponentModel.CancelEventHandler(this.control_Validating);
             // 
             // layoutControlGroup1
             // 
@@ -114,8 +113,8 @@
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(130, 28);
-            this.layoutControlItem1.Text = "Mã tỉnh:";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(43, 13);
+            this.layoutControlItem1.Text = "Mã tỉnh(*):";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(57, 13);
             // 
             // layoutControlItem2
             // 
@@ -123,8 +122,8 @@
             this.layoutControlItem2.Location = new System.Drawing.Point(130, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(377, 28);
-            this.layoutControlItem2.Text = "Tên tỉnh:";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(43, 13);
+            this.layoutControlItem2.Text = "Tên tỉnh(*):";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(57, 13);
             // 
             // layoutControlItem3
             // 

@@ -2,9 +2,10 @@
 using System;
 using System.Windows.Forms;
 using Vssoft.Common;
+using Vssoft.Common.Common.Class;
 using Vssoft.Data.Core.Ado;
 using Vssoft.Data.Enum;
-using Vssoft.ERP.ERP;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core.Actions
 {
@@ -27,21 +28,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 cmbProvince.Properties.DataSource = provider.GetAllActive();
             }
         }
-
-        public override void SetModel(object model)
-        {
-            this.Model = model;
-            if (this.Model == null)
-            {
-                this.ClearModel();
-            }
-            else
-            {
-                BindingModel();
-            }
-            this.Update();
-        }
-
+        
         public override void UpdateModel()
         {
             base.UpdateModel();
@@ -57,7 +44,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             ckbStatus.ReadOnly = readOnly;
         }
 
-        private void BindingModel()
+        protected override void BindingModel()
         {
             this.dxErrorProviderModel.ClearErrors();
             this.isUpdated = false;
@@ -72,7 +59,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.isUpdated = true;
         }
 
-        public override bool DeleteModel()
+        public override UserActionType DeleteModel()
         {
             if (this.Model != null)
             {
@@ -85,11 +72,11 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                         this.ClearModel();
                         this.DisabledLayout(true);
                     }
-                    return resultType == SqlResultType.OK;
+                    return resultType == SqlResultType.OK ? UserActionType.Success : UserActionType.Failed;
                 }
-                
+                else return UserActionType.None;
             }
-            return false;
+            return UserActionType.None;
         }
 
         public override void AddNew()
@@ -133,6 +120,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Model = xa;
+                args.Action = this.actions;
                 args.Message = "Không lưu được thông tin xã phường";
                 this.SaveCompleteSuccess(xa, args);
             }

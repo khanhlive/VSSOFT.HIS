@@ -22,10 +22,7 @@ namespace Vssoft.Dictionary.UI.Core
             this.dataSource = nationProvider.GetAll();
         }
 
-        protected override void gbList_MouseDown(object sender, MouseEventArgs e)
-        {
-        }
-
+        
         protected override void List_Init(AdvBandedGridView dt)
         {
             RepositoryItemCheckEdit ckbStatus = new RepositoryItemCheckEdit();
@@ -39,10 +36,10 @@ namespace Vssoft.Dictionary.UI.Core
                 dt.Columns[i].OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
                 switch (dt.Columns[i].FieldName)
                 {
-                    case "MaDT":
+                    case "MaDanToc":
                         dt.Columns[i].Caption = "Mã dân tộc";
                         continue;
-                    case "TenDT":
+                    case "TenDanToc":
                         dt.Columns[i].Caption = "Tên dân tộc";
                         continue;
                     case "MoTa":

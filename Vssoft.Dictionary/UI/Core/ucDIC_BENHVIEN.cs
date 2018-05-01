@@ -18,8 +18,10 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void SetDataSource()
         {
-            HospitalProvider hospitalProvider = new HospitalProvider();
-            this.dataSource = hospitalProvider.GetAll();
+            using (HospitalProvider hospitalProvider = new HospitalProvider())
+            {
+                this.dataSource = hospitalProvider.GetAll();
+            }
         }
 
         protected override void List_Init(AdvBandedGridView dt)

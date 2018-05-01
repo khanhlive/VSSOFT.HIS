@@ -66,6 +66,7 @@
             SetServerData();
             Count++;
         }
+
         private void SetServerData()
         {
             SqlConnectionStringBuilder stringBuilder = new SqlConnectionStringBuilder(this._connectionString);

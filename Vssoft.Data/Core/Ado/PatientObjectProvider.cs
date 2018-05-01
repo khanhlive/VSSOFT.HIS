@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Vssoft.Data.Enum;
 using Vssoft.Data.Extension;
-using Vssoft.ERP.ERP;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Data.Core.Ado
 {

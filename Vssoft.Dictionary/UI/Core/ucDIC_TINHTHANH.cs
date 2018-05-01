@@ -23,14 +23,7 @@ namespace Vssoft.Dictionary.UI.Core
             InitializeComponent();
             this.SetViewData(this.addDic_tinhthanh);
         }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-           // this.gbList.OptionsView.ColumnAutoWidth = false;
-            //this.gbList.BestFitColumns();
-        }
-
+        
         protected override void SetDataSource()
         {
             ProvinceProvider specialtyProvider = new ProvinceProvider();

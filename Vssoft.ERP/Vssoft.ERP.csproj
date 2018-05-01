@@ -49,22 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ERP\DIC_BENHVIEN.cs" />
-    <Compile Include="ERP\DIC_CANBO.cs" />
-    <Compile Include="ERP\DIC_CHUCVU.cs" />
-    <Compile Include="ERP\DIC_CHUYENKHOA.cs" />
-    <Compile Include="ERP\DIC_DANTOC.cs" />
-    <Compile Include="ERP\DIC_DOITUONG.cs" />
-    <Compile Include="ERP\DIC_DTBN.cs" />
-    <Compile Include="ERP\DIC_DUONGDUNG.cs" />
-    <Compile Include="ERP\DIC_HUYEN.cs" />
-    <Compile Include="ERP\DIC_NGHENGHIEP.cs" />
-    <Compile Include="ERP\DIC_NHACUNGCAP.cs" />
-    <Compile Include="ERP\DIC_NHOMDICHVU.cs" />
-    <Compile Include="ERP\DIC_PHONGBAN.cs" />
-    <Compile Include="ERP\DIC_TIEUNHOMDICHVU.cs" />
-    <Compile Include="ERP\DIC_TINH.cs" />
-    <Compile Include="ERP\DIC_XAPHUONG.cs" />
     <Compile Include="Models\ADMIN.cs" />
     <Compile Include="Models\Bang20.cs" />
     <Compile Include="Models\Bang79a.cs" />

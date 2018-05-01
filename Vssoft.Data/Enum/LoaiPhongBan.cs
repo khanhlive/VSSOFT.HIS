@@ -26,4 +26,18 @@ namespace Vssoft.Data.Enum
         }
 
     }
+    public class LookUpEditItem
+    {
+        public LookUpEditItem()
+        {
+        }
+        public LookUpEditItem(object value,object text)
+        {
+            this.Value = value;
+            this.Text = text;
+        }
+
+        public object Value { get; set; }
+        public object Text { get; set; }
+    }
 }

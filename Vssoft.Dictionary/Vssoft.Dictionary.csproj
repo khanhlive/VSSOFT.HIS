@@ -31,6 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="Dapper, Version=1.50.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.0\lib\net451\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -46,6 +49,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -75,7 +81,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmDictionary.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="IFormMain.cs" />
+    <Compile Include="UI\Core\Actions\ucAddDIC_ICD10.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_ICD10.Designer.cs">
+      <DependentUpon>ucAddDIC_ICD10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_NGHENGHIEP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_NGHENGHIEP.Designer.cs">
+      <DependentUpon>ucAddDIC_NGHENGHIEP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_NHACUNGCAP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_NHACUNGCAP.Designer.cs">
+      <DependentUpon>ucAddDIC_NHACUNGCAP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_NHOMDICHVU.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_NHOMDICHVU.Designer.cs">
+      <DependentUpon>ucAddDIC_NHOMDICHVU.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Core\Actions\ucAddDIC_PHONGBAN.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +130,12 @@
     <Compile Include="UI\Core\Actions\ucAddDIC_HUYEN.Designer.cs">
       <DependentUpon>ucAddDIC_HUYEN.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_TIEUNHOMDICHVU.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_TIEUNHOMDICHVU.Designer.cs">
+      <DependentUpon>ucAddDIC_TIEUNHOMDICHVU.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Core\Actions\ucAddDIC_TINHTHANH.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,11 +148,11 @@
     <Compile Include="UI\Core\Actions\ucAddDIC_XAPHUONG.Designer.cs">
       <DependentUpon>ucAddDIC_XAPHUONG.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Core\Actions\ucAddEmployee.cs">
+    <Compile Include="UI\Core\Actions\ucAddDIC_CANBO.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Core\Actions\ucAddEmployee.Designer.cs">
-      <DependentUpon>ucAddEmployee.cs</DependentUpon>
+    <Compile Include="UI\Core\Actions\ucAddDIC_CANBO.Designer.cs">
+      <DependentUpon>ucAddDIC_CANBO.cs</DependentUpon>
     </Compile>
     <Compile Include="controls\xucPosition.cs">
       <SubType>UserControl</SubType>
@@ -155,6 +194,30 @@
     <Compile Include="UI\Core\ucDIC_BENHVIEN.Designer.cs">
       <DependentUpon>ucDIC_BENHVIEN.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Core\ucDIC_ICD10.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\ucDIC_ICD10.Designer.cs">
+      <DependentUpon>ucDIC_ICD10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Core\ucDIC_NGHENGHIEP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\ucDIC_NGHENGHIEP.Designer.cs">
+      <DependentUpon>ucDIC_NGHENGHIEP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Core\ucDIC_NHACUNGCAP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\ucDIC_NHACUNGCAP.Designer.cs">
+      <DependentUpon>ucDIC_NHACUNGCAP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Core\ucDIC_NHOMDICHVU.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\ucDIC_NHOMDICHVU.Designer.cs">
+      <DependentUpon>ucDIC_NHOMDICHVU.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Core\ucDIC_PHONGBAN.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,6 +241,12 @@
     </Compile>
     <Compile Include="UI\Core\ucDIC_CHUYENKHOA.Designer.cs">
       <DependentUpon>ucDIC_CHUYENKHOA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Core\ucDIC_TIEUNHOMDICHVU.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\ucDIC_TIEUNHOMDICHVU.Designer.cs">
+      <DependentUpon>ucDIC_TIEUNHOMDICHVU.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Core\ucDIC_TINHTHANH.cs">
       <SubType>UserControl</SubType>
@@ -203,12 +272,6 @@
     <Compile Include="UI\frmCapDo.designer.cs">
       <DependentUpon>frmCapDo.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\frm_CapNhatDanhMucICD.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\frm_CapNhatDanhMucICD.designer.cs">
-      <DependentUpon>frm_CapNhatDanhMucICD.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\frm_CNDichVu_5084.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,12 +295,6 @@
     </Compile>
     <Compile Include="UI\Frm_DmTaiSan.designer.cs">
       <DependentUpon>Frm_DmTaiSan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Frm_DmTinh.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Frm_DmTinh.designer.cs">
-      <DependentUpon>Frm_DmTinh.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\frm_DsMaDV.cs">
       <SubType>Form</SubType>
@@ -293,12 +350,6 @@
     <Compile Include="UI\UserControls\usDichVu.designer.cs">
       <DependentUpon>usDichVu.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\UserControls\usDSKhoaPhong.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\UserControls\usDSKhoaPhong.designer.cs">
-      <DependentUpon>usDSKhoaPhong.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\UserControls\us_DmDichVuCLS.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -311,38 +362,11 @@
     <Compile Include="UI\UserControls\us_dmDuoc.designer.cs">
       <DependentUpon>us_dmDuoc.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\UserControls\us_dmICD10.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\UserControls\us_dmICD10.designer.cs">
-      <DependentUpon>us_dmICD10.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\UserControls\us_DmKQMau.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\UserControls\us_DmKQMau.designer.cs">
       <DependentUpon>us_DmKQMau.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\UserControls\us_dmNhaCungCap.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\UserControls\us_dmNhaCungCap.designer.cs">
-      <DependentUpon>us_dmNhaCungCap.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\UserControls\us_dmNhomDV.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\UserControls\us_dmNhomDV.designer.cs">
-      <DependentUpon>us_dmNhomDV.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\UserControls\us_dmTieuNhomDV.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\UserControls\us_dmTieuNhomDV.designer.cs">
-      <DependentUpon>us_dmTieuNhomDV.cs</DependentUpon>
-    </Compile>
-    <Compile Include="xfmDictionary.cs">
-      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -360,7 +384,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmDictionary.resx">
+      <DependentUpon>frmDictionary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_ICD10.resx">
+      <DependentUpon>ucAddDIC_ICD10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_NGHENGHIEP.resx">
+      <DependentUpon>ucAddDIC_NGHENGHIEP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_NHACUNGCAP.resx">
+      <DependentUpon>ucAddDIC_NHACUNGCAP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_NHOMDICHVU.resx">
+      <DependentUpon>ucAddDIC_NHOMDICHVU.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_PHONGBAN.resx">
       <DependentUpon>ucAddDIC_PHONGBAN.cs</DependentUpon>
     </EmbeddedResource>
@@ -373,14 +412,17 @@
     <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_HUYEN.resx">
       <DependentUpon>ucAddDIC_HUYEN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_TIEUNHOMDICHVU.resx">
+      <DependentUpon>ucAddDIC_TIEUNHOMDICHVU.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_TINHTHANH.resx">
       <DependentUpon>ucAddDIC_TINHTHANH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_XAPHUONG.resx">
       <DependentUpon>ucAddDIC_XAPHUONG.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Core\Actions\ucAddEmployee.resx">
-      <DependentUpon>ucAddEmployee.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_CANBO.resx">
+      <DependentUpon>ucAddDIC_CANBO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controls\xucPosition.resx">
       <DependentUpon>xucPosition.cs</DependentUpon>
@@ -413,6 +455,21 @@
     <EmbeddedResource Include="UI\Core\ucDIC_HUYEN.resx">
       <DependentUpon>ucDIC_HUYEN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\ucDIC_ICD10.resx">
+      <DependentUpon>ucDIC_ICD10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\ucDIC_NGHENGHIEP.resx">
+      <DependentUpon>ucDIC_NGHENGHIEP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\ucDIC_NHACUNGCAP.resx">
+      <DependentUpon>ucDIC_NHACUNGCAP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\ucDIC_NHOMDICHVU.resx">
+      <DependentUpon>ucDIC_NHOMDICHVU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\ucDIC_TIEUNHOMDICHVU.resx">
+      <DependentUpon>ucDIC_TIEUNHOMDICHVU.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Core\ucDIC_XAPHUONG.resx">
       <DependentUpon>ucDIC_XAPHUONG.cs</DependentUpon>
     </EmbeddedResource>
@@ -421,9 +478,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmCapDo.resx">
       <DependentUpon>frmCapDo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\frm_CapNhatDanhMucICD.resx">
-      <DependentUpon>frm_CapNhatDanhMucICD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frm_CNDichVu_5084.resx">
       <DependentUpon>frm_CNDichVu_5084.cs</DependentUpon>
@@ -436,9 +490,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_DmTaiSan.resx">
       <DependentUpon>Frm_DmTaiSan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_DmTinh.resx">
-      <DependentUpon>Frm_DmTinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frm_DsMaDV.resx">
       <DependentUpon>frm_DsMaDV.cs</DependentUpon>
@@ -467,32 +518,14 @@
     <EmbeddedResource Include="UI\UserControls\usDichVu.resx">
       <DependentUpon>usDichVu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\UserControls\usDSKhoaPhong.resx">
-      <DependentUpon>usDSKhoaPhong.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\us_DmDichVuCLS.resx">
       <DependentUpon>us_DmDichVuCLS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\us_dmDuoc.resx">
       <DependentUpon>us_dmDuoc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\UserControls\us_dmICD10.resx">
-      <DependentUpon>us_dmICD10.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\us_DmKQMau.resx">
       <DependentUpon>us_DmKQMau.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\UserControls\us_dmNhaCungCap.resx">
-      <DependentUpon>us_dmNhaCungCap.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\UserControls\us_DMNhomDV.resx">
-      <DependentUpon>us_dmNhomDV.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\UserControls\us_dmTieuNhomDV.resx">
-      <DependentUpon>us_dmTieuNhomDV.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="xfmDictionary.resx">
-      <DependentUpon>xfmDictionary.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
