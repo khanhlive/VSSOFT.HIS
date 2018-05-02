@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Vssoft.Data.ERP.Dictionary;
 using DevExpress.XtraEditors;
 using Vssoft.Data.Enum;
-using Vssoft.Data.Core.Ado;
+
 using Vssoft.Common;
 using Vssoft.Common.Common.Class;
 
@@ -70,7 +70,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     DIC_ICD10 icd10 = (DIC_ICD10)this.Model;
-                    SqlResultType resultType = new ICD10Provider().Delete(icd10);
+                    SqlResultType resultType = new DIC_ICD10().Delete(icd10);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
@@ -123,8 +123,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             {
                 DIC_ICD10 icd10 = (DIC_ICD10)this.GetModel();
                 SqlResultType flag;
-                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new ICD10Provider().Insert(icd10);
-                else flag = new ICD10Provider().Update(icd10);
+                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new DIC_ICD10().Insert(icd10);
+                else flag = new DIC_ICD10().Update(icd10);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Model = icd10;

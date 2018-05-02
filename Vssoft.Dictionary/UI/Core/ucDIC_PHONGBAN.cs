@@ -1,11 +1,8 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
-using System.Collections.Generic;
-using System.Linq;
-using Vssoft.Data.Core.Ado;
-using Vssoft.Data.Enum;
-using Vssoft.Dictionary.UI.Core.Actions;
+
 using Vssoft.Data.ERP.Dictionary;
+using Vssoft.Dictionary.UI.Core.Actions;
 
 namespace Vssoft.Dictionary.UI.Core
 {
@@ -21,28 +18,19 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void SetDataSource()
         {
-            using (DepartmentProvider departmentProvider = new DepartmentProvider())
+            using (DIC_PHONGBAN departmentProvider = new DIC_PHONGBAN())
             {
-                
                 this.dataSource = departmentProvider.GetAll();
             }
-            
         }
 
         protected override void List_Init(AdvBandedGridView dt)
         {
             RepositoryItemCheckEdit ckbStatus = new RepositoryItemCheckEdit();
             RepositoryItemLookUpEdit lookEdit = new RepositoryItemLookUpEdit();
-            lookEdit.ValueMember = "MaPhongBan";
-            lookEdit.DisplayMember = "TenPhongBan";
-            lookEdit.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenPhongBan", "Tên phòng ban"));
-            lookEdit.ShowHeader = false;
-            using (DepartmentProvider departmentProvider = new DepartmentProvider())
+            using (DIC_PHONGBAN dic_phongban=new DIC_PHONGBAN())
             {
-                List<DIC_PHONGBAN> phongban = new List<DIC_PHONGBAN>();
-                phongban.Add(new DIC_PHONGBAN { MaPhongBan = 0, TenPhongBan = "Không" });
-                phongban.AddRange(departmentProvider.GetAllActive().Where(p => p.PhanLoai == LoaiPhongBan.PhongBan[0] || p.PhanLoai == LoaiPhongBan.PhongBan[3]).ToList());
-                lookEdit.DataSource = phongban;
+                dic_phongban.AddRepositoryLookupEdit(lookEdit);
             }
             ckbStatus.ValueChecked = 1;
             ckbStatus.ValueUnchecked = 0;
@@ -53,7 +41,7 @@ namespace Vssoft.Dictionary.UI.Core
             lookEditChuyenkhoa.DisplayMember = "TenChuyenKhoa";
             lookEditChuyenkhoa.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenChuyenKhoa", "Tên chuyên khoa"));
             lookEditChuyenkhoa.ShowHeader = false;
-            using (SpecialtyProvider specialtyProvider=new SpecialtyProvider())
+            using (DIC_CHUYENKHOA specialtyProvider=new DIC_CHUYENKHOA())
             {
                 lookEditChuyenkhoa.DataSource = specialtyProvider.GetAll();
             }
@@ -64,7 +52,7 @@ namespace Vssoft.Dictionary.UI.Core
             lookEditBenhvien.DisplayMember = "TenBenhVien";
             lookEditBenhvien.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenBenhVien", "Tên bệnh viện"));
             lookEditBenhvien.ShowHeader = false;
-            using (HospitalProvider hospitalProvider = new HospitalProvider())
+            using (DIC_BENHVIEN hospitalProvider = new DIC_BENHVIEN())
             {
                 lookEditBenhvien.DataSource = hospitalProvider.GetAll();
             }
@@ -74,7 +62,7 @@ namespace Vssoft.Dictionary.UI.Core
             lookEditphanloai.DisplayMember = "PhanLoai";
             lookEditphanloai.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PhanLoai", "Tên"));
             lookEditphanloai.ShowHeader = false;
-            using (PhanLoaiPhongBanProvider provider= new PhanLoaiPhongBanProvider())
+            using (DIC_PHANLOAIPHONGBAN provider= new DIC_PHANLOAIPHONGBAN())
             {
                 lookEditphanloai.DataSource = provider.GetAll();
             }

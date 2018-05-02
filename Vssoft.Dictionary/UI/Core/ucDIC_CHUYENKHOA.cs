@@ -1,6 +1,6 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
-using Vssoft.Data.Core.Ado;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core
 {
@@ -19,7 +19,7 @@ namespace Vssoft.Dictionary.UI.Core
         }
         protected override void SetDataSource()
         {
-            SpecialtyProvider specialtyProvider = new SpecialtyProvider();
+            DIC_CHUYENKHOA specialtyProvider = new DIC_CHUYENKHOA();
             this.dataSource = specialtyProvider.GetAll();
         }
         

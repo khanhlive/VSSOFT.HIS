@@ -3,7 +3,7 @@ using System;
 using System.Windows.Forms;
 using Vssoft.Common;
 using Vssoft.Common.Common.Class;
-using Vssoft.Data.Core.Ado;
+
 using Vssoft.Data.Enum;
 using Vssoft.Data.ERP.Dictionary;
 
@@ -19,11 +19,11 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            using (DistrictProvider provider=new DistrictProvider())
+            using (DIC_HUYEN provider=new DIC_HUYEN())
             {
                 cmbDistrict.Properties.DataSource = provider.GetAllActive();
             }
-            using (ProvinceProvider provider = new ProvinceProvider())
+            using (DIC_TINH provider = new DIC_TINH())
             {
                 cmbProvince.Properties.DataSource = provider.GetAllActive();
             }
@@ -66,7 +66,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     DIC_XAPHUONG xa = (DIC_XAPHUONG)this.Model;
-                    SqlResultType resultType = new RuralCommuneProvider().Delete(xa);
+                    SqlResultType resultType = new DIC_XAPHUONG().Delete(xa);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
@@ -115,8 +115,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             {
                 DIC_XAPHUONG xa = (DIC_XAPHUONG)this.GetModel();
                 SqlResultType flag;
-                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new RuralCommuneProvider().Insert(xa);
-                else flag = new RuralCommuneProvider().Update(xa);
+                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new DIC_XAPHUONG().Insert(xa);
+                else flag = new DIC_XAPHUONG().Update(xa);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Model = xa;

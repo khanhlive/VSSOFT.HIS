@@ -3,7 +3,7 @@ using System;
 using System.Windows.Forms;
 using Vssoft.Common;
 using Vssoft.Common.Common.Class;
-using Vssoft.Data.Core.Ado;
+
 using Vssoft.Data.Enum;
 using Vssoft.Data.Extension;
 using Vssoft.Data.ERP.Dictionary;
@@ -20,7 +20,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            using (NhomDichVuProvider provider=new NhomDichVuProvider())
+            using (DIC_NHOMDICHVU provider=new DIC_NHOMDICHVU())
             {
                 lookupNhom.Properties.DataSource = provider.GetAllActive();
             }
@@ -65,7 +65,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     DIC_TIEUNHOMDICHVU tieunhom = (DIC_TIEUNHOMDICHVU)this.Model;
-                    SqlResultType resultType = new TieuNhomDichVuProvider().Delete(tieunhom);
+                    SqlResultType resultType = new DIC_TIEUNHOMDICHVU().Delete(tieunhom);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
@@ -116,8 +116,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             {
                 DIC_TIEUNHOMDICHVU tieunhom = (DIC_TIEUNHOMDICHVU)this.GetModel();
                 SqlResultType flag;
-                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new TieuNhomDichVuProvider().Insert(tieunhom);
-                else flag = new TieuNhomDichVuProvider().Update(tieunhom);
+                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new DIC_TIEUNHOMDICHVU().Insert(tieunhom);
+                else flag = new DIC_TIEUNHOMDICHVU().Update(tieunhom);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Model = tieunhom;

@@ -1,6 +1,6 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
-using Vssoft.Data.Core.Ado;
+using Vssoft.Data.ERP.Dictionary;
 using Vssoft.Dictionary.UI.Core.Actions;
 
 namespace Vssoft.Dictionary.UI.Core
@@ -16,7 +16,7 @@ namespace Vssoft.Dictionary.UI.Core
         }
         protected override void SetDataSource()
         {
-            ObjectProvider objectProvider = new ObjectProvider();
+            DIC_DOITUONG objectProvider = new DIC_DOITUONG();
             this.dataSource = objectProvider.GetAll();
         }
 

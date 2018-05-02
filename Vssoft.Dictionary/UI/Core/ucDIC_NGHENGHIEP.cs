@@ -1,6 +1,6 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
-using Vssoft.Data.Core.Ado;
+using Vssoft.Data.ERP.Dictionary;
 using Vssoft.Dictionary.UI.Core.Actions;
 
 namespace Vssoft.Dictionary.UI.Core
@@ -17,7 +17,7 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void SetDataSource()
         {
-            using (JobProvider jobProvider = new JobProvider())
+            using (DIC_NGHENGHIEP jobProvider = new DIC_NGHENGHIEP())
             {
                 this.dataSource = jobProvider.GetAll();
             }

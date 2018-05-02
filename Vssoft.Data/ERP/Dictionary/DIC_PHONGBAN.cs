@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using Vssoft.Data.Enum;
 using Vssoft.Data.Extension;
@@ -39,32 +40,85 @@ namespace Vssoft.Data.ERP.Dictionary
 
         public override SqlResultType Delete()
         {
-            throw new NotImplementedException();
+            return this.Delete(this);
         }
 
         public override SqlResultType Delete(DIC_PHONGBAN entity)
+        {
+            try
+            {
+                this.sqlHelper.CommandType = CommandType.StoredProcedure;
+                object result = this.sqlHelper.ExecuteScalar("DeletePhongBan", new string[] { "@MaPhongBan" }, new object[] { entity.MaPhongBan });
+                int kq = Convert.ToInt32(result);
+                this.sqlHelper.Close();
+                return this.GetResult(kq);
+            }
+            catch (Exception e)
+            {
+                this.sqlHelper.Close();
+                log.Error("Delete PHONG BAN", e);
+                return SqlResultType.Exception;
+            }
+        }
+
+        public override SqlResultType Exsist(object key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override SqlResultType Get(object key)
         {
             throw new NotImplementedException();
         }
 
         public override SqlResultType Insert()
         {
-            throw new NotImplementedException();
+            return this.Insert(this);
         }
 
-        public override SqlResultType Insert(DIC_PHONGBAN entity)
+        public override SqlResultType Insert(DIC_PHONGBAN phongban)
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.sqlHelper.CommandType = CommandType.StoredProcedure;
+                object result = this.sqlHelper.ExecuteScalar("InsertPhongBan",
+                    new string[] { "@TenPhongBan", "@NhomPhongBan", "@QuanLy", "@BuongGiuong", "@PhanLoai_ID", "@MaQuyetDinh", "@MaPhongBanCu", "@MaChuyenKhoa", "@TuTruc", "@TrongBenhVien", "@PhuongPhapXuatDuoc", "@PhuongPhapHuHaoDongY", "@DiaChi", "@MaBenhVien", "@Status" },
+                    new object[] { phongban.TenPhongBan, phongban.NhomPhongBan, phongban.QuanLy, phongban.BuongGiuong, phongban.PhanLoai_ID, phongban.MaQuyetDinh, "'NULL'", phongban.MaChuyenKhoa, phongban.TuTruc, phongban.TrongBenhVien, phongban.PhuongPhapXuatDuoc, phongban.PhuongPhapHuHaoDongY, phongban.DiaChi, phongban.MaBenhVien, phongban.Status });
+                int kq = Convert.ToInt32(result);
+                this.sqlHelper.Close();
+                return this.GetResult(kq);
+            }
+            catch (Exception e)
+            {
+                this.sqlHelper.Close();
+                log.Error("Insert PHONG BAN", e);
+                return SqlResultType.Exception;
+            }
         }
 
         public override SqlResultType Update()
         {
-            throw new NotImplementedException();
+            return this.Update(this);
         }
 
-        public override SqlResultType Update(DIC_PHONGBAN entity)
+        public override SqlResultType Update(DIC_PHONGBAN phongban)
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.sqlHelper.CommandType = CommandType.StoredProcedure;
+                object result = this.sqlHelper.ExecuteScalar("UpdatePhongBan",
+                    new string[] { "@MaPhongBan", "@TenPhongBan", "@NhomPhongBan", "@QuanLy", "@BuongGiuong", "@PhanLoai_ID", "@MaQuyetDinh", "@MaPhongBanCu", "@MaChuyenKhoa", "@TuTruc", "@TrongBenhVien", "@PhuongPhapXuatDuoc", "@PhuongPhapHuHaoDongY", "@DiaChi", "@MaBenhVien", "@Status" },
+                    new object[] { phongban.MaPhongBan, phongban.TenPhongBan, phongban.NhomPhongBan, phongban.QuanLy, phongban.BuongGiuong, phongban.PhanLoai_ID, phongban.MaQuyetDinh, "'NULL'", phongban.MaChuyenKhoa, phongban.TuTruc, phongban.TrongBenhVien, phongban.PhuongPhapXuatDuoc, phongban.PhuongPhapHuHaoDongY, phongban.DiaChi, phongban.MaBenhVien, phongban.Status });
+                int kq = Convert.ToInt32(result);
+                this.sqlHelper.Close();
+                return this.GetResult(kq);
+            }
+            catch (Exception e)
+            {
+                this.sqlHelper.Close();
+                log.Error("Update PHONG BAN", e);
+                return SqlResultType.Exception;
+            }
         }
 
         protected override IEnumerable<DIC_PHONGBAN> DataReaderToList(SqlDataReader dataReader)

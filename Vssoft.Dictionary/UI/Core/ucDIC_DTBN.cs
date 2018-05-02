@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Vssoft.Data.Core.Ado;
+﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
-using DevExpress.XtraEditors.Repository;
+using Vssoft.Data.Enum;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core
 {
@@ -25,13 +17,19 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void SetDataSource()
         {
-            PatientObjectProvider patientObjectProvider = new PatientObjectProvider();
+            DIC_DTBN patientObjectProvider = new DIC_DTBN();
             this.dataSource = patientObjectProvider.GetAll();
         }
 
         protected override void List_Init(AdvBandedGridView dt)
         {
             RepositoryItemCheckEdit ckbStatus = new RepositoryItemCheckEdit();
+            RepositoryItemLookUpEdit lookEdit = new RepositoryItemLookUpEdit();
+            lookEdit.ValueMember ="Value";
+            lookEdit.DisplayMember = "Name";
+            lookEdit.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"));
+            lookEdit.ShowHeader = false;
+            lookEdit.DataSource = new HinhThucThanhToan().GetList();
             ckbStatus.ValueChecked = 1;
             ckbStatus.ValueUnchecked = 0;
             ckbStatus.ValueGrayed = null;
@@ -54,10 +52,10 @@ namespace Vssoft.Dictionary.UI.Core
                         continue;
                     case "HinhThucThanhToan":
                         dt.Columns[i].Caption = "Hình thức thanh toán";
+                        dt.Columns[i].ColumnEdit = lookEdit;
                         continue;
                     case "Status":
                         dt.Columns[i].Caption = "Sử dụng";
-                        //dt.Columns[i].OptionsColumn.= DevExpress.Utils.HorzAlignment.Center;
                         dt.Columns[i].Width = 20;
                         dt.Columns[i].ColumnEdit = ckbStatus;
                         continue;

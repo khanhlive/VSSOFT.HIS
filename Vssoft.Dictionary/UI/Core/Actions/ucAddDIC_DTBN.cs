@@ -1,13 +1,11 @@
 ﻿using DevExpress.XtraEditors;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using Vssoft.Common;
 using Vssoft.Common.Common.Class;
-using Vssoft.Data.Core.Ado;
+
 using Vssoft.Data.Enum;
 using Vssoft.Data.ERP.Dictionary;
-using Vssoft.ERP.Models;
 
 namespace Vssoft.Dictionary.UI.Core.Actions
 {
@@ -56,7 +54,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     DIC_DTBN doituongbenhnhan = (DIC_DTBN)this.Model;
-                    SqlResultType resultType = new PatientObjectProvider().Delete(doituongbenhnhan);
+                    SqlResultType resultType = new DIC_DTBN().Delete(doituongbenhnhan);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
@@ -105,8 +103,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             {
                 DIC_DTBN doituongbenhnhan = (DIC_DTBN)this.GetModel();
                 SqlResultType flag;
-                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new PatientObjectProvider().Insert(doituongbenhnhan);
-                else flag = new PatientObjectProvider().Update(doituongbenhnhan);
+                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new DIC_DTBN().Insert(doituongbenhnhan);
+                else flag = new DIC_DTBN().Update(doituongbenhnhan);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Model = doituongbenhnhan;

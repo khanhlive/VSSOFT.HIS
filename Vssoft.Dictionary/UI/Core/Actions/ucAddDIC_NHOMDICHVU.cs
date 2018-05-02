@@ -3,7 +3,7 @@ using System;
 using System.Windows.Forms;
 using Vssoft.Common;
 using Vssoft.Common.Common.Class;
-using Vssoft.Data.Core.Ado;
+
 using Vssoft.Data.Enum;
 using Vssoft.Data.Extension;
 using Vssoft.Data.ERP.Dictionary;
@@ -54,7 +54,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     DIC_NHOMDICHVU nhom = (DIC_NHOMDICHVU)this.Model;
-                    SqlResultType resultType = new NhomDichVuProvider().Delete(nhom);
+                    SqlResultType resultType = new DIC_NHOMDICHVU().Delete(nhom);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
@@ -103,8 +103,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             {
                 DIC_NHOMDICHVU nhom = (DIC_NHOMDICHVU)this.GetModel();
                 SqlResultType flag;
-                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new NhomDichVuProvider().Insert(nhom);
-                else flag = new NhomDichVuProvider().Update(nhom);
+                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new DIC_NHOMDICHVU().Insert(nhom);
+                else flag = new DIC_NHOMDICHVU().Update(nhom);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Model = nhom;

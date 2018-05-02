@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vssoft.Common;
 using Vssoft.Common.Common.Class;
-using Vssoft.Data.Core.Ado;
+
 using Vssoft.Data.Enum;
 using Vssoft.Data.Extension;
 using Vssoft.Data.ERP.Dictionary;
@@ -26,23 +26,23 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         protected override void Init()
         {
-            using (DepartmentProvider departmentProvider = new DepartmentProvider())
+            using (DIC_PHONGBAN departmentProvider = new DIC_PHONGBAN())
             {
                 List<DIC_PHONGBAN> phongban = departmentProvider.GetAllActive().Where(p => p.PhanLoai == LoaiPhongBan.PhongBan[0] || p.PhanLoai == LoaiPhongBan.PhongBan[3]).ToList();
                 lupNhomPB.Properties.DataSource = phongban;
             }
-            using (SpecialtyProvider provider = new SpecialtyProvider())
+            using (DIC_CHUYENKHOA provider = new DIC_CHUYENKHOA())
             {
                 lookupChuyenKhoa.Properties.DataSource = provider.GetAllActive();
             }
-            using (HospitalProvider provider = new HospitalProvider())
+            using (DIC_BENHVIEN provider = new DIC_BENHVIEN())
             {
                 lookupBenhvien.Properties.DataSource = provider.GetAllActive();
             }
             cmbPPXuatduoc.Properties.Items.AddRange(Vssoft.Data.CommonVariable.PhuongPhapXuatDuoc);
             cmbPPHuHao.Properties.Items.AddRange(Vssoft.Data.CommonVariable.PhuongPhapHuHao);
 
-            using (PhanLoaiPhongBanProvider provider = new PhanLoaiPhongBanProvider())
+            using (DIC_PHANLOAIPHONGBAN provider = new DIC_PHANLOAIPHONGBAN())
             {
                 lookupPhanLoai.Properties.DataSource = provider.GetAllActive();
             }
@@ -110,7 +110,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     DIC_PHONGBAN phongban = (DIC_PHONGBAN)this.Model;
-                    SqlResultType resultType = new DepartmentProvider().Delete(phongban);
+                    SqlResultType resultType = new DIC_PHONGBAN().Delete(phongban);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
@@ -220,8 +220,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             {
                 DIC_PHONGBAN phongban = (DIC_PHONGBAN)this.GetModel();
                 SqlResultType flag;
-                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new DepartmentProvider().Insert(phongban);
-                else flag = new DepartmentProvider().Update(phongban);
+                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new DIC_PHONGBAN().Insert(phongban);
+                else flag = new DIC_PHONGBAN().Update(phongban);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Model = phongban;

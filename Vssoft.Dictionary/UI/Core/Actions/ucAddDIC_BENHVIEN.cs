@@ -3,7 +3,7 @@ using System;
 using System.Windows.Forms;
 using Vssoft.Common;
 using Vssoft.Common.Common.Class;
-using Vssoft.Data.Core.Ado;
+
 using Vssoft.Data.Enum;
 using Vssoft.Data.ERP.Dictionary;
 
@@ -18,11 +18,11 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         protected override void OnLoad(EventArgs e)
         {
-            using (ProvinceProvider provinceProvider = new ProvinceProvider())
+            using (DIC_TINH provinceProvider = new DIC_TINH())
             {
                 cmbTinh.Properties.DataSource = provinceProvider.GetAllActive();
             }
-            using (DistrictProvider provider = new DistrictProvider())
+            using (DIC_HUYEN provider = new DIC_HUYEN())
             {
                 cmbHuyen.Properties.DataSource = provider.GetAllActive();
             }
@@ -75,7 +75,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     DIC_BENHVIEN benhvien = (DIC_BENHVIEN)this.Model;
-                    SqlResultType resultType = new HospitalProvider().Delete(benhvien);
+                    SqlResultType resultType = new DIC_BENHVIEN().Delete(benhvien);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
@@ -135,8 +135,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             {
                 DIC_BENHVIEN benhvien = (DIC_BENHVIEN)this.GetModel();
                 SqlResultType flag;
-                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new HospitalProvider().Insert(benhvien);
-                else flag = new HospitalProvider().Update(benhvien);
+                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new DIC_BENHVIEN().Insert(benhvien);
+                else flag = new DIC_BENHVIEN().Update(benhvien);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Action = this.actions;
@@ -184,7 +184,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         {
             if (cmbTinh.EditValue != null)
             {
-                using (DistrictProvider provider = new DistrictProvider())
+                using (DIC_HUYEN provider = new DIC_HUYEN())
                 {
                     cmbHuyen.Properties.DataSource = provider.GetAllHuyenbyTinh(cmbTinh.EditValue as string);
                 }

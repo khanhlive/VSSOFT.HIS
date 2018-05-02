@@ -1,7 +1,7 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
 using System.Windows.Forms;
-using Vssoft.Data.Core.Ado;
+using Vssoft.Data.ERP.Dictionary;
 using Vssoft.Dictionary.UI.Core.Actions;
 
 namespace Vssoft.Dictionary.UI.Core
@@ -18,7 +18,7 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void SetDataSource()
         {
-            EthnicProvider nationProvider = new EthnicProvider();
+            DIC_DANTOC nationProvider = new DIC_DANTOC();
             this.dataSource = nationProvider.GetAll();
         }
 

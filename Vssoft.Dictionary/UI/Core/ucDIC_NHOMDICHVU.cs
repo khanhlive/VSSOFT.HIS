@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Vssoft.Data.Core.Ado;
-using DevExpress.XtraEditors.Repository;
+﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
+using System.Collections.Generic;
 using Vssoft.Data.Enum;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core
 {
@@ -32,7 +24,7 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void SetDataSource()
         {
-            NhomDichVuProvider nhomDichVuProvider = new NhomDichVuProvider();
+            DIC_NHOMDICHVU nhomDichVuProvider = new DIC_NHOMDICHVU();
             this.dataSource = nhomDichVuProvider.GetAll();
         }
 

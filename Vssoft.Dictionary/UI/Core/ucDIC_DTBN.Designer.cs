@@ -30,12 +30,16 @@
         {
             this.SuspendLayout();
             // 
+            // ucToolBar
+            // 
+            this.ucToolBar.Size = new System.Drawing.Size(1063, 43);
+            // 
             // ucDIC_DTBN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "ucDIC_DTBN";
-            this.Size = new System.Drawing.Size(748, 199);
+            this.Size = new System.Drawing.Size(1063, 444);
             this.ResumeLayout(false);
 
         }

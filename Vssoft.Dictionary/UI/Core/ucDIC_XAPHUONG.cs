@@ -1,7 +1,7 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
 using Vssoft.Common;
-using Vssoft.Data.Core.Ado;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core
 {
@@ -18,8 +18,10 @@ namespace Vssoft.Dictionary.UI.Core
         
         protected override void SetDataSource()
         {
-            RuralCommuneProvider specialtyProvider = new RuralCommuneProvider();
-            this.dataSource = specialtyProvider.GetAll();
+            using (DIC_XAPHUONG specialtyProvider = new DIC_XAPHUONG())
+            {
+                this.dataSource = specialtyProvider.GetAll();
+            }
         }
 
         protected override void List_Init(AdvBandedGridView dt)

@@ -3,7 +3,7 @@ using System;
 using System.Windows.Forms;
 using Vssoft.Common;
 using Vssoft.Common.Common.Class;
-using Vssoft.Data.Core.Ado;
+
 using Vssoft.Data.Enum;
 using Vssoft.Data.ERP.Dictionary;
 using Vssoft.ERP.Models;
@@ -52,7 +52,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     DIC_DANTOC danToc = (DIC_DANTOC)this.Model;
-                    SqlResultType resultType = new EthnicProvider().Delete(danToc);
+                    SqlResultType resultType = new DIC_DANTOC().Delete(danToc);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
@@ -99,8 +99,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             {
                 DIC_DANTOC danToc = (DIC_DANTOC)this.GetModel();
                 SqlResultType flag;
-                if(this.actions== Common.Common.Class.Actions.AddNew) flag = new EthnicProvider().Insert(danToc);
-                else flag = new EthnicProvider().Update(danToc);
+                if(this.actions== Common.Common.Class.Actions.AddNew) flag = new DIC_DANTOC().Insert(danToc);
+                else flag = new DIC_DANTOC().Update(danToc);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag== SqlResultType.OK;
                 args.Model = danToc;

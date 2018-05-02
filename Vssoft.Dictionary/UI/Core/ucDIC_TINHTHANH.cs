@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
-using DevExpress.XtraEditors.Repository;
-using Vssoft.Data.Core.Ado;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core
 {
@@ -26,7 +17,7 @@ namespace Vssoft.Dictionary.UI.Core
         
         protected override void SetDataSource()
         {
-            ProvinceProvider specialtyProvider = new ProvinceProvider();
+            DIC_TINH specialtyProvider = new DIC_TINH();
             this.dataSource = specialtyProvider.GetAll();
         }
 

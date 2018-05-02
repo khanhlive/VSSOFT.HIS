@@ -1,6 +1,6 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
-using Vssoft.Data.Core.Ado;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core
 {
@@ -17,7 +17,7 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void SetDataSource()
         {
-            TieuNhomDichVuProvider provider = new TieuNhomDichVuProvider();
+            DIC_TIEUNHOMDICHVU provider = new DIC_TIEUNHOMDICHVU();
             this.dataSource = provider.GetAll();
         }
 
@@ -30,7 +30,7 @@ namespace Vssoft.Dictionary.UI.Core
             lookUpEditHuyen.ShowHeader = false;
             lookUpEditHuyen.DropDownRows = 12;
             lookUpEditHuyen.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo { FieldName = "TenNhom", Caption = "Tên nhóm" });
-            using (NhomDichVuProvider provider = new NhomDichVuProvider())
+            using (DIC_NHOMDICHVU provider = new DIC_NHOMDICHVU())
             {
                 lookUpEditHuyen.DataSource = provider.GetAll();
             }

@@ -3,7 +3,7 @@ using System;
 using System.Windows.Forms;
 using Vssoft.Common;
 using Vssoft.Common.Common.Class;
-using Vssoft.Data.Core.Ado;
+
 using Vssoft.Data.Enum;
 using Vssoft.Data.Extension;
 using Vssoft.Data.ERP.Dictionary;
@@ -80,7 +80,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     DIC_DOITUONG doituong = (DIC_DOITUONG)this.Model;
-                    SqlResultType resultType = new ObjectProvider().Delete(doituong);
+                    SqlResultType resultType = new DIC_DOITUONG().Delete(doituong);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
@@ -133,8 +133,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             {
                 DIC_DOITUONG doituong = (DIC_DOITUONG)this.GetModel();
                 SqlResultType flag;
-                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new ObjectProvider().Insert(doituong);
-                else flag = new ObjectProvider().Update(doituong);
+                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new DIC_DOITUONG().Insert(doituong);
+                else flag = new DIC_DOITUONG().Update(doituong);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Model = doituong; args.Action = this.actions;

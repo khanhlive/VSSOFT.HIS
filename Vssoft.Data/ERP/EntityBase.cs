@@ -73,7 +73,9 @@ namespace Vssoft.Data.ERP
         public abstract SqlResultType Update(T entity);
         public abstract SqlResultType Delete();
         public abstract SqlResultType Delete(T entity);
-
+        public abstract SqlResultType Exsist(object key);
+        public abstract SqlResultType Get(object key);
+        
         protected abstract IEnumerable<T> DataReaderToList(SqlDataReader dataReader);
 
         protected string GetValueMember

@@ -1,7 +1,7 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
 using System;
-using Vssoft.Data.Core.Ado;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core
 {
@@ -18,7 +18,7 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void SetDataSource()
         {
-            using (ICD10Provider hospitalProvider = new ICD10Provider())
+            using (DIC_ICD10 hospitalProvider = new DIC_ICD10())
             {
                 this.dataSource = hospitalProvider.GetAll();
             }

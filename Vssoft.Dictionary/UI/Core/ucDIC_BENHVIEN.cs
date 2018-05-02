@@ -1,7 +1,7 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
 using Vssoft.Data;
-using Vssoft.Data.Core.Ado;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core
 {
@@ -18,7 +18,7 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void SetDataSource()
         {
-            using (HospitalProvider hospitalProvider = new HospitalProvider())
+            using (DIC_BENHVIEN hospitalProvider = new DIC_BENHVIEN())
             {
                 this.dataSource = hospitalProvider.GetAll();
             }
@@ -36,7 +36,7 @@ namespace Vssoft.Dictionary.UI.Core
             lookUpEditHuyen.ShowHeader = false;
             lookUpEditHuyen.DropDownRows = 12;
             lookUpEditHuyen.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo { FieldName = "TenHuyen", Caption = "Tên Huyện" });
-            using (DistrictProvider provider=new DistrictProvider())
+            using (DIC_HUYEN provider=new DIC_HUYEN())
             {
                 lookUpEditHuyen.DataSource = provider.GetAll();
             }
@@ -46,7 +46,7 @@ namespace Vssoft.Dictionary.UI.Core
             lookUpEditTinh.ShowHeader = false;
             lookUpEditTinh.DropDownRows = 12;
             lookUpEditTinh.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo { FieldName = "TenTinh", Caption = "Tên Tỉnh" });
-            using (ProvinceProvider provider = new ProvinceProvider())
+            using (DIC_TINH provider = new DIC_TINH())
             {
                 lookUpEditTinh.DataSource = provider.GetAll();
             }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vssoft.Data.ERP.Dictionary;
 using Vssoft.Common.Common.Class;
-using Vssoft.Data.Core.Ado;
+
 using Vssoft.Data.Enum;
 using DevExpress.XtraEditors;
 using Vssoft.Common;
@@ -56,7 +56,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     DIC_NGHENGHIEP nghenghiep = (DIC_NGHENGHIEP)this.Model;
-                    SqlResultType resultType = new JobProvider().Delete(nghenghiep);
+                    SqlResultType resultType = new DIC_NGHENGHIEP().Delete(nghenghiep);
                     if (resultType == SqlResultType.OK)
                     {
                         this.ClearModel();
@@ -101,8 +101,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             {
                 DIC_NGHENGHIEP nghenghiep = (DIC_NGHENGHIEP)this.GetModel();
                 SqlResultType flag;
-                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new JobProvider().Insert(nghenghiep);
-                else flag = new JobProvider().Update(nghenghiep);
+                if (this.actions == Common.Common.Class.Actions.AddNew) flag = new DIC_NGHENGHIEP().Insert(nghenghiep);
+                else flag = new DIC_NGHENGHIEP().Update(nghenghiep);
                 SaveCompleteEventArgs args = new SaveCompleteEventArgs();
                 args.Result = flag == SqlResultType.OK;
                 args.Model = nghenghiep;

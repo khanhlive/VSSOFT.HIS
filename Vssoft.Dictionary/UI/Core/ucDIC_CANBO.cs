@@ -23,11 +23,11 @@ namespace Vssoft.Dictionary.UI.Core
         }
         protected override void InitComponent()
         {
-            using (Data.Core.Ado.DepartmentProvider provider = new Data.Core.Ado.DepartmentProvider())
+            using (DIC_PHONGBAN provider = new DIC_PHONGBAN())
             {
                 this.phongbans = provider.GetAll();
             }
-            using (Data.Core.Ado.EthnicProvider provider = new Data.Core.Ado.EthnicProvider())
+            using (DIC_DANTOC provider = new DIC_DANTOC())
             {
                 this.dantocs = provider.GetAll();
             }
@@ -36,7 +36,7 @@ namespace Vssoft.Dictionary.UI.Core
         }
         protected override void SetDataSource()
         {
-            using (Data.Core.Ado.EmployeeProvider employeeProvider = new Data.Core.Ado.EmployeeProvider())
+            using (DIC_CANBO employeeProvider = new DIC_CANBO())
             {
                 this.dataSource = employeeProvider.GetAll();
             }

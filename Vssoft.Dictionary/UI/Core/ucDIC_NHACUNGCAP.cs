@@ -1,6 +1,6 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.BandedGrid;
-using Vssoft.Data.Core.Ado;
+using Vssoft.Data.ERP.Dictionary;
 
 namespace Vssoft.Dictionary.UI.Core
 {
@@ -17,7 +17,7 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void SetDataSource()
         {
-            PupplierProvider pupplierProvider = new PupplierProvider();
+            DIC_NHACUNGCAP pupplierProvider = new DIC_NHACUNGCAP();
             this.dataSource = pupplierProvider.GetAll();
         }
 

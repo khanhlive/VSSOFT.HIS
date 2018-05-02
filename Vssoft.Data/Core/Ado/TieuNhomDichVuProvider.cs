@@ -56,7 +56,7 @@ namespace Vssoft.Data.Core.Ado
                     DIC_TIEUNHOMDICHVU tieunhom = new DIC_TIEUNHOMDICHVU();
                     tieunhom.MaTieuNhom = DataConverter.StringToInt(dataReader["MaTieuNhom"].ToString());
                     tieunhom.TenTieuNhom = dataReader["TenTieuNhom"].ToString();
-                    tieunhom.TenNhom= dataReader["TenNhom"].ToString();
+                    tieunhom.TenNhom = dataReader["TenNhom"].ToString();
                     tieunhom.MaNhom = DataConverter.StringToInt(dataReader["MaNhom"].ToString());
                     tieunhom.TenRutGon = (dataReader["TenRutGon"].ToString());
                     tieunhom.Status = DataConverter.StringToInt(dataReader["Status"].ToString());
