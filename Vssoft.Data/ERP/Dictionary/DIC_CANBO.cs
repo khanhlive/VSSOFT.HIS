@@ -10,10 +10,10 @@ namespace Vssoft.Data.ERP.Dictionary
 {
     public class DIC_CANBO : EntityBase<DIC_CANBO>
     {
-        public DIC_CANBO():base()
+        public DIC_CANBO() : base()
         {
             this.StoreGetAll = "GetAllCanBo";
-            this.StoreGetAllActive =  "";
+            this.StoreGetAllActive = "";
         }
 
         [ValueMember]
@@ -29,7 +29,7 @@ namespace Vssoft.Data.ERP.Dictionary
         public string TenPhongBan { get; set; }
         public string MaDanToc { get; set; }
         public string TenDanToc { get; set; }
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
         public string DiaChi { get; set; }
         public string SoDienThoai { get; set; }
         public bool KhoaChungTu { get; set; }
@@ -93,7 +93,7 @@ namespace Vssoft.Data.ERP.Dictionary
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("InsertCanBo",
                     new string[] { "@MaCanBo", "@TenCanBo", "@NgaySinh", "@GioiTinh", "@ChucVu", "@CapBac", "@BangCap", "@MaDanToc", "@MaPhongBan", "@Image", "@DiaChi", "@SoDienThoai", "@KhoaChungTu" },
-                    new object[] { canbo.MaCanBo, canbo.TenCanBo, canbo.NgaySinh, canbo.GioiTinh, canbo.ChucVu, canbo.CapBac, canbo.BangCap, canbo.MaDanToc, canbo.MaPhongBan, canbo.Image, canbo.DiaChi, canbo.SoDienThoai, canbo.KhoaChungTu });
+                    new object[] { canbo.MaCanBo, canbo.TenCanBo, canbo.NgaySinh, canbo.GioiTinh, canbo.ChucVu, canbo.CapBac, canbo.BangCap, canbo.MaDanToc, canbo.MaPhongBan, canbo.Image ?? new byte[] { }, canbo.DiaChi, canbo.SoDienThoai, canbo.KhoaChungTu });
                 int kq = Convert.ToInt32(result);
                 return this.GetResult(kq);
             }
@@ -106,7 +106,7 @@ namespace Vssoft.Data.ERP.Dictionary
 
         public override SqlResultType Update()
         {
-            
+
             return this.Update(this);
         }
 
@@ -117,7 +117,7 @@ namespace Vssoft.Data.ERP.Dictionary
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("UpdateCanBo",
                     new string[] { "@MaCanBo", "@TenCanBo", "@NgaySinh", "@GioiTinh", "@ChucVu", "@CapBac", "@BangCap", "@MaDanToc", "@MaPhongBan", "@Image", "@DiaChi", "@SoDienThoai", "@KhoaChungTu" },
-                    new object[] { canbo.MaCanBo, canbo.TenCanBo, canbo.NgaySinh, canbo.GioiTinh, canbo.ChucVu, canbo.CapBac, canbo.BangCap, canbo.MaDanToc, canbo.MaPhongBan, canbo.Image, canbo.DiaChi, canbo.SoDienThoai, canbo.KhoaChungTu });
+                    new object[] { canbo.MaCanBo, canbo.TenCanBo, canbo.NgaySinh, canbo.GioiTinh, canbo.ChucVu, canbo.CapBac, canbo.BangCap, canbo.MaDanToc, canbo.MaPhongBan, canbo.Image ?? new byte[] { }, canbo.DiaChi, canbo.SoDienThoai, canbo.KhoaChungTu });
                 int kq = Convert.ToInt32(result);
                 return this.GetResult(kq);
             }
@@ -135,22 +135,27 @@ namespace Vssoft.Data.ERP.Dictionary
                 List<DIC_CANBO> dscanbo = new List<DIC_CANBO>();
                 while (dataReader.Read())
                 {
-                    DIC_CANBO canbo = new DIC_CANBO();
-                    canbo.BangCap = dataReader["BangCap"].ToString();
-                    canbo.CapBac = dataReader["CapBac"].ToString();
-                    canbo.ChucVu = dataReader["ChucVu"].ToString();
-                    canbo.DiaChi = dataReader["DiaChi"].ToString();
-                    canbo.Image = dataReader["Image"].ToString();
-                    canbo.GioiTinh = Convert.ToInt32(dataReader["GioiTinh"].ToString());
-                    canbo.KhoaChungTu = Convert.ToBoolean(dataReader["KhoaChungTu"].ToString());
-                    canbo.MaCanBo = dataReader["MaCanBo"].ToString();
-                    canbo.MaPhongBan = Convert.ToInt32(dataReader["MaPhongBan"].ToString());
-                    canbo.MaDanToc = dataReader["MaDanToc"].ToString();
-                    canbo.SoDienThoai = dataReader["SoDienThoai"].ToString();
-                    canbo.TenCanBo = dataReader["TenCanBo"].ToString();
-                    canbo.TenPhongBan = dataReader["TenPhongBan"].ToString();
-                    canbo.TenDanToc = dataReader["TenDanToc"].ToString();
-                    dscanbo.Add(canbo);
+                    try
+                    {
+                        DIC_CANBO canbo = new DIC_CANBO();
+                        canbo.BangCap = dataReader["BangCap"].ToString();
+                        canbo.CapBac = dataReader["CapBac"].ToString();
+                        canbo.ChucVu = dataReader["ChucVu"].ToString();
+                        canbo.DiaChi = dataReader["DiaChi"].ToString();
+                        if (dataReader["Image"] != System.DBNull.Value)
+                            canbo.Image = (byte[])dataReader["Image"];
+                        canbo.GioiTinh = Convert.ToInt32(dataReader["GioiTinh"].ToString());
+                        canbo.KhoaChungTu = Convert.ToBoolean(dataReader["KhoaChungTu"].ToString());
+                        canbo.MaCanBo = dataReader["MaCanBo"].ToString();
+                        canbo.MaPhongBan = Convert.ToInt32(dataReader["MaPhongBan"].ToString());
+                        canbo.MaDanToc = dataReader["MaDanToc"].ToString();
+                        canbo.SoDienThoai = dataReader["SoDienThoai"].ToString();
+                        canbo.TenCanBo = dataReader["TenCanBo"].ToString();
+                        canbo.TenPhongBan = dataReader["TenPhongBan"].ToString();
+                        canbo.TenDanToc = dataReader["TenDanToc"].ToString();
+                        dscanbo.Add(canbo);
+                    }
+                    catch (Exception ex) { log.Error("Generate CAN BO", ex); }
                 }
                 return dscanbo;
             }

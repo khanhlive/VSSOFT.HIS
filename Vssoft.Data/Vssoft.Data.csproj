@@ -52,6 +52,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -97,6 +98,7 @@
     <Compile Include="ERP\Dictionary\DIC_CHUCVU.cs" />
     <Compile Include="ERP\Dictionary\DIC_CHUYENKHOA.cs" />
     <Compile Include="ERP\Dictionary\DIC_DANTOC.cs" />
+    <Compile Include="ERP\Dictionary\DIC_DICHVU.cs" />
     <Compile Include="ERP\Dictionary\DIC_DOITUONG.cs" />
     <Compile Include="ERP\Dictionary\DIC_DTBN.cs" />
     <Compile Include="ERP\Dictionary\DIC_DUONGDUNG.cs" />

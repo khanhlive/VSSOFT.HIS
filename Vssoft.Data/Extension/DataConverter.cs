@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -85,6 +87,75 @@ namespace Vssoft.Data.Extension
                 return value.ToUpper();
             }
             else return string.Empty ;
+        }
+
+        public static string ImageToBase64(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                using (System.Drawing.Image image = System.Drawing.Image.FromFile(filePath))
+                {
+                    using (MemoryStream memoryStream = new MemoryStream())
+                    {
+                        image.Save(memoryStream, image.RawFormat);
+                        byte[] imagesBytes = memoryStream.ToArray();
+                        string base64 = Convert.ToBase64String(imagesBytes);
+                        return base64;
+                    }
+                }
+            }
+            else return string.Empty;
+        }
+
+        public static Image Base64ToImage(string base64String)
+        {
+            // Convert base 64 string to byte[]
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            // Convert byte[] to Image
+            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+            {
+                Image image = Image.FromStream(ms, true);
+                return image;
+            }
+        }
+
+        public static byte[] GetBytesFromImagePath(string path)
+        {
+            if (File.Exists(path))
+            {
+                using (Image image = Image.FromFile(path))
+                {
+                    using (MemoryStream memoryStream = new MemoryStream())
+                    {
+                        image.Save(memoryStream, image.RawFormat);
+                        byte[] imagesBytes = memoryStream.ToArray();
+                        return imagesBytes;
+                    }
+                }
+            }
+            else return null;
+        }
+        public static byte[] GetBytesFromImage(Image image)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                Bitmap bmp = new Bitmap(image);
+                bmp.Save(memoryStream, image.RawFormat);
+                byte[] imagesBytes = memoryStream.ToArray();
+                return imagesBytes;
+            }
+        }
+        public static Image GetImageFromBytes(byte[] bytes)
+        {
+            try
+            {
+                using (var ms = new MemoryStream(bytes, 0, bytes.Length))
+                {
+                    Image image = Image.FromStream(ms, true);
+                    return image;
+                }
+            }
+            catch { return null; }
         }
 
     }

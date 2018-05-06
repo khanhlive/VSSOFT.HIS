@@ -36,7 +36,6 @@ namespace Vssoft.His
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
@@ -73,7 +72,7 @@ namespace Vssoft.His
             DevExpress.Utils.SuperToolTip superToolTip17 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
             this.rbcMain = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.pmAppMain = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
+            this.pmAppMain = new DevExpress.XtraBars.Ribbon.ApplicationMenu();
             this.bbiBackup = new DevExpress.XtraBars.BarButtonItem();
             this.bbiRestore = new DevExpress.XtraBars.BarButtonItem();
             this.bbiDiagram = new DevExpress.XtraBars.BarButtonItem();
@@ -81,12 +80,12 @@ namespace Vssoft.His
             this.bbiSetting = new DevExpress.XtraBars.BarButtonItem();
             this.bbiLogout = new DevExpress.XtraBars.BarButtonItem();
             this.bbiClose = new DevExpress.XtraBars.BarButtonItem();
-            this.pccAppMenu = new DevExpress.XtraBars.PopupControlContainer(this.components);
+            this.pccAppMenu = new DevExpress.XtraBars.PopupControlContainer();
             this.pcAppMenuFileLabels = new DevExpress.XtraEditors.PanelControl();
             this.pcAppScroll = new DevExpress.XtraEditors.XtraScrollableControl();
             this.pcRecentList = new System.Windows.Forms.FlowLayoutPanel();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.ImgSmall = new DevExpress.Utils.ImageCollection(this.components);
+            this.ImgSmall = new DevExpress.Utils.ImageCollection();
             this.bbiHelp = new DevExpress.XtraBars.BarButtonItem();
             this.bbiWebsite = new DevExpress.XtraBars.BarButtonItem();
             this.bbiRegsiter = new DevExpress.XtraBars.BarButtonItem();
@@ -100,7 +99,7 @@ namespace Vssoft.His
             this.lblDatabase = new DevExpress.XtraBars.BarStaticItem();
             this.bbiSysLog = new DevExpress.XtraBars.BarButtonItem();
             this.ISystem = new DevExpress.XtraBars.BarButtonItem();
-            this.pmSystem = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.pmSystem = new DevExpress.XtraBars.PopupMenu();
             this.bbiChangepassword = new DevExpress.XtraBars.BarButtonItem();
             this.bbiUserGroup = new DevExpress.XtraBars.BarButtonItem();
             this.bbiUsers = new DevExpress.XtraBars.BarButtonItem();
@@ -197,7 +196,7 @@ namespace Vssoft.His
             this.bbiContact = new DevExpress.XtraBars.BarButtonItem();
             this.bbiTeamView = new DevExpress.XtraBars.BarButtonItem();
             this.bbiTableOffice = new DevExpress.XtraBars.BarButtonItem();
-            this.imgMetro = new DevExpress.Utils.ImageCollection(this.components);
+            this.imgMetro = new DevExpress.Utils.ImageCollection();
             this.rbpHome = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -230,21 +229,21 @@ namespace Vssoft.His
             this.rbpgSearch2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
             this.rbsMain = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.imgClassic = new DevExpress.Utils.ImageCollection(this.components);
-            this.ppTimekeeperTable = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.PPTimekeeper = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.ppEmployee = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.pmInit = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.tabMdi = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.imgClassic = new DevExpress.Utils.ImageCollection();
+            this.ppTimekeeperTable = new DevExpress.XtraBars.PopupMenu();
+            this.PPTimekeeper = new DevExpress.XtraBars.PopupMenu();
+            this.ppEmployee = new DevExpress.XtraBars.PopupMenu();
+            this.pmInit = new DevExpress.XtraBars.PopupMenu();
+            this.tabMdi = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager();
+            this.timer = new System.Windows.Forms.Timer();
             this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem15 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barEditItem2 = new DevExpress.XtraBars.BarEditItem();
-            this.Alert = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.Alert = new DevExpress.XtraBars.Alerter.AlertControl();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             ((System.ComponentModel.ISupportInitialize)(this.rbcMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pmAppMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pccAppMenu)).BeginInit();
@@ -425,7 +424,7 @@ namespace Vssoft.His
             this.repositoryItemDateEdit1,
             this.repositoryItemPopupContainerEdit1});
             this.rbcMain.ShowCategoryInCaption = false;
-            this.rbcMain.Size = new System.Drawing.Size(1025, 147);
+            this.rbcMain.Size = new System.Drawing.Size(1011, 144);
             this.rbcMain.StatusBar = this.rbsMain;
             this.rbcMain.TransparentEditorsMode = DevExpress.Utils.DefaultBoolean.True;
             // 
@@ -2064,10 +2063,10 @@ namespace Vssoft.His
             this.rbsMain.ItemLinks.Add(this.bbiOverwrite, true);
             this.rbsMain.ItemLinks.Add(this.bbiNumlock, true);
             this.rbsMain.ItemLinks.Add(this.bbiCalculator);
-            this.rbsMain.Location = new System.Drawing.Point(0, 619);
+            this.rbsMain.Location = new System.Drawing.Point(0, 610);
             this.rbsMain.Name = "rbsMain";
             this.rbsMain.Ribbon = this.rbcMain;
-            this.rbsMain.Size = new System.Drawing.Size(1025, 23);
+            this.rbsMain.Size = new System.Drawing.Size(1011, 32);
             // 
             // imgClassic
             // 
@@ -2163,20 +2162,20 @@ namespace Vssoft.His
             // 
             // defaultLookAndFeel1
             // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2013";
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2010 Blue";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1025, 642);
+            this.ClientSize = new System.Drawing.Size(1011, 642);
             this.Controls.Add(this.pccAppMenu);
             this.Controls.Add(this.rbsMain);
             this.Controls.Add(this.rbcMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(600, 450);
+            this.MinimumSize = new System.Drawing.Size(614, 450);
             this.Name = "frmMain";
             this.Ribbon = this.rbcMain;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

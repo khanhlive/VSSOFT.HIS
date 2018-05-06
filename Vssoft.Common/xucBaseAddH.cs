@@ -1,15 +1,10 @@
 ﻿namespace Vssoft.Common
 {
-    using DevExpress.Utils;
     using DevExpress.XtraEditors;
-    using DevExpress.XtraEditors.DXErrorProvider;
-    using Vssoft.Common.Common.Class;
-    //using Vssoft.Utils;
     using System;
     using System.ComponentModel;
-    using System.Drawing;
-    using System.Runtime.CompilerServices;
     using System.Windows.Forms;
+    using Vssoft.Common.Common.Class;
 
     public class xucBaseAddH : xucBase
     {
@@ -18,6 +13,7 @@
         protected SimpleButton btnSaveNew;
         private IContainer components = null;
         protected DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider Err;
+        public PanelControl panelControl1;
         protected DevExpress.Utils.ImageCollection imageCollection2;
 
         public event ButtonClickEventHander CancelClick;
@@ -92,67 +88,106 @@
 
         private void InitializeComponent()
         {
-            this.components = new Container();
-            ComponentResourceManager manager = new ComponentResourceManager(typeof(xucBaseAddH));
-            SuperToolTip tip = new SuperToolTip();
-            ToolTipItem item = new ToolTipItem();
-            SuperToolTip tip2 = new SuperToolTip();
-            ToolTipItem item2 = new ToolTipItem();
-            this.imageCollection2 = new DevExpress.Utils.ImageCollection(this.components);
-            this.Err = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
-            this.btnSave = new SimpleButton();
-            this.btnCancel = new SimpleButton();
-            this.btnSaveNew = new SimpleButton();
-            this.imageCollection2.BeginInit();
-            ((ISupportInitialize) this.Err).BeginInit();
-            base.SuspendLayout();
-            this.imageCollection2.ImageStream = (ImageCollectionStreamer) manager.GetObject("imageCollection2.ImageStream");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(xucBaseAddH));
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            this.imageCollection2 = new DevExpress.Utils.ImageCollection();
+            this.Err = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSaveNew = new DevExpress.XtraEditors.SimpleButton();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollection2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Err)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // imageCollection2
+            // 
+            this.imageCollection2.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection2.ImageStream")));
+            this.imageCollection2.InsertGalleryImage("saveandclose_16x16.png", "images/save/saveandclose_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/save/saveandclose_16x16.png"), 0);
+            this.imageCollection2.Images.SetKeyName(0, "saveandclose_16x16.png");
+            this.imageCollection2.InsertGalleryImage("export_16x16.png", "images/export/export_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/export/export_16x16.png"), 1);
+            this.imageCollection2.Images.SetKeyName(1, "export_16x16.png");
+            this.imageCollection2.InsertGalleryImage("close_16x16.png", "images/actions/close_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/close_16x16.png"), 2);
+            this.imageCollection2.Images.SetKeyName(2, "close_16x16.png");
+            // 
+            // Err
+            // 
             this.Err.ContainerControl = this;
-            this.btnSave.Anchor = AnchorStyles.Right | AnchorStyles.Bottom;
-            this.btnSave.ImageIndex = 0;
-            this.btnSave.ImageList = this.imageCollection2;
-            this.btnSave.Location = new Point(0x167, 0x1b6);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.ImageOptions.ImageIndex = 0;
+            this.btnSave.ImageOptions.ImageList = this.imageCollection2;
+            this.btnSave.Location = new System.Drawing.Point(375, 6);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new Size(0x5c, 0x1b);
-            item.Text = "Ctrl+S\r\n";
-            tip.Items.Add(item);
-            this.btnSave.SuperTip = tip;
-            this.btnSave.TabIndex = 0x23;
-            this.btnSave.Text = "Lưu && Đ\x00f3ng";
-            this.btnSave.Click += new EventHandler(this.btnSave_Click);
-            this.btnSave.KeyDown += new KeyEventHandler(this.btnSave_KeyDown);
-            this.btnCancel.Anchor = AnchorStyles.Right | AnchorStyles.Bottom;
-            this.btnCancel.ImageIndex = 6;
-            this.btnCancel.ImageList = this.imageCollection2;
-            this.btnCancel.Location = new Point(0x22e, 0x1b6);
+            this.btnSave.Size = new System.Drawing.Size(92, 27);
+            toolTipItem2.Text = "Ctrl+S\r\n";
+            superToolTip2.Items.Add(toolTipItem2);
+            this.btnSave.SuperTip = superToolTip2;
+            this.btnSave.TabIndex = 35;
+            this.btnSave.Text = "Lưu && Đóng";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.ImageOptions.ImageIndex = 2;
+            this.btnCancel.ImageOptions.ImageList = this.imageCollection2;
+            this.btnCancel.Location = new System.Drawing.Point(574, 6);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new Size(0x5f, 0x1b);
-            this.btnCancel.TabIndex = 0x24;
-            this.btnCancel.Text = "Đ\x00f3ng";
-            this.btnCancel.Click += new EventHandler(this.btnCancel_Click);
-            this.btnCancel.KeyDown += new KeyEventHandler(this.btnCancel_KeyDown);
-            this.btnSaveNew.Anchor = AnchorStyles.Right | AnchorStyles.Bottom;
-            this.btnSaveNew.ImageIndex = 0;
-            this.btnSaveNew.ImageList = this.imageCollection2;
-            this.btnSaveNew.Location = new Point(0x1c9, 0x1b6);
+            this.btnCancel.Size = new System.Drawing.Size(95, 27);
+            this.btnCancel.TabIndex = 36;
+            this.btnCancel.Text = "Đóng";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnCancel_KeyDown);
+            // 
+            // btnSaveNew
+            // 
+            this.btnSaveNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveNew.ImageOptions.ImageIndex = 1;
+            this.btnSaveNew.ImageOptions.ImageList = this.imageCollection2;
+            this.btnSaveNew.Location = new System.Drawing.Point(473, 6);
             this.btnSaveNew.Name = "btnSaveNew";
-            this.btnSaveNew.Size = new Size(0x5f, 0x1b);
-            item2.Text = "Ctrl+Shift +S";
-            tip2.Items.Add(item2);
-            this.btnSaveNew.SuperTip = tip2;
-            this.btnSaveNew.TabIndex = 0x25;
-            this.btnSaveNew.Text = "Lưu && Th\x00eam";
-            this.btnSaveNew.Click += new EventHandler(this.btnSaveNew_Click);
-            base.AutoScaleDimensions = new SizeF(6f, 13f);
-            base.AutoScaleMode = AutoScaleMode.Font;
-            base.Controls.Add(this.btnSaveNew);
-            base.Controls.Add(this.btnSave);
-            base.Controls.Add(this.btnCancel);
-            base.Name = "xucBaseAddH";
-            base.Size = new Size(0x2a9, 0x1db);
-            this.imageCollection2.EndInit();
-            ((ISupportInitialize) this.Err).EndInit();
-            base.ResumeLayout(false);
+            this.btnSaveNew.Size = new System.Drawing.Size(95, 27);
+            toolTipItem1.Text = "Ctrl+Shift +S";
+            superToolTip1.Items.Add(toolTipItem1);
+            this.btnSaveNew.SuperTip = superToolTip1;
+            this.btnSaveNew.TabIndex = 37;
+            this.btnSaveNew.Text = "Lưu && Thêm";
+            this.btnSaveNew.Click += new System.EventHandler(this.btnSaveNew_Click);
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl1.Controls.Add(this.btnSaveNew);
+            this.panelControl1.Controls.Add(this.btnCancel);
+            this.panelControl1.Controls.Add(this.btnSave);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl1.Location = new System.Drawing.Point(0, 437);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(681, 38);
+            this.panelControl1.TabIndex = 38;
+            // 
+            // xucBaseAddH
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panelControl1);
+            this.Name = "xucBaseAddH";
+            this.Size = new System.Drawing.Size(681, 475);
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollection2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Err)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
 
         private void InitMultiLanguages()

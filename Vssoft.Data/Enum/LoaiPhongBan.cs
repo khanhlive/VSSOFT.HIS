@@ -40,4 +40,9 @@ namespace Vssoft.Data.Enum
         public object Value { get; set; }
         public object Text { get; set; }
     }
+    public enum PhanLoaiDichVu
+    {
+        Duoc = 1,
+        DichVu = 2
+    }
 }

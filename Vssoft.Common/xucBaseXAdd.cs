@@ -157,7 +157,7 @@
             this.lblId.Size = new Size(14, 13);
             this.lblId.TabIndex = 0;
             this.lblId.Text = "M\x00e3";
-            this.imageCollection2.ImageStream = (ImageCollectionStreamer) manager.GetObject("imageCollection2.ImageStream");
+//            this.imageCollection2.ImageStream = (ImageCollectionStreamer) manager.GetObject("imageCollection2.ImageStream");
             this.Err.ContainerControl = this;
             this.btnSave.ImageIndex = 0;
             this.btnSave.ImageList = this.imageCollection2;

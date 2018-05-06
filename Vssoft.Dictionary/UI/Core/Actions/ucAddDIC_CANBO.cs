@@ -8,6 +8,7 @@ using Vssoft.Data.Enum;
 using Vssoft.Common;
 using DevExpress.XtraEditors;
 using Vssoft.Common.Common.Class;
+using System.Drawing;
 
 namespace Vssoft.Dictionary.UI.Core.Actions
 {
@@ -44,7 +45,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             canbo.SoDienThoai = txtPhone.Text;
             canbo.DiaChi = txtAddress.Text;
             canbo.BangCap = txtCertificate.Text;
-            canbo.Image = "'NULL'";
+            if (picAvatar.Image != null)
+                canbo.Image = DataConverter.GetBytesFromImage(picAvatar.Image);
             return canbo;
         }
 
@@ -54,24 +56,12 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             cmbDepartment.Properties.DisplayMember = "TenPhongBan";
             cmbDepartment.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenPhongBan", "TenPhongBan"));
             cmbDepartment.Properties.ShowHeader = false;
-            //using (DIC_PHONGBAN departmentProvider = new DIC_PHONGBAN())
-            //{
-            //    cmbDepartment.Properties.DataSource = departmentProvider.GetAllActive();
-            //    cmbDepartment.Properties.ValueMember = "MaPhongBan";
-            //    cmbDepartment.Properties.DisplayMember = "TenPhongBan";
-            //}
-            //using (DIC_DANTOC nationProvider = new DIC_DANTOC())
-            //{
-            //    cmbEthnic.Properties.DataSource = nationProvider.GetAllActive();
             cmbEthnic.Properties.ValueMember = "MaDanToc";
             cmbEthnic.Properties.DisplayMember = "TenDanToc";
             cmbEthnic.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenDanToc", "TenDanToc"));
             cmbEthnic.Properties.ShowHeader = false;
-            //}
             cmbDepartment.Properties.DataSource = this.phongbans;
             cmbEthnic.Properties.DataSource = this.dantocs;
-            //DIC_PHONGBAN dic_phongban = new DIC_PHONGBAN();
-            //dic_phongban.AddLookupEdit(this.cmbDepartment);
         }
 
         public override void UpdateModel()
@@ -95,10 +85,12 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             txtPhone.ReadOnly = readOnly;
             txtAddress.ReadOnly = readOnly;
             txtCertificate.ReadOnly = readOnly;
+            picAvatar.ReadOnly = readOnly;
         }
 
         protected override void BindingModel()
         {
+            
             this.isUpdated = false;
             this.isEdited = false;
             DIC_CANBO canbo = (DIC_CANBO)this.Model;
@@ -114,8 +106,12 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             txtPhone.Text = canbo.SoDienThoai;
             txtAddress.Text = canbo.DiaChi;
             txtCertificate.Text = canbo.BangCap;
+            if (canbo.Image != null)
+                picAvatar.Image = DataConverter.GetImageFromBytes(canbo.Image);
+            else picAvatar.Image = null;
             txtID.ReadOnly = true;
             this.isUpdated = true;
+            this.ClearError(this.layoutControl1);
         }
 
         public override UserActionType DeleteModel()
@@ -146,6 +142,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
 
         public override void ClearModel()
         {
+            
             this.isUpdated = false;
             this.isEdited = false;
             txtID.Text = string.Empty;
@@ -160,7 +157,9 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             txtPhone.Text = string.Empty;
             txtAddress.Text = string.Empty;
             txtCertificate.Text = string.Empty;
+            picAvatar.Image = null;
             this.isUpdated = true;
+            this.ClearError(this.layoutControl1);
         }
 
         public override void SaveModel()
@@ -191,7 +190,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             bool flag = this.txtID.DoValidate();
             if (!flag) this.isValidModel = false;
             this.Validate_EmptyStringRule(txtName);
-            if (!string.IsNullOrEmpty(txtPhone.EditValue.ToString()))
+            if (!string.IsNullOrEmpty(txtPhone.EditValue.ToString())&& !string.IsNullOrWhiteSpace(txtPhone.EditValue.ToString()))
             {
                 this.Validate_EmptyStringRule(txtPhone);
             }
@@ -217,6 +216,20 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.Validate_EmptyStringRule((BaseEdit)sender);
         }
 
-        
+        private void pictureEdit1_Click(object sender, EventArgs e)
+        {
+            if (!((BaseEdit)sender).ReadOnly)
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.Filter = "*.png|*.jpg";
+                fileDialog.Title = "Chọn ảnh đại diện";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    byte[] bytes = DataConverter.GetBytesFromImagePath(fileDialog.FileName);
+
+                    picAvatar.Image = DataConverter.GetImageFromBytes(bytes);
+                }
+            }
+        }
     }
 }

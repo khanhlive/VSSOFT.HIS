@@ -13,6 +13,7 @@ using System.Reflection;
 using DevExpress.Skins;
 using DevExpress.LookAndFeel;
 using Vssoft.Data.Helper;
+using Vssoft.Common;
 
 namespace Vssoft.His
 {
@@ -44,9 +45,8 @@ namespace Vssoft.His
 
         void frmDictionary_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //this._frmDictionary.Dispose();
             this._frmDictionary = null;
-            //GC.SuppressFinalize(this._frmDictionary);
+            MainFormHelper.CompactCurrentProcessWorkingSet();
         }
         private void bbiWorkdesk_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -94,6 +94,7 @@ namespace Vssoft.His
             this._frmDictionary = form;
             this._frmDictionary.FormClosing += new FormClosingEventHandler(this.frmDictionary_FormClosing);
             this._frmDictionary.Show();
+            MainFormHelper.CompactCurrentProcessWorkingSet();
         }
         
         private void timer_Tick_1(object sender, EventArgs e)

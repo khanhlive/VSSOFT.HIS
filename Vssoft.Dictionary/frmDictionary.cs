@@ -35,7 +35,7 @@
         private NavBarItem bbiICD10;
         private NavBarItem bbiDoiTuongBHYT;
         private NavBarItem bbiSalaryIncome;
-        private NavBarItem bbiShift;
+        private NavBarItem bbiDichvu;
         private NavBarItem bbiState;
         private NavBarItem bbiStep;
         private NavBarItem bbiSubsidiary;
@@ -90,7 +90,7 @@
         private UI.Core.ucDIC_NHOMDICHVU dic_nhomdichvu;
         private UI.Core.ucDIC_TIEUNHOMDICHVU dic_tieunhomdichvu;
         private UI.Core.ucDIC_ICD10 dic_icd10;
-
+        private UI.Core.ucDIC_DICHVU dic_dichvu;
         #endregion
         public frmDictionary()
         {
@@ -209,9 +209,9 @@
             this.Execute(DictionaryModuleType.DIC_DOITUONGBHYT, ((NavBarItem)sender).Caption);
         }
 
-        private void bbiShift_LinkClicked(object sender, NavBarLinkEventArgs e)
+        private void bbiDichvu_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            this.Execute("xucShift", "");
+            this.Execute(DictionaryModuleType.DIC_DICHVU, ((NavBarItem)sender).Caption);
         }
 
         private void bbiSkill_LinkClicked(object sender, NavBarLinkEventArgs e)
@@ -370,7 +370,7 @@
                         this.dic_xaphuong.BringToFront();
                         break;
                     }
-                    this.dic_xaphuong= new UI.Core.ucDIC_XAPHUONG();
+                    this.dic_xaphuong = new UI.Core.ucDIC_XAPHUONG();
                     this.dic_xaphuong.Dock = DockStyle.Fill;
                     this.gcControl.Controls.Add(this.dic_xaphuong);
                     this.dic_xaphuong.BringToFront();
@@ -441,6 +441,19 @@
                     this.gcControl.Controls.Add(this.dic_icd10);
                     this.dic_icd10.BringToFront();
                     break;
+                case DictionaryModuleType.DIC_DICHVU:
+                    if (this.dic_dichvu != null)
+                    {
+                        this.dic_dichvu.BringToFront();
+                        break;
+                    }
+                    this.dic_dichvu = new UI.Core.ucDIC_DICHVU();
+                    this.dic_dichvu.Dock = DockStyle.Fill;
+                    this.gcControl.Controls.Add(this.dic_dichvu);
+                    this.dic_dichvu.BringToFront();
+                    break;
+                case DictionaryModuleType.DIC_DUOC:
+                    break;
                 default:
                     break;
             }
@@ -480,11 +493,17 @@
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDictionary));
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navTimekeeping = new DevExpress.XtraNavBar.NavBarGroup();
+            this.bbiDichvu = new DevExpress.XtraNavBar.NavBarItem();
+            this.bbiNhomDichVu = new DevExpress.XtraNavBar.NavBarItem();
+            this.bbiTieuNhomDichvu = new DevExpress.XtraNavBar.NavBarItem();
+            this.bbiHoliday = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navEmployee = new DevExpress.XtraNavBar.NavBarGroup();
             this.bbiPosition = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiDIC_Hospital = new DevExpress.XtraNavBar.NavBarItem();
@@ -504,13 +523,6 @@
             this.bbiNhaCungCap = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiDepartment = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiGroup = new DevExpress.XtraNavBar.NavBarItem();
-            this.navTimekeeping = new DevExpress.XtraNavBar.NavBarGroup();
-            this.bbiShift = new DevExpress.XtraNavBar.NavBarItem();
-            this.bbiNhomDichVu = new DevExpress.XtraNavBar.NavBarItem();
-            this.bbiTieuNhomDichvu = new DevExpress.XtraNavBar.NavBarItem();
-            this.bbiHoliday = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiRank = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiStep = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiAllowance = new DevExpress.XtraNavBar.NavBarItem();
@@ -521,8 +533,8 @@
             this.bbiProduct = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiState = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiSalaryIncome = new DevExpress.XtraNavBar.NavBarItem();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.tsmiOpenNewTab = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiThuNho = new System.Windows.Forms.ToolStripMenuItem();
             this.gcControl = new DevExpress.XtraEditors.GroupControl();
@@ -535,7 +547,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navEmployee;
+            this.navBarControl1.ActiveGroup = this.navTimekeeping;
             this.navBarControl1.ContentButtonHint = null;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.navBarControl1.DragDropFlags = ((DevExpress.XtraNavBar.NavBarDragDrop)((((DevExpress.XtraNavBar.NavBarDragDrop.Default | DevExpress.XtraNavBar.NavBarDragDrop.AllowDrag) 
@@ -553,7 +565,7 @@
             this.bbiPatientObject,
             this.bbiDoiTuongBHYT,
             this.bbiJob,
-            this.bbiShift,
+            this.bbiDichvu,
             this.bbiDegree,
             this.bbiICD10,
             this.bbiRank,
@@ -590,10 +602,70 @@
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
             this.navBarControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.navBarControl1_MouseDown);
             // 
+            // navTimekeeping
+            // 
+            this.navTimekeeping.Caption = "Nhóm Dịch Vụ";
+            this.navTimekeeping.Expanded = true;
+            this.navTimekeeping.ImageOptions.LargeImageIndex = 2;
+            this.navTimekeeping.ImageOptions.SmallImageIndex = 1;
+            this.navTimekeeping.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDichvu),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiNhomDichVu),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiTieuNhomDichvu),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiHoliday),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
+            this.navTimekeeping.Name = "navTimekeeping";
+            // 
+            // bbiDichvu
+            // 
+            this.bbiDichvu.Caption = "Dịch Vụ";
+            this.bbiDichvu.ImageOptions.SmallImageIndex = 5;
+            this.bbiDichvu.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiDichvu.Name = "bbiDichvu";
+            this.bbiDichvu.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiDichvu_LinkClicked);
+            // 
+            // bbiNhomDichVu
+            // 
+            this.bbiNhomDichVu.Caption = "Nhóm Dịch Vụ";
+            this.bbiNhomDichVu.ImageOptions.SmallImageIndex = 5;
+            this.bbiNhomDichVu.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiNhomDichVu.Name = "bbiNhomDichVu";
+            this.bbiNhomDichVu.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiNhomDichVu_LinkClicked);
+            // 
+            // bbiTieuNhomDichvu
+            // 
+            this.bbiTieuNhomDichvu.Caption = "Tiểu Nhóm Dịch Vụ";
+            this.bbiTieuNhomDichvu.ImageOptions.SmallImageIndex = 5;
+            this.bbiTieuNhomDichvu.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiTieuNhomDichvu.Name = "bbiTieuNhomDichvu";
+            this.bbiTieuNhomDichvu.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiTieuNhomDichvu_LinkClicked);
+            // 
+            // bbiHoliday
+            // 
+            this.bbiHoliday.Caption = "Kết Quả Mẫu";
+            this.bbiHoliday.ImageOptions.SmallImageIndex = 5;
+            this.bbiHoliday.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiHoliday.Name = "bbiHoliday";
+            this.bbiHoliday.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiHoliday_LinkClicked);
+            // 
+            // navBarItem1
+            // 
+            this.navBarItem1.Caption = "Dịch Vụ Chi Tiết";
+            this.navBarItem1.ImageOptions.SmallImageIndex = 5;
+            this.navBarItem1.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.navBarItem1.Name = "navBarItem1";
+            // 
+            // navBarItem2
+            // 
+            this.navBarItem2.Caption = "Biên Lai";
+            this.navBarItem2.ImageOptions.SmallImageIndex = 5;
+            this.navBarItem2.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.navBarItem2.Name = "navBarItem2";
+            // 
             // navEmployee
             // 
             this.navEmployee.Caption = "Danh Mục Hành Chính";
-            this.navEmployee.Expanded = true;
             this.navEmployee.ImageOptions.LargeImageIndex = 0;
             this.navEmployee.ImageOptions.LargeImageSize = new System.Drawing.Size(32, 32);
             this.navEmployee.ImageOptions.SmallImageIndex = 0;
@@ -700,9 +772,9 @@
             this.ppiDIC_Province.ImageOptions.SmallImageIndex = 3;
             this.ppiDIC_Province.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
             this.ppiDIC_Province.Name = "ppiDIC_Province";
-            toolTipTitleItem1.Text = "Danh Mục Tỉnh Thành";
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            this.ppiDIC_Province.SuperTip = superToolTip1;
+            toolTipTitleItem4.Text = "Danh Mục Tỉnh Thành";
+            superToolTip4.Items.Add(toolTipTitleItem4);
+            this.ppiDIC_Province.SuperTip = superToolTip4;
             this.ppiDIC_Province.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ppiDIC_Province_LinkClicked);
             // 
             // bbiDIC_Huyen
@@ -764,66 +836,6 @@
             this.bbiGroup.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
             this.bbiGroup.Name = "bbiGroup";
             this.bbiGroup.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiGroup_LinkClicked);
-            // 
-            // navTimekeeping
-            // 
-            this.navTimekeeping.Caption = "Nhóm Dịch Vụ";
-            this.navTimekeeping.ImageOptions.LargeImageIndex = 2;
-            this.navTimekeeping.ImageOptions.SmallImageIndex = 1;
-            this.navTimekeeping.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiShift),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiNhomDichVu),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiTieuNhomDichvu),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiHoliday),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
-            this.navTimekeeping.Name = "navTimekeeping";
-            // 
-            // bbiShift
-            // 
-            this.bbiShift.Caption = "Dịch Vụ";
-            this.bbiShift.ImageOptions.SmallImageIndex = 5;
-            this.bbiShift.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.bbiShift.Name = "bbiShift";
-            this.bbiShift.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiShift_LinkClicked);
-            // 
-            // bbiNhomDichVu
-            // 
-            this.bbiNhomDichVu.Caption = "Nhóm Dịch Vụ";
-            this.bbiNhomDichVu.ImageOptions.SmallImageIndex = 5;
-            this.bbiNhomDichVu.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.bbiNhomDichVu.Name = "bbiNhomDichVu";
-            this.bbiNhomDichVu.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiNhomDichVu_LinkClicked);
-            // 
-            // bbiTieuNhomDichvu
-            // 
-            this.bbiTieuNhomDichvu.Caption = "Tiểu Nhóm Dịch Vụ";
-            this.bbiTieuNhomDichvu.ImageOptions.SmallImageIndex = 5;
-            this.bbiTieuNhomDichvu.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.bbiTieuNhomDichvu.Name = "bbiTieuNhomDichvu";
-            this.bbiTieuNhomDichvu.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiTieuNhomDichvu_LinkClicked);
-            // 
-            // bbiHoliday
-            // 
-            this.bbiHoliday.Caption = "Kết Quả Mẫu";
-            this.bbiHoliday.ImageOptions.SmallImageIndex = 5;
-            this.bbiHoliday.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.bbiHoliday.Name = "bbiHoliday";
-            this.bbiHoliday.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiHoliday_LinkClicked);
-            // 
-            // navBarItem1
-            // 
-            this.navBarItem1.Caption = "Dịch Vụ Chi Tiết";
-            this.navBarItem1.ImageOptions.SmallImageIndex = 5;
-            this.navBarItem1.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.navBarItem1.Name = "navBarItem1";
-            // 
-            // navBarItem2
-            // 
-            this.navBarItem2.Caption = "Biên Lai";
-            this.navBarItem2.ImageOptions.SmallImageIndex = 5;
-            this.navBarItem2.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.navBarItem2.Name = "navBarItem2";
             // 
             // bbiRank
             // 

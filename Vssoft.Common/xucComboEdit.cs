@@ -12,7 +12,7 @@
     {
         private string _defaultText;
         private IContainer components = null;
-        private RepositoryItemComboBox fProperties;
+        private new RepositoryItemComboBox fProperties;
 
         public xucComboEdit()
         {

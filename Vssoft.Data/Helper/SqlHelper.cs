@@ -266,7 +266,7 @@
                 {
                     if (parameterValues[index] is IDbDataParameter)
                     {
-                        IDbDataParameter parameter = (IDbDataParameter) parameterValues[index];
+                        IDbDataParameter parameter = (IDbDataParameter)parameterValues[index];
                         if (parameter.Value == null)
                         {
                             commandParameters[index].Value = DBNull.Value;
@@ -323,7 +323,7 @@
             }
         }
 
-        public bool Check() => 
+        public bool Check() =>
             this.Check(false);
 
         public bool Check(bool isclose)
@@ -378,7 +378,7 @@
             }
         }
 
-        public string Commit() => 
+        public string Commit() =>
             this.Commit(this._transaction);
 
         public string Commit(SqlTransaction myTransaction)
@@ -446,7 +446,7 @@
             return this.Result;
         }
 
-        public string Decrypt() => 
+        public string Decrypt() =>
             this.Decrypt(this._connectionString, "!@#$%^&*()Pofd154$#@");
 
         public string Decrypt(string connectstring, string password)
@@ -502,7 +502,7 @@
             return message;
         }
 
-        public string Encrypt() => 
+        public string Encrypt() =>
             this.Encrypt(this._connectionString, "!@#$%^&*()Pofd154$#@");
 
         public string Encrypt(string connectstring, string password)
@@ -515,13 +515,13 @@
             return password;// MyEncryption.Encrypt(connectstring, password, true);
         }
 
-        public DataSet ExecuteDataSet(string commandText) => 
+        public DataSet ExecuteDataSet(string commandText) =>
             this.ExecuteDataSet(commandText, null, null);
 
-        public DataSet ExecuteDataSet(SqlConnection myConnection, string commandText) => 
+        public DataSet ExecuteDataSet(SqlConnection myConnection, string commandText) =>
             this.ExecuteDataSet(myConnection, commandText, null, null);
 
-        public DataSet ExecuteDataSet(SqlTransaction myTransaction, string commandText) => 
+        public DataSet ExecuteDataSet(SqlTransaction myTransaction, string commandText) =>
             this.ExecuteDataSet(myTransaction, commandText, null, null);
 
         public DataSet ExecuteDataSet(string commandText, string[] myParams, object[] myValues)
@@ -550,10 +550,10 @@
             return set;
         }
 
-        public DataSet ExecuteDataSet(SqlConnection myConnection, string commandText, string[] myParams, object[] myValues) => 
+        public DataSet ExecuteDataSet(SqlConnection myConnection, string commandText, string[] myParams, object[] myValues) =>
             this.ExecuteDataSet(myConnection, this.CommandType, commandText, myParams, myValues);
 
-        public DataSet ExecuteDataSet(SqlTransaction myTransaction, string commandText, string[] myParams, object[] myValues) => 
+        public DataSet ExecuteDataSet(SqlTransaction myTransaction, string commandText, string[] myParams, object[] myValues) =>
             this.ExecuteDataSet(myTransaction, this.CommandType, commandText, myParams, myValues);
 
         public DataSet ExecuteDataSet(SqlConnection myConnection, System.Data.CommandType commandType, string commandText, string[] myParams, object[] myValues)
@@ -589,7 +589,7 @@
             {
                 for (int i = 0; i < myParams.Length; i++)
                 {
-                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i]);
+                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i] ?? DBNull.Value);
                     selectCommand.Parameters.Add(parameter);
                 }
             }
@@ -659,7 +659,7 @@
             {
                 for (int i = 0; i < myParams.Length; i++)
                 {
-                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i]);
+                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i] ?? DBNull.Value);
                     selectCommand.Parameters.Add(parameter);
                 }
             }
@@ -695,13 +695,13 @@
             return dataSet;
         }
 
-        public DataTable ExecuteDataTable(string commandText) => 
+        public DataTable ExecuteDataTable(string commandText) =>
             this.ExecuteDataTable(commandText, null, null);
 
-        public DataTable ExecuteDataTable(SqlConnection myConnection, string commandText) => 
+        public DataTable ExecuteDataTable(SqlConnection myConnection, string commandText) =>
             this.ExecuteDataTable(myConnection, commandText, null, null);
 
-        public DataTable ExecuteDataTable(SqlTransaction myTransaction, string commandText) => 
+        public DataTable ExecuteDataTable(SqlTransaction myTransaction, string commandText) =>
             this.ExecuteDataTable(myTransaction, commandText, null, null);
 
         public DataTable ExecuteDataTable(string commandText, string[] myParams, object[] myValues)
@@ -730,10 +730,10 @@
             return table;
         }
 
-        public DataTable ExecuteDataTable(SqlConnection myConnection, string commandText, string[] myParams, object[] myValues) => 
+        public DataTable ExecuteDataTable(SqlConnection myConnection, string commandText, string[] myParams, object[] myValues) =>
             this.ExecuteDataTable(myConnection, this.CommandType, commandText, myParams, myValues);
 
-        public DataTable ExecuteDataTable(SqlTransaction myTransaction, string commandText, string[] myParams, object[] myValues) => 
+        public DataTable ExecuteDataTable(SqlTransaction myTransaction, string commandText, string[] myParams, object[] myValues) =>
             this.ExecuteDataTable(myTransaction, this.CommandType, commandText, myParams, myValues);
 
         public DataTable ExecuteDataTable(SqlConnection myConnection, System.Data.CommandType commandType, string commandText, string[] myParams, object[] myValues)
@@ -770,7 +770,7 @@
             {
                 for (int i = 0; i < myParams.Length; i++)
                 {
-                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i]);
+                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i] ?? DBNull.Value);
                     selectCommand.Parameters.Add(parameter);
                 }
             }
@@ -837,7 +837,8 @@
             }
             this.Result = "";
             DataTable dataTable = new DataTable();
-            SqlCommand selectCommand = new SqlCommand {
+            SqlCommand selectCommand = new SqlCommand
+            {
                 CommandText = commandText,
                 Connection = myTransaction.Connection,
                 Transaction = myTransaction,
@@ -848,7 +849,7 @@
             {
                 for (int i = 0; i < myParams.Length; i++)
                 {
-                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i]);
+                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i] ?? DBNull.Value);
                     selectCommand.Parameters.Add(parameter);
                 }
             }
@@ -890,7 +891,7 @@
             return dataTable;
         }
 
-        public string ExecuteNonQuery(string commandText) => 
+        public string ExecuteNonQuery(string commandText) =>
             this.ExecuteNonQuery(commandText, null, null);
 
         public string ExecuteNonQuery(string[] commandTexts)
@@ -918,7 +919,7 @@
             return this.Result;
         }
 
-        public string ExecuteNonQuery(StringCollection commandTexts) => 
+        public string ExecuteNonQuery(StringCollection commandTexts) =>
             this.ExecuteNonQuery(commandTexts, false);
 
         public string ExecuteNonQuery(StringCollection commandTexts, bool isTransaction)
@@ -968,7 +969,7 @@
             return this.Result;
         }
 
-        public string ExecuteNonQuery(SqlConnection myConnection, string commandText) => 
+        public string ExecuteNonQuery(SqlConnection myConnection, string commandText) =>
             this.ExecuteNonQuery(myConnection, commandText, null, null);
 
         public string ExecuteNonQuery(SqlTransaction myTransaction, string[] commandTexts)
@@ -986,7 +987,7 @@
             return str;
         }
 
-        public string ExecuteNonQuery(SqlTransaction myTransaction, string commandText) => 
+        public string ExecuteNonQuery(SqlTransaction myTransaction, string commandText) =>
             this.ExecuteNonQuery(myTransaction, commandText, null, null);
 
         public string ExecuteNonQuery(SqlTransaction myTransaction, System.Data.CommandType commandType, StringCollection commandTexts)
@@ -1037,10 +1038,10 @@
             return this.Result;
         }
 
-        public string ExecuteNonQuery(SqlConnection myConnection, string commandText, string[] myParams, object[] myValues) => 
+        public string ExecuteNonQuery(SqlConnection myConnection, string commandText, string[] myParams, object[] myValues) =>
             this.ExecuteNonQuery(myConnection, this.CommandType, commandText, myParams, myValues);
 
-        public string ExecuteNonQuery(SqlTransaction myTransaction, string commandText, string[] myParams, object[] myValues) => 
+        public string ExecuteNonQuery(SqlTransaction myTransaction, string commandText, string[] myParams, object[] myValues) =>
             this.ExecuteNonQuery(myTransaction, this.CommandType, commandText, myParams, myValues);
 
         public string ExecuteNonQuery(string connectionString, string commandText, string[] myParams, object[] myValues)
@@ -1086,7 +1087,7 @@
             {
                 for (int i = 0; i < myParams.Length; i++)
                 {
-                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i]);
+                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i] ?? DBNull.Value);
                     command.Parameters.Add(parameter);
                 }
             }
@@ -1162,7 +1163,7 @@
             {
                 for (int i = 0; i < myParams.Length; i++)
                 {
-                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i]);
+                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i] ?? DBNull.Value);
                     command.Parameters.Add(parameter);
                 }
             }
@@ -1205,13 +1206,13 @@
             return this.Result;
         }
 
-        public SqlDataReader ExecuteReader(string commandText) => 
+        public SqlDataReader ExecuteReader(string commandText) =>
             this.ExecuteReader(commandText, null, null);
 
-        public SqlDataReader ExecuteReader(SqlConnection myConnection, string commandText) => 
+        public SqlDataReader ExecuteReader(SqlConnection myConnection, string commandText) =>
             this.ExecuteReader(myConnection, commandText, null, null);
 
-        public SqlDataReader ExecuteReader(SqlTransaction myTransaction, string commandText) => 
+        public SqlDataReader ExecuteReader(SqlTransaction myTransaction, string commandText) =>
             this.ExecuteReader(myTransaction, commandText, null, null);
 
         public SqlDataReader ExecuteReader(string commandText, string[] myParams, object[] myValues)
@@ -1239,10 +1240,10 @@
             return reader;
         }
 
-        public SqlDataReader ExecuteReader(SqlConnection myConnection, string commandText, string[] myParams, object[] myValues) => 
+        public SqlDataReader ExecuteReader(SqlConnection myConnection, string commandText, string[] myParams, object[] myValues) =>
             this.ExecuteReader(myConnection, this.CommandType, commandText, myParams, myValues);
 
-        public SqlDataReader ExecuteReader(SqlTransaction myTransaction, string commandText, string[] myParams, object[] myValues) => 
+        public SqlDataReader ExecuteReader(SqlTransaction myTransaction, string commandText, string[] myParams, object[] myValues) =>
             this.ExecuteReader(myTransaction, this.CommandType, commandText, myParams, myValues);
 
         public SqlDataReader ExecuteReader(SqlConnection myConnection, System.Data.CommandType commandType, string commandText, string[] myParams, object[] myValues)
@@ -1277,7 +1278,7 @@
             {
                 for (int i = 0; i < myParams.Length; i++)
                 {
-                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i]);
+                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i] ?? DBNull.Value);
                     command.Parameters.Add(parameter);
                 }
             }
@@ -1352,7 +1353,7 @@
             {
                 for (int i = 0; i < myParams.Length; i++)
                 {
-                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i]);
+                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i] ?? DBNull.Value);
                     command.Parameters.Add(parameter);
                 }
             }
@@ -1394,13 +1395,13 @@
             return null;
         }
 
-        public object ExecuteScalar(string commandText) => 
+        public object ExecuteScalar(string commandText) =>
             this.ExecuteScalar(commandText, null, null);
 
-        public object ExecuteScalar(SqlConnection myConnection, string commandText) => 
+        public object ExecuteScalar(SqlConnection myConnection, string commandText) =>
             this.ExecuteScalar(myConnection, commandText, null, null);
 
-        public object ExecuteScalar(SqlTransaction myTransaction, string commandText) => 
+        public object ExecuteScalar(SqlTransaction myTransaction, string commandText) =>
             this.ExecuteScalar(myTransaction, commandText, null, null);
 
         public decimal ExecuteScalar(string commandText, decimal defautValue)
@@ -1473,14 +1474,14 @@
             return defaultValue;
         }
 
-        public double ExecuteScalar(SqlTransaction myTransaction, string commandText, double defautValue) => 
-            this.ExecuteScalar(myTransaction, commandText, (string[]) null, (object[]) null, defautValue);
+        public double ExecuteScalar(SqlTransaction myTransaction, string commandText, double defautValue) =>
+            this.ExecuteScalar(myTransaction, commandText, (string[])null, (object[])null, defautValue);
 
-        public int ExecuteScalar(SqlTransaction myTransaction, string commandText, int defautValue) => 
-            this.ExecuteScalar(myTransaction, commandText, (string[]) null, (object[]) null, defautValue);
+        public int ExecuteScalar(SqlTransaction myTransaction, string commandText, int defautValue) =>
+            this.ExecuteScalar(myTransaction, commandText, (string[])null, (object[])null, defautValue);
 
-        public string ExecuteScalar(SqlTransaction myTransaction, string commandText, string defautValue) => 
-            this.ExecuteScalar(myTransaction, commandText, (string[]) null, (object[]) null, defautValue);
+        public string ExecuteScalar(SqlTransaction myTransaction, string commandText, string defautValue) =>
+            this.ExecuteScalar(myTransaction, commandText, (string[])null, (object[])null, defautValue);
 
         public object ExecuteScalar(string commandText, string[] myParams, object[] myValues)
         {
@@ -1508,10 +1509,10 @@
             return obj2;
         }
 
-        public object ExecuteScalar(SqlConnection myConnection, string commandText, string[] myParams, object[] myValues) => 
+        public object ExecuteScalar(SqlConnection myConnection, string commandText, string[] myParams, object[] myValues) =>
             this.ExecuteScalar(myConnection, this.CommandType, commandText, myParams, myValues);
 
-        public object ExecuteScalar(SqlTransaction myTransaction, string commandText, string[] myParams, object[] myValues) => 
+        public object ExecuteScalar(SqlTransaction myTransaction, string commandText, string[] myParams, object[] myValues) =>
             this.ExecuteScalar(myTransaction, this.CommandType, commandText, myParams, myValues);
 
         public decimal ExecuteScalar(string commandText, string[] myParams, object[] myValues, decimal defaultValue)
@@ -1587,7 +1588,7 @@
             {
                 for (int i = 0; i < myParams.Length; i++)
                 {
-                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i]);
+                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i] ?? DBNull.Value);
                     command.Parameters.Add(parameter);
                 }
             }
@@ -1708,7 +1709,7 @@
             {
                 for (int i = 0; i < myParams.Length; i++)
                 {
-                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i]);
+                    SqlParameter parameter = new SqlParameter(myParams[i], myValues[i] ?? DBNull.Value);
                     command.Parameters.Add(parameter);
                 }
             }
@@ -1795,7 +1796,7 @@
             return defaultValue;
         }
 
-        public long ExecuteScalar2(SqlTransaction myTransaction, string commandText, int defautValue) => 
+        public long ExecuteScalar2(SqlTransaction myTransaction, string commandText, int defautValue) =>
             this.ExecuteScalar2(myTransaction, commandText, null, null, defautValue);
 
         public long ExecuteScalar2(string commandText, string[] myParams, object[] myValues, int defaultValue)
@@ -1805,7 +1806,7 @@
             {
                 return Convert.ToInt64(obj2);
             }
-            return (long) defaultValue;
+            return (long)defaultValue;
         }
 
         public long ExecuteScalar2(SqlTransaction myTraTransaction, string commandText, string[] myParams, object[] myValues, int defaultValue)
@@ -1815,7 +1816,7 @@
             {
                 return Convert.ToInt64(obj2);
             }
-            return (long) defaultValue;
+            return (long)defaultValue;
         }
 
         public string Exists(string expression)
@@ -1869,18 +1870,19 @@
             }
         }
 
-        public static string GenCode(string fKey) => 
+        public static string GenCode(string fKey) =>
             GenCode("TRANS_REF", "RefID", fKey);
 
-        public static string GenCode(SqlHelper mySql, string fKey) => 
+        public static string GenCode(SqlHelper mySql, string fKey) =>
             GenCode(mySql, "TRANS_REF", "RefID", fKey);
 
-        public static string GenCode(SqlTransaction myTransaction, string fKey) => 
+        public static string GenCode(SqlTransaction myTransaction, string fKey) =>
             GenCode(myTransaction, "TRANS_REF", "RefID", fKey);
 
         public static string GenCode(string tableName, string columnName, string fKey)
         {
-            SqlHelper helper = new SqlHelper {
+            SqlHelper helper = new SqlHelper
+            {
                 CommandType = System.Data.CommandType.Text
             };
             string expression = "";
@@ -1893,7 +1895,7 @@
             int num = 0;
             if (IsNumeric(expression))
             {
-                num = (int) Conversion.Val(expression);
+                num = (int)Conversion.Val(expression);
             }
             num++;
             string str2 = num.ToString();
@@ -1904,7 +1906,7 @@
             return (fKey + str2);
         }
 
-        public static string GenCode(SqlHelper mySql, string tableName, string columnName, string fKey) => 
+        public static string GenCode(SqlHelper mySql, string tableName, string columnName, string fKey) =>
             GenCode(mySql.Transaction, tableName, columnName, fKey);
 
         public static string GenCode(SqlTransaction myTransaction, string tableName, string columnName, string fKey)
@@ -1926,7 +1928,7 @@
             int num = 0;
             if (Information.IsNumeric(expression))
             {
-                num = (int) Conversion.Val(expression);
+                num = (int)Conversion.Val(expression);
             }
             num++;
             string str2 = num.ToString();
@@ -1939,7 +1941,8 @@
 
         public static string GenCode(string tableName, string columnName, string fKey, int NumberZero)
         {
-            SqlHelper helper = new SqlHelper {
+            SqlHelper helper = new SqlHelper
+            {
                 CommandType = System.Data.CommandType.Text
             };
             string expression = "";
@@ -1952,7 +1955,7 @@
             int num = 0;
             if (IsNumeric(expression))
             {
-                num = (int) Conversion.Val(expression);
+                num = (int)Conversion.Val(expression);
             }
             num++;
             string str2 = num.ToString();
@@ -2003,7 +2006,7 @@
         public static bool IsNumeric(object expression)
         {
             double num;
-            return double.TryParse(Convert.ToString(expression), NumberStyles.Any, (IFormatProvider) NumberFormatInfo.InvariantInfo, out num);
+            return double.TryParse(Convert.ToString(expression), NumberStyles.Any, (IFormatProvider)NumberFormatInfo.InvariantInfo, out num);
         }
 
         public static void LoadConnectString()
@@ -2171,16 +2174,16 @@
             }
         }
 
-        public string RebuildConnectionString() => 
+        public string RebuildConnectionString() =>
             this.RebuildConnectionString(this._server, this._database, this._userid, this._password, this._authentication);
 
-        public string RebuildConnectionString(string server) => 
+        public string RebuildConnectionString(string server) =>
             this.RebuildConnectionString(server, "", "", "", true);
 
-        public string RebuildConnectionString(string server, string database) => 
+        public string RebuildConnectionString(string server, string database) =>
             this.RebuildConnectionString(server, database, "", "", true);
 
-        public string RebuildConnectionString(string server, string user, string password) => 
+        public string RebuildConnectionString(string server, string user, string password) =>
             this.RebuildConnectionString(server, "", user, password, false);
 
         public string RebuildConnectionString(string server, string database, string user, string password, bool authentication)
@@ -2200,7 +2203,7 @@
             return ("Data Source=" + server + ";Initial Catalog=master;Integrated Security=True;");
         }
 
-        public string RollBack() => 
+        public string RollBack() =>
             this.RollBack(this._transaction);
 
         public string RollBack(SqlTransaction myTransaction)
@@ -2325,12 +2328,12 @@
             return this.Result;
         }
 
-        public override string ToString() => 
+        public override string ToString() =>
             this._connectionString;
 
         public bool Authentication
         {
-            get => 
+            get =>
                 this._authentication;
             set
             {
@@ -2340,7 +2343,7 @@
 
         public bool AutoCommand
         {
-            get => 
+            get =>
                 this._autoCommand;
             set
             {
@@ -2350,7 +2353,7 @@
 
         public string CommandText
         {
-            get => 
+            get =>
                 this._commandText;
             set
             {
@@ -2360,7 +2363,7 @@
 
         public System.Data.CommandType CommandType
         {
-            get => 
+            get =>
                 this._commandType;
             set
             {
@@ -2373,7 +2376,7 @@
 
         public string ConnectionString
         {
-            get => 
+            get =>
                 this._connectionString;
             set
             {
@@ -2383,7 +2386,7 @@
 
         public static string ConnectString
         {
-            get => 
+            get =>
                 _GlobalConnectString;
             set
             {
@@ -2393,7 +2396,7 @@
 
         public static int Count
         {
-            get => 
+            get =>
                 _count;
             set
             {
@@ -2403,7 +2406,7 @@
 
         public string Database
         {
-            get => 
+            get =>
                 this._database;
             set
             {
@@ -2413,7 +2416,7 @@
 
         public static bool HideError
         {
-            get => 
+            get =>
                 _HideError;
             set
             {
@@ -2435,7 +2438,7 @@
 
         public bool IsExtract
         {
-            get => 
+            get =>
                 this._isextract;
             set
             {
@@ -2449,7 +2452,7 @@
 
         public bool IsFormatMessage
         {
-            get => 
+            get =>
                 this._isFormatMessage;
             set
             {
@@ -2459,7 +2462,7 @@
 
         public bool MustCloseConnection
         {
-            get => 
+            get =>
                 this._mustCloseConnection;
             set
             {
@@ -2469,7 +2472,7 @@
 
         public string Password
         {
-            get => 
+            get =>
                 this._password;
             set
             {
@@ -2479,7 +2482,7 @@
 
         public string Result
         {
-            get => 
+            get =>
                 this._result;
             set
             {
@@ -2489,7 +2492,7 @@
 
         public int Rowaffected
         {
-            get => 
+            get =>
                 this.m_rowaffected;
             set
             {
@@ -2499,7 +2502,7 @@
 
         public string Server
         {
-            get => 
+            get =>
                 this._server;
             set
             {
@@ -2540,7 +2543,7 @@
 
         public string UserID
         {
-            get => 
+            get =>
                 this._userid;
             set
             {
@@ -2550,7 +2553,7 @@
 
         public bool UseTransaction
         {
-            get => 
+            get =>
                 this.m_useTransaction;
             set
             {

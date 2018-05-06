@@ -17,6 +17,9 @@
         DIC_NHACUNGCAP,
         DIC_NHOMDICHVU,
         DIC_TIEUNHOMDICHVU,
-        DIC_ICD10
+        DIC_ICD10,
+        DIC_DICHVU,
+        DIC_DUOC
     }
+    
 }

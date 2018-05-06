@@ -165,7 +165,7 @@
             this.btnCancel.Text = "Bỏ qua";
             this.btnCancel.Click += new EventHandler(this.btnCancel_Click);
             this.btnCancel.KeyDown += new KeyEventHandler(this.btnCancel_KeyDown);
-            this.imageCollection2.ImageStream = (ImageCollectionStreamer) manager.GetObject("imageCollection2.ImageStream");
+            //this.imageCollection2.ImageStream = (ImageCollectionStreamer) manager.GetObject("imageCollection2.ImageStream");
             this.btnSaveNew.ImageIndex = 0;
             this.btnSaveNew.ImageList = this.imageCollection2;
             this.btnSaveNew.Location = new Point(60, 0x51);

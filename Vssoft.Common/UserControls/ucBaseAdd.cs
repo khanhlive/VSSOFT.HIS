@@ -2,28 +2,30 @@
 using DevExpress.XtraEditors.DXErrorProvider;
 using DevExpress.XtraLayout;
 using System;
-using System.Data;
 using Vssoft.Common.Common.Class;
 
-namespace Vssoft.Common
+namespace Vssoft.Common.UserControls
 {
-    public class ucBaseView: XtraUserControl
+    public partial class ucBaseAdd : xucBase
     {
+        public event ButtonClickEventHander CancelClick;
+        
+
         protected bool isUpdated = false;
         protected bool isValidModel = true;
         public Actions actions = Actions.None;
         public event SaveCompleteEventHander SaveComplete;
-        
-        protected object Model;
         protected DXErrorProvider dxErrorProviderModel;
         public bool isEdited { get; protected set; }
-       
-        public ucBaseView() {
+
+        protected object Model;
+        public ucBaseAdd() : base()
+        {
+            InitializeComponent();
             this.Load += new EventHandler(this.Loaded);
             this.dxErrorProviderModel = new DXErrorProvider();
             this.dxErrorProviderModel.ContainerControl = this;
         }
-
         public virtual void SetModel(object model)
         {
             this.Model = model;
@@ -38,18 +40,10 @@ namespace Vssoft.Common
             this.Update();
         }
 
-        protected virtual void BindingModel() { }
-
-        public virtual void SetModel(object key, object dataSource)
+        protected virtual void BindingModel()
         {
-
         }
-
-        public virtual void SetModel(DataRow rowFocused, object dataSource)
-        {
-
-        }
-
+        
         private void Loaded(object sender, EventArgs e)
         {
             this.Init();
@@ -73,7 +67,7 @@ namespace Vssoft.Common
             {
                 XtraMessageBox.Show(args.Message, "Thông báo");
             }
-            
+
         }
 
         public virtual void ClearModel()
@@ -101,7 +95,7 @@ namespace Vssoft.Common
         {
 
         }
-        
+
         public virtual bool Validation()
         {
             return true;
@@ -119,6 +113,10 @@ namespace Vssoft.Common
         {
             this.SetModel(this.Model);
             this.DisabledLayout(true);
+            if (this.CancelClick!=null)
+            {
+                this.CancelClick(this);
+            }
         }
 
         public virtual object GetModel()
@@ -141,7 +139,7 @@ namespace Vssoft.Common
                 return true;
             }
         }
-        
+
         protected virtual void ClearError(LayoutControl layoutControl)
         {
             for (int i = 0; i < layoutControl.Controls.Count; i++)
@@ -150,16 +148,14 @@ namespace Vssoft.Common
             }
         }
 
-        private void InitializeComponent()
+        private void btnSaveNew_Click(object sender, EventArgs e)
         {
-            this.SuspendLayout();
-            // 
-            // ucBaseView
-            // 
-            this.Name = "ucBaseView";
-            this.Size = new System.Drawing.Size(251, 235);
-            this.ResumeLayout(false);
 
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            this.SaveModel();
         }
     }
 }

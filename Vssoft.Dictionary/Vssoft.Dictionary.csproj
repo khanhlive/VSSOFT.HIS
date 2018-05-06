@@ -85,6 +85,15 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="IFormMain.cs" />
+    <Compile Include="UI\Core\Actions\frmAddDIC_DICHVU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Core\Actions\frmAddDIC_DICHVU.Designer.cs">
+      <DependentUpon>frmAddDIC_DICHVU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Core\Actions\ucAddDIC_DICHVU.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UI\Core\Actions\ucAddDIC_ICD10.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -194,6 +203,9 @@
     <Compile Include="UI\Core\ucDIC_BENHVIEN.Designer.cs">
       <DependentUpon>ucDIC_BENHVIEN.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Core\ucDIC_DICHVU.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UI\Core\ucDIC_ICD10.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -259,6 +271,12 @@
     </Compile>
     <Compile Include="UI\Core\ucDIC_XAPHUONG.Designer.cs">
       <DependentUpon>ucDIC_XAPHUONG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Core\Actions\xucAddDIC_DICHVU.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Core\Actions\xucAddDIC_DICHVU.Designer.cs">
+      <DependentUpon>xucAddDIC_DICHVU.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UserControls\CLS.cs">
       <SubType>UserControl</SubType>
@@ -388,6 +406,12 @@
       <DependentUpon>frmDictionary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="UI\Core\Actions\frmAddDIC_DICHVU.resx">
+      <DependentUpon>frmAddDIC_DICHVU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_DICHVU.resx">
+      <DependentUpon>ucAddDIC_DICHVU.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Core\Actions\ucAddDIC_ICD10.resx">
       <DependentUpon>ucAddDIC_ICD10.cs</DependentUpon>
     </EmbeddedResource>
@@ -449,6 +473,9 @@
     <EmbeddedResource Include="UI\Core\ucDIC_BENHVIEN.resx">
       <DependentUpon>ucDIC_BENHVIEN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\ucDIC_DICHVU.resx">
+      <DependentUpon>ucDIC_DICHVU.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Core\ucDIC_DTBN.resx">
       <DependentUpon>ucDIC_DTBN.cs</DependentUpon>
     </EmbeddedResource>
@@ -472,6 +499,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Core\ucDIC_XAPHUONG.resx">
       <DependentUpon>ucDIC_XAPHUONG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Core\Actions\xucAddDIC_DICHVU.resx">
+      <DependentUpon>xucAddDIC_DICHVU.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\CLS.resx">
       <DependentUpon>CLS.cs</DependentUpon>

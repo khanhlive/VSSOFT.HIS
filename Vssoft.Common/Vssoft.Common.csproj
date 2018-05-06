@@ -156,6 +156,12 @@
     <Compile Include="UI\xucDateTimeSelectEdit.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UserControls\ucBaseAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucBaseAdd.Designer.cs">
+      <DependentUpon>ucBaseAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="xfmBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,8 +256,14 @@
     <EmbeddedResource Include="ucBaseView.resx">
       <DependentUpon>ucBaseView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucBaseAdd.resx">
+      <DependentUpon>ucBaseAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="XLoadingForm.resx">
       <DependentUpon>XLoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xucBaseAddH.resx">
+      <DependentUpon>xucBaseAddH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="xucBaseBasic.resx">
       <DependentUpon>xucBaseBasic.cs</DependentUpon>

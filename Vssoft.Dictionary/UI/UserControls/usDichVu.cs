@@ -1589,13 +1589,9 @@ namespace Vssoft.Dictionary.UI.UserControls
 
         }
 
-        
+        private void txtGiaBHTT_EditValueChanged(object sender, EventArgs e)
+        {
 
-
-
-
-
-
-
+        }
     }
 }
