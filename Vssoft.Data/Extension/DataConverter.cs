@@ -59,6 +59,21 @@ namespace Vssoft.Data.Extension
             }
             else throw new ArgumentNullException("Chuỗi không phải là một số");
         }
+        public static int StringToInt(object value)
+        {
+            int obj = 0;
+            if (value!=null)
+            {
+
+                if (int.TryParse(value.ToString(), out obj))
+                {
+                    return obj;
+                }
+                else throw new ArgumentNullException("Chuỗi không phải là một số");
+            }
+            else
+                throw new ArgumentNullException("Chuỗi không phải là một số");;
+        }
 
         public static int? ToInt(string value)
         {
@@ -66,6 +81,19 @@ namespace Vssoft.Data.Extension
             if (int.TryParse(value, out obj))
             {
                 return obj;
+            }
+            else return null;
+        }
+        public static int? ToInt(object value)
+        {
+            int obj = 0;
+            if (value != null)
+            {
+                if (int.TryParse(value.ToString(), out obj))
+                {
+                    return obj;
+                }
+                else return null;
             }
             else return null;
         }
@@ -86,7 +114,7 @@ namespace Vssoft.Data.Extension
             {
                 return value.ToUpper();
             }
-            else return string.Empty ;
+            else return string.Empty;
         }
 
         public static string ImageToBase64(string filePath)
@@ -158,5 +186,54 @@ namespace Vssoft.Data.Extension
             catch { return null; }
         }
 
+        public static double ConvertToDouble(string value)
+        {
+            double obj = 0;
+            if (double.TryParse(value, out obj)) return obj;
+            else
+                throw new ArgumentNullException("Chuỗi không đúng định dạng");
+        }
+        public static double? ConvertToDoubleNullable(string value)
+        {
+            double obj = 0;
+            if (double.TryParse(value, out obj)) return obj;
+            else
+                return null;
+        }
+        public static double ConvertToDouble(object value)
+        {
+            double obj = 0;
+            if (value != null)
+            {
+
+                if (value.GetType() == obj.GetType())
+                {
+                    return (double)value;
+                }
+                else
+                if (double.TryParse((string)value, out obj)) return obj;
+                else
+                    throw new ArgumentNullException("Chuỗi không đúng định dạng");
+
+            }
+            else throw new ArgumentNullException("Chuỗi không đúng định dạng");
+        }
+        public static double? ConvertToDoubleNullable(object value)
+        {
+            double obj = 0;
+            if (value != null)
+            {
+
+                if (value.GetType() == obj.GetType())
+                {
+                    return (double)value;
+                }
+                else
+                if (double.TryParse((string)value, out obj)) return obj;
+                else
+                    return null;
+            }
+            else return null;
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("DeletePhongBan", new string[] { "@MaPhongBan" }, new object[] { entity.MaPhongBan });
                 int kq = Convert.ToInt32(result);
@@ -80,6 +81,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("InsertPhongBan",
                     new string[] { "@TenPhongBan", "@NhomPhongBan", "@QuanLy", "@BuongGiuong", "@PhanLoai_ID", "@MaQuyetDinh", "@MaPhongBanCu", "@MaChuyenKhoa", "@TuTruc", "@TrongBenhVien", "@PhuongPhapXuatDuoc", "@PhuongPhapHuHaoDongY", "@DiaChi", "@MaBenhVien", "@Status" },
@@ -105,6 +107,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("UpdatePhongBan",
                     new string[] { "@MaPhongBan", "@TenPhongBan", "@NhomPhongBan", "@QuanLy", "@BuongGiuong", "@PhanLoai_ID", "@MaQuyetDinh", "@MaPhongBanCu", "@MaChuyenKhoa", "@TuTruc", "@TrongBenhVien", "@PhuongPhapXuatDuoc", "@PhuongPhapHuHaoDongY", "@DiaChi", "@MaBenhVien", "@Status" },

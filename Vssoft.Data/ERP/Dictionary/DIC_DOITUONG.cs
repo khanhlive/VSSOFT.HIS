@@ -35,6 +35,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("DeleteDoiTuong", new string[] { "@MaDoiTuong" }, new object[] { doituong.MaDoiTuong });
                 int kq = Convert.ToInt32(result);
@@ -66,6 +67,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("InsertDoiTuong",
                     new string[] { "@MaDoiTuong", "@TenDoiTuong", "@NhomDoiTuong", "@MaMuc", "@MucCu", "@Status", "@VanChuyen" },
@@ -89,6 +91,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("UpdateDoiTuong",
                     new string[] { "@MaDoiTuong", "@TenDoiTuong", "@NhomDoiTuong", "@MaMuc", "@MucCu", "@Status", "@VanChuyen" },

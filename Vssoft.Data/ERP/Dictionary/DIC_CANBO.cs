@@ -38,6 +38,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 SqlDataReader dt = this.sqlHelper.ExecuteReader("GetCanBoByMaPhongBan", new string[] { "@MaPhongBan" }, new object[] { maphongban });
                 IEnumerable<DIC_CANBO> dscanbo = this.DataReaderToList(dt);
@@ -59,6 +60,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("DeleteCanBo", new string[] { "@MaCanBo" }, new object[] { canbo.MaCanBo });
                 int kq = Convert.ToInt32(result);
@@ -90,6 +92,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("InsertCanBo",
                     new string[] { "@MaCanBo", "@TenCanBo", "@NgaySinh", "@GioiTinh", "@ChucVu", "@CapBac", "@BangCap", "@MaDanToc", "@MaPhongBan", "@Image", "@DiaChi", "@SoDienThoai", "@KhoaChungTu" },
@@ -114,6 +117,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("UpdateCanBo",
                     new string[] { "@MaCanBo", "@TenCanBo", "@NgaySinh", "@GioiTinh", "@ChucVu", "@CapBac", "@BangCap", "@MaDanToc", "@MaPhongBan", "@Image", "@DiaChi", "@SoDienThoai", "@KhoaChungTu" },

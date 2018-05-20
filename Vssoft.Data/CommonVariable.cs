@@ -16,7 +16,9 @@
             "Nhập trước xuất trước(có giá ưu tiên)",
             "Xuất theo hạn dùng(có giá ưu tiên)",
             "Nhập trước xuất trước(theo số lô)" };
+        public static string[] DonViTinhs = new string[] { "Viên","Lần","Lọ" };
 
+        
         public CommonVariable()
         {
             

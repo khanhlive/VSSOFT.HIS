@@ -619,10 +619,10 @@
             this.cklDTBN.Cursor = System.Windows.Forms.Cursors.Default;
             this.cklDTBN.DisplayMember = "DTBN";
             this.cklDTBN.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cklDTBN.Location = new System.Drawing.Point(2, 20);
+            this.cklDTBN.Location = new System.Drawing.Point(2, 21);
             this.cklDTBN.MultiColumn = true;
             this.cklDTBN.Name = "cklDTBN";
-            this.cklDTBN.Size = new System.Drawing.Size(276, 60);
+            this.cklDTBN.Size = new System.Drawing.Size(276, 59);
             this.cklDTBN.TabIndex = 0;
             this.cklDTBN.ValueMember = "IDDTBN";
             // 
@@ -692,9 +692,9 @@
             this.btnKhoaPhong.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.btnKhoaPhong.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.btnKhoaPhong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnKhoaPhong.Location = new System.Drawing.Point(2, 20);
+            this.btnKhoaPhong.Location = new System.Drawing.Point(2, 21);
             this.btnKhoaPhong.Name = "btnKhoaPhong";
-            this.btnKhoaPhong.Size = new System.Drawing.Size(3, 60);
+            this.btnKhoaPhong.Size = new System.Drawing.Size(3, 59);
             this.btnKhoaPhong.TabIndex = 60;
             this.btnKhoaPhong.Text = "Thiết lập Khoa|Phòng";
             this.btnKhoaPhong.Click += new System.EventHandler(this.btnKhoaPhong_Click);
@@ -705,10 +705,10 @@
             this.cklKP.Cursor = System.Windows.Forms.Cursors.Default;
             this.cklKP.DisplayMember = "TenKP";
             this.cklKP.Dock = System.Windows.Forms.DockStyle.Right;
-            this.cklKP.Location = new System.Drawing.Point(5, 20);
+            this.cklKP.Location = new System.Drawing.Point(5, 21);
             this.cklKP.MultiColumn = true;
             this.cklKP.Name = "cklKP";
-            this.cklKP.Size = new System.Drawing.Size(717, 60);
+            this.cklKP.Size = new System.Drawing.Size(717, 59);
             this.cklKP.TabIndex = 0;
             this.cklKP.ValueMember = "MaKP";
             // 
@@ -718,6 +718,7 @@
             this.txtMaTam.Name = "txtMaTam";
             this.txtMaTam.Size = new System.Drawing.Size(104, 20);
             this.txtMaTam.TabIndex = 1;
+            this.txtMaTam.EditValueChanged += new System.EventHandler(this.txtMaTam_EditValueChanged);
             // 
             // labelControl14
             // 
@@ -746,6 +747,7 @@
             this.txtSoTT_BYT.Name = "txtSoTT_BYT";
             this.txtSoTT_BYT.Size = new System.Drawing.Size(104, 20);
             this.txtSoTT_BYT.TabIndex = 3;
+            this.txtSoTT_BYT.EditValueChanged += new System.EventHandler(this.txtSoTT_BYT_EditValueChanged);
             // 
             // labSoLuongPhim
             // 

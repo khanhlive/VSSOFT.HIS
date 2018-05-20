@@ -85,6 +85,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="IFormMain.cs" />
+    <Compile Include="UI\Base\frmAddBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Base\frmAddBase.Designer.cs">
+      <DependentUpon>frmAddBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Core\Actions\frmAddDIC_DICHVU.cs">
       <SubType>Form</SubType>
     </Compile>

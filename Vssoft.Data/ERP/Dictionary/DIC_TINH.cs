@@ -10,18 +10,22 @@ namespace Vssoft.Data.ERP.Dictionary
 
     public class DIC_TINH : EntityBase<DIC_TINH>
     {
-        
+
         public DIC_TINH()
         {
             this.StoreGetAllActive = "GetTinhThanh";
             this.StoreGetAll = "GetAllTinhThanh";
         }
+
+        #region Properties
         [ValueMember]
         public string MaTinh { get; set; }
         [DisplayMember]
         public string TenTinh { get; set; }
         public int Status { get; set; }
+        #endregion
 
+        #region Method
         public override SqlResultType Delete()
         {
             return this.Delete(this);
@@ -31,6 +35,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("DeleteTinhThanh", new string[] { "@MaTinh" }, new object[] { tinhthanh.MaTinh });
                 int kq = Convert.ToInt32(result);
@@ -62,6 +67,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("InsertTinhThanh",
                     new string[] { "@MaTinh", "@TenTinh", "@Status" },
@@ -86,6 +92,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("UpdateTinhThanh",
                     new string[] { "@MaTinh", "@TenTinh", "@Status" },
@@ -122,5 +129,6 @@ namespace Vssoft.Data.ERP.Dictionary
                 return null;
             }
         }
+        #endregion
     }
 }

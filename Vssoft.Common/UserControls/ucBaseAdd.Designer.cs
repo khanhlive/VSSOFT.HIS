@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBaseAdd));
             DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBaseAdd));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnSaveNew = new DevExpress.XtraEditors.SimpleButton();
+            this.imageCollection2 = new DevExpress.Utils.ImageCollection();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.imageCollection2 = new DevExpress.Utils.ImageCollection(this.components);
-            this.Err = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.Err = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection2)).BeginInit();
@@ -73,6 +72,16 @@
             this.btnSaveNew.Text = "Lưu && Thêm";
             this.btnSaveNew.Click += new System.EventHandler(this.btnSaveNew_Click);
             // 
+            // imageCollection2
+            // 
+            this.imageCollection2.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection2.ImageStream")));
+            this.imageCollection2.InsertGalleryImage("saveandclose_16x16.png", "images/save/saveandclose_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/save/saveandclose_16x16.png"), 0);
+            this.imageCollection2.Images.SetKeyName(0, "saveandclose_16x16.png");
+            this.imageCollection2.InsertGalleryImage("export_16x16.png", "images/export/export_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/export/export_16x16.png"), 1);
+            this.imageCollection2.Images.SetKeyName(1, "export_16x16.png");
+            this.imageCollection2.InsertGalleryImage("close_16x16.png", "images/actions/close_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/close_16x16.png"), 2);
+            this.imageCollection2.Images.SetKeyName(2, "close_16x16.png");
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -83,6 +92,7 @@
             this.btnCancel.Size = new System.Drawing.Size(95, 27);
             this.btnCancel.TabIndex = 39;
             this.btnCancel.Text = "Đóng";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -98,16 +108,6 @@
             this.btnSave.TabIndex = 38;
             this.btnSave.Text = "Lưu && Đóng";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // imageCollection2
-            // 
-            this.imageCollection2.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection2.ImageStream")));
-            this.imageCollection2.InsertGalleryImage("saveandclose_16x16.png", "images/save/saveandclose_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/save/saveandclose_16x16.png"), 0);
-            this.imageCollection2.Images.SetKeyName(0, "saveandclose_16x16.png");
-            this.imageCollection2.InsertGalleryImage("export_16x16.png", "images/export/export_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/export/export_16x16.png"), 1);
-            this.imageCollection2.Images.SetKeyName(1, "export_16x16.png");
-            this.imageCollection2.InsertGalleryImage("close_16x16.png", "images/actions/close_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/close_16x16.png"), 2);
-            this.imageCollection2.Images.SetKeyName(2, "close_16x16.png");
             // 
             // Err
             // 

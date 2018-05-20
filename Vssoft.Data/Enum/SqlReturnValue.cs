@@ -10,6 +10,7 @@
         NotExisted = -2,
         OK = 1,
         Failed = 0,
-        Exception
+        Exception,
+        None
     }
 }

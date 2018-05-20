@@ -1593,5 +1593,15 @@ namespace Vssoft.Dictionary.UI.UserControls
         {
 
         }
+
+        private void txtMaTam_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSoTT_BYT_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

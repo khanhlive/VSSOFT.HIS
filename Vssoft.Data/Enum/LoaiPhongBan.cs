@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,21 @@ namespace Vssoft.Data.Enum
             list.Add(new HinhThucThanhToan { Name = "Thanh toán toàn bộ", Value = 2 });
             list.Add(new HinhThucThanhToan { Name = "Khám sức khỏe", Value = 3 });
             return list;
+        }
+
+    }
+    public class TrongDanhMuc
+    {
+        public void AddRepositoryLookupEdit(RepositoryItemLookUpEdit lookup)
+        {
+            List<LookUpEditItem> list = new List<LookUpEditItem>();
+            list.Add(new LookUpEditItem(0, "Ngoài danh mục"));
+            list.Add(new LookUpEditItem(1, "Trong danh mục"));
+            lookup.DataSource = list;
+            lookup.DisplayMember = "Text";
+            lookup.ValueMember = "Value";
+            lookup.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Text", "Text"));
+            lookup.ShowHeader = false;
         }
 
     }

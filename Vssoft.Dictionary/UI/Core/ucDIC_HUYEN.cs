@@ -18,8 +18,10 @@ namespace Vssoft.Dictionary.UI.Core
         
         protected override void SetDataSource()
         {
-            DIC_HUYEN specialtyProvider = new DIC_HUYEN();
-            this.dataSource = specialtyProvider.GetAll();
+            using (DIC_HUYEN specialtyProvider = new DIC_HUYEN())
+            {
+                this.dataSource = specialtyProvider.GetAll();
+            }
         }
 
         protected override void List_Init(AdvBandedGridView dt)

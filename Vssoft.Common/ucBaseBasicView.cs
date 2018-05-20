@@ -868,8 +868,6 @@
             base.SetWaitDialogCaption("Nạp quyền sử dụng...");
             base.SetWaitDialogCaption("Đã xong...");
             this.DoHide();
-            if(this.dataSource!=null)
-            GC.SuppressFinalize(this.dataSource);
         }
 
         protected virtual void SetDataSource()

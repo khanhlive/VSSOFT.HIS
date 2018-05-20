@@ -36,6 +36,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 SqlDataReader dt = this.sqlHelper.ExecuteReader("GetBenhVienByMaHuyen", new string[] { "@MaHuyen" }, new object[] { mahuyen });
                 return this.DataReaderToList(dt);
@@ -51,6 +52,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 SqlDataReader dt = this.sqlHelper.ExecuteReader("GetBenhVienByMaTinh", new string[] { "@MaTinh" }, new object[] { matinh });
                 return this.DataReaderToList(dt);
@@ -67,6 +69,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 SqlDataReader dt = this.sqlHelper.ExecuteReader("GetBenhVienByConnect");
                 return this.DataReaderToList(dt);
@@ -88,6 +91,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("InsertBenhVien",
                     new string[] { "@MaBenhVien", "@MaTinh", "@MaHuyen", "@MaChuQuan", "@TenBenhVien", "@TuyenBenhVien", "@HangBenhVien", "@DiaChi", "@Connect", "@Status" },
@@ -111,6 +115,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("UpdateBenhVien",
                     new string[] { "@MaBenhVien", "@MaTinh", "@MaHuyen", "@MaChuQuan", "@TenBenhVien", "@TuyenBenhVien", "@HangBenhVien", "@DiaChi", "@Connect", "@Status" },
@@ -134,6 +139,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("DeleteBenhVien", new string[] { "@MaBenhVien" }, new object[] { entity.MaBenhVien });
                 int kq = Convert.ToInt32(result);

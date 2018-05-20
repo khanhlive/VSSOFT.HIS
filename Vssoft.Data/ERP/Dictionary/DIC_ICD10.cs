@@ -49,6 +49,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("DeleteICD10", new string[] { "@ID" }, new object[] { icd10.ID });
                 int kq = Convert.ToInt32(result);
@@ -92,6 +93,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("InsertICD10",
                     new string[] { "@MaICD", "@TenICD", "@Status", "@MaChuongBenh", "@TenChuongBenh", "@TenWHO", "@TenWHOe" },
@@ -115,6 +117,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("UpdateICD10",
                     new string[] { "@MaICD", "@TenICD", "@Status", "@MaChuongBenh", "@TenChuongBenh", "@TenWHO", "@TenWHOe" },

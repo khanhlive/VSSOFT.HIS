@@ -24,14 +24,22 @@ namespace Vssoft.Data.ERP
 
         public EntityBase()
         {
-            this.sqlHelper = new SqlHelper();
-            this.sqlHelper.Error += new SqlHelper.ErrorEventHander(this.EventError_Hander);
+            
         }
 
+        protected void CreateConnection()
+        {
+            if (this.sqlHelper==null)
+            {
+                this.sqlHelper = new SqlHelper();
+                this.sqlHelper.Error += new SqlHelper.ErrorEventHander(this.EventError_Hander);
+            }
+        }
         public virtual IEnumerable<T> GetAll()
         {
             if (!string.IsNullOrEmpty(this.StoreGetAll) && !string.IsNullOrWhiteSpace(this.StoreGetAll))
             {
+                this.CreateConnection();
                 try
                 {
                     this.sqlHelper.CommandType = CommandType.StoredProcedure;
@@ -52,6 +60,7 @@ namespace Vssoft.Data.ERP
         {
             if (!string.IsNullOrEmpty(this.StoreGetAllActive) && !string.IsNullOrWhiteSpace(this.StoreGetAllActive))
             {
+                this.CreateConnection();
                 try
                 {
                     this.sqlHelper.CommandType = CommandType.StoredProcedure;
@@ -152,6 +161,15 @@ namespace Vssoft.Data.ERP
             lookup.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo(this.GetDisplayMember, this.GetDisplayMember));
             lookup.ShowHeader = false;
         }
+
+        public void AddCheckBoxListEdit(CheckedListBoxControl checkBoxList)
+        {
+            IEnumerable<T> list = this.GetAll();
+            checkBoxList.DataSource = list;
+            checkBoxList.DisplayMember = this.GetDisplayMember;
+            checkBoxList.ValueMember = this.GetValueMember;
+        }
+        
 
         public void AddRepositoryGridLookupEditCode(RepositoryItemGridLookUpEdit gridlookup)
         {

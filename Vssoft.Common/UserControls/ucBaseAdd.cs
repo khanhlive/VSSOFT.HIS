@@ -9,22 +9,24 @@ namespace Vssoft.Common.UserControls
     public partial class ucBaseAdd : xucBase
     {
         public event ButtonClickEventHander CancelClick;
-        
+
 
         protected bool isUpdated = false;
         protected bool isValidModel = true;
         public Actions actions = Actions.None;
-        public event SaveCompleteEventHander SaveComplete;
+        public new event SaveCompleteEventHander SaveComplete;
         protected DXErrorProvider dxErrorProviderModel;
-        public bool isEdited { get; protected set; }
+        public bool IsEdited { get; protected set; }
 
         protected object Model;
         public ucBaseAdd() : base()
         {
             InitializeComponent();
             this.Load += new EventHandler(this.Loaded);
-            this.dxErrorProviderModel = new DXErrorProvider();
-            this.dxErrorProviderModel.ContainerControl = this;
+            this.dxErrorProviderModel = new DXErrorProvider
+            {
+                ContainerControl = this
+            };
         }
         public virtual void SetModel(object model)
         {
@@ -43,10 +45,9 @@ namespace Vssoft.Common.UserControls
         protected virtual void BindingModel()
         {
         }
-        
+
         private void Loaded(object sender, EventArgs e)
         {
-            this.Init();
             this.DisabledLayout(true);
         }
 
@@ -61,7 +62,7 @@ namespace Vssoft.Common.UserControls
             {
                 this.ClearModel();
                 this.DisabledLayout(true);
-                this.SaveComplete(sender, args);
+                this.SaveComplete?.Invoke(sender, args);
             }
             else
             {
@@ -101,19 +102,26 @@ namespace Vssoft.Common.UserControls
             return true;
         }
 
-        public virtual void AddNew()
+        public virtual void Add()
         {
             this.ClearModel();
             this.Model = null;
-            this.actions = Actions.AddNew;
+            this.actions = Actions.Add;
             this.DisabledLayout(false);
         }
+
+        //public virtual void AddNew()
+        //{
+        //    this.m_CloseOrNew = CloseOrNew.New;
+        //    this.Add();
+        //    this.actions = Actions.AddNew;
+        //}
 
         public virtual void Cancel()
         {
             this.SetModel(this.Model);
             this.DisabledLayout(true);
-            if (this.CancelClick!=null)
+            if (this.CancelClick != null)
             {
                 this.CancelClick(this);
             }
@@ -135,7 +143,7 @@ namespace Vssoft.Common.UserControls
             else
             {
                 this.isValidModel = this.isValidModel ? true : this.isValidModel;
-                dxErrorProviderModel.SetError(control, "");
+                dxErrorProviderModel.SetError(control, string.Empty);
                 return true;
             }
         }
@@ -144,18 +152,30 @@ namespace Vssoft.Common.UserControls
         {
             for (int i = 0; i < layoutControl.Controls.Count; i++)
             {
-                dxErrorProviderModel.SetError(layoutControl.Controls[i], "");
+                dxErrorProviderModel.SetError(layoutControl.Controls[i], string.Empty);
             }
         }
 
         private void btnSaveNew_Click(object sender, EventArgs e)
         {
-
+            if (this.Validation())
+            {
+                this.m_CloseOrNew = CloseOrNew.New;
+                this.SaveModel();
+                this.Add();
+                this.actions = Actions.Add;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            this.m_CloseOrNew = CloseOrNew.Close;
             this.SaveModel();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.CancelClick?.Invoke(this);
         }
     }
 }

@@ -13,6 +13,9 @@ namespace Vssoft.Data.ERP.Dictionary
             this.StoreGetAll = "GetAllXaPhuong";
             this.StoreGetAllActive = "GetXaPhuong";
         }
+
+        #region Properties
+
         [ValueMember]
         public string MaXa { get; set; }
         [DisplayMember]
@@ -23,6 +26,9 @@ namespace Vssoft.Data.ERP.Dictionary
         public string TenTinh { get; set; }
         public int Status { get; set; }
 
+        #endregion
+
+        #region Method
         public override SqlResultType Delete()
         {
             return this.Delete(this);
@@ -32,6 +38,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("DeleteXaPhuong", new string[] { "@MaXa" }, new object[] { xa.MaXa });
                 int kq = Convert.ToInt32(result);
@@ -63,6 +70,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("InsertXaPhuong",
                     new string[] { "@MaXa", "@MaHuyen", "@TenXa", "@Status" },
@@ -87,6 +95,7 @@ namespace Vssoft.Data.ERP.Dictionary
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("UpdateXaPhuong",
                      new string[] { "@MaXa", "@MaHuyen", "@TenXa", "@Status" },
@@ -127,5 +136,6 @@ namespace Vssoft.Data.ERP.Dictionary
                 return null;
             }
         }
+        #endregion
     }
 }

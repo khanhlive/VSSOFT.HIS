@@ -31,6 +31,7 @@
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("DeleteChuyenKhoa", new string[] { "@MaChuyenKhoa" }, new object[] { chuyenKhoa.MaChuyenKhoa });
                 int kq = Convert.ToInt32(result);
@@ -62,6 +63,7 @@
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("InsertChuyenKhoa",
                     new string[] { "@MaChuyenKhoa", "@TenChuyenKhoa", "@TenChiTiet", "@Status", "@MaQuyetDinh" },
@@ -86,6 +88,7 @@
         {
             try
             {
+                this.CreateConnection();
                 this.sqlHelper.CommandType = CommandType.StoredProcedure;
                 object result = this.sqlHelper.ExecuteScalar("UpdateChuyenKhoa",
                     new string[] { "@MaChuyenKhoa", "@TenChuyenKhoa", "@TenChiTiet", "@Status", "@MaQuyetDinh" },

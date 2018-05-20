@@ -18,8 +18,10 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void SetDataSource()
         {
-            DIC_DANTOC nationProvider = new DIC_DANTOC();
-            this.dataSource = nationProvider.GetAll();
+            using (DIC_DANTOC nationProvider = new DIC_DANTOC())
+            {
+                this.dataSource = nationProvider.GetAll();
+            }
         }
 
         
