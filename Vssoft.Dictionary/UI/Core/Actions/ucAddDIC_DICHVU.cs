@@ -135,6 +135,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.Err)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -200,7 +202,29 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             this.SuspendLayout();
-            
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.ImageOptions.ImageIndex = 2;
+            this.btnCancel.ImageOptions.ImageList = this.imageCollection2;
+            this.btnCancel.Location = new System.Drawing.Point(882, 6);
+            // 
+            // btnSave
+            // 
+            this.btnSave.ImageOptions.ImageIndex = 0;
+            this.btnSave.ImageOptions.ImageList = this.imageCollection2;
+            this.btnSave.Location = new System.Drawing.Point(683, 6);
+            // 
+            // btnSaveNew
+            // 
+            this.btnSaveNew.ImageOptions.ImageIndex = 1;
+            this.btnSaveNew.ImageOptions.ImageList = this.imageCollection2;
+            this.btnSaveNew.Location = new System.Drawing.Point(781, 6);
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Location = new System.Drawing.Point(0, 508);
+            this.panelControl1.Size = new System.Drawing.Size(989, 38);
             // 
             // imageCollection2
             // 
@@ -430,6 +454,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.cmbLoai.Size = new System.Drawing.Size(104, 20);
             this.cmbLoai.StyleController = this.layoutControl1;
             this.cmbLoai.TabIndex = 5;
+            this.cmbLoai.SelectedIndexChanged += new System.EventHandler(this.cmbLoai_SelectedIndexChanged);
             // 
             // cmbPhanLoai
             // 
@@ -880,8 +905,11 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             this.Controls.Add(this.panelControl2);
             this.Name = "ucAddDIC_DICHVU";
             this.Size = new System.Drawing.Size(989, 546);
+            this.Controls.SetChildIndex(this.panelControl1, 0);
             this.Controls.SetChildIndex(this.panelControl2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.Err)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
@@ -947,6 +975,11 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             this.ResumeLayout(false);
+
+        }
+
+        private void cmbLoai_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
 
         }
     }

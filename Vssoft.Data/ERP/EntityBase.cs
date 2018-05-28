@@ -86,6 +86,7 @@ namespace Vssoft.Data.ERP
         public abstract SqlResultType Get(object key);
         
         protected abstract IEnumerable<T> DataReaderToList(SqlDataReader dataReader);
+        
 
         protected string GetValueMember
         {

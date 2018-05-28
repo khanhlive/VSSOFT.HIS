@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors.Repository;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,17 +30,46 @@ namespace Vssoft.Data.Enum
     }
     public class TrongDanhMuc
     {
+        private PhanLoaiDichVu loaiDichVu;
+        public TrongDanhMuc()
+        {
+            loaiDichVu = PhanLoaiDichVu.DichVu;
+        }
+        public TrongDanhMuc(PhanLoaiDichVu _loai)
+        {
+            loaiDichVu = _loai;
+        }
         public void AddRepositoryLookupEdit(RepositoryItemLookUpEdit lookup)
         {
             List<LookUpEditItem> list = new List<LookUpEditItem>();
             list.Add(new LookUpEditItem(0, "Ngoài danh mục"));
             list.Add(new LookUpEditItem(1, "Trong danh mục"));
+            if(loaiDichVu== PhanLoaiDichVu.Duoc)
+            {
+                list.Add(new LookUpEditItem(2, "Chi phí kèm DV"));
+            }
             lookup.DataSource = list;
             lookup.DisplayMember = "Text";
             lookup.ValueMember = "Value";
             lookup.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Text", "Text"));
             lookup.ShowHeader = false;
         }
+        public void AddLookupEdit(LookUpEdit lookup)
+        {
+            List<LookUpEditItem> list = new List<LookUpEditItem>();
+            list.Add(new LookUpEditItem(0, "Ngoài danh mục"));
+            list.Add(new LookUpEditItem(1, "Trong danh mục"));
+            if (loaiDichVu == PhanLoaiDichVu.Duoc)
+            {
+                list.Add(new LookUpEditItem(2, "Chi phí kèm DV"));
+            }
+            lookup.Properties.DataSource = list;
+            lookup.Properties.DisplayMember = "Text";
+            lookup.Properties.ValueMember = "Value";
+            lookup.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Text", "Text"));
+            lookup.Properties.ShowHeader = false;
+        }
+
 
     }
     public class LookUpEditItem
@@ -60,5 +90,19 @@ namespace Vssoft.Data.Enum
     {
         Duoc = 1,
         DichVu = 2
+    }
+
+    public sealed class PhanLoaiSieuAm
+    {
+        public const string Sa2D = "2D";
+        public const string SaMau = "Màu";
+        public const string Sa3D_4D = "3D-4D";
+    }
+    public sealed class PhanLoaiPhim
+    {
+        public const string CP13_18 = "13/18";
+        public const string CP18_24 = "18/24";
+        public const string CP24_30 = "24/30";
+        public const string CP30_40 = "30/40";
     }
 }

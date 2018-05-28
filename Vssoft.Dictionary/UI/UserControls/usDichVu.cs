@@ -1603,5 +1603,10 @@ namespace Vssoft.Dictionary.UI.UserControls
         {
 
         }
+
+        private void cboLoai_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

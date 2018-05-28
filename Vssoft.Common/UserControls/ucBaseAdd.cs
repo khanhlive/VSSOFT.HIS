@@ -155,7 +155,11 @@ namespace Vssoft.Common.UserControls
                 dxErrorProviderModel.SetError(layoutControl.Controls[i], string.Empty);
             }
         }
-
+        protected virtual void ClearErrorControl(BaseEdit control)
+        {
+            this.isValidModel = this.isValidModel ? true : this.isValidModel;
+            dxErrorProviderModel.SetError(control, string.Empty);
+        }
         private void btnSaveNew_Click(object sender, EventArgs e)
         {
             if (this.Validation())

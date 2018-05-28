@@ -38,7 +38,7 @@
         private NavBarItem bbiDichvu;
         private NavBarItem bbiState;
         private NavBarItem bbiStep;
-        private NavBarItem bbiSubsidiary;
+        private NavBarItem bbiDUOC;
         private NavBarItem bbiNhomDichVu;
         private NavBarItem bbiUnit;
         private IContainer components = null;
@@ -91,6 +91,7 @@
         private UI.Core.ucDIC_TIEUNHOMDICHVU dic_tieunhomdichvu;
         private UI.Core.ucDIC_ICD10 dic_icd10;
         private UI.Core.ucDIC_DICHVU dic_dichvu;
+        private UI.Core.ucDIC_DUOC dic_duoc;
         #endregion
         public frmDictionary()
         {
@@ -229,9 +230,9 @@
             this.Execute("xucStep", "");
         }
 
-        private void bbiSubsidiary_LinkClicked(object sender, NavBarLinkEventArgs e)
+        private void bbiDUOC_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            this.Execute("xucSubsidiary", "");
+            this.Execute(DictionaryModuleType.DIC_DUOC, ((NavBarItem)sender).Caption);
         }
 
         private void bbiNhomDichVu_LinkClicked(object sender, NavBarLinkEventArgs e)
@@ -453,6 +454,15 @@
                     this.dic_dichvu.BringToFront();
                     break;
                 case DictionaryModuleType.DIC_DUOC:
+                    if (this.dic_duoc != null)
+                    {
+                        this.dic_duoc.BringToFront();
+                        break;
+                    }
+                    this.dic_duoc = new UI.Core.ucDIC_DUOC();
+                    this.dic_duoc.Dock = DockStyle.Fill;
+                    this.gcControl.Controls.Add(this.dic_duoc);
+                    this.dic_duoc.BringToFront();
                     break;
                 default:
                     break;
@@ -493,8 +503,9 @@
 
         private void InitializeComponent()
         {
-            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
+            this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDictionary));
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navTimekeeping = new DevExpress.XtraNavBar.NavBarGroup();
@@ -519,7 +530,7 @@
             this.bbiDIC_Huyen = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiDIC_XaPhuong = new DevExpress.XtraNavBar.NavBarItem();
             this.navOrganization = new DevExpress.XtraNavBar.NavBarGroup();
-            this.bbiSubsidiary = new DevExpress.XtraNavBar.NavBarItem();
+            this.bbiDUOC = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiNhaCungCap = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiDepartment = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiGroup = new DevExpress.XtraNavBar.NavBarItem();
@@ -533,8 +544,8 @@
             this.bbiProduct = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiState = new DevExpress.XtraNavBar.NavBarItem();
             this.bbiSalaryIncome = new DevExpress.XtraNavBar.NavBarItem();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiOpenNewTab = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiThuNho = new System.Windows.Forms.ToolStripMenuItem();
             this.gcControl = new DevExpress.XtraEditors.GroupControl();
@@ -547,7 +558,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navTimekeeping;
+            this.navBarControl1.ActiveGroup = this.navOrganization;
             this.navBarControl1.ContentButtonHint = null;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.navBarControl1.DragDropFlags = ((DevExpress.XtraNavBar.NavBarDragDrop)((((DevExpress.XtraNavBar.NavBarDragDrop.Default | DevExpress.XtraNavBar.NavBarDragDrop.AllowDrag) 
@@ -583,7 +594,7 @@
             this.bbiProduct,
             this.bbiState,
             this.bbiHoliday,
-            this.bbiSubsidiary,
+            this.bbiDUOC,
             this.bbiSalaryIncome,
             this.navBarItem1,
             this.navBarItem2,
@@ -605,7 +616,6 @@
             // navTimekeeping
             // 
             this.navTimekeeping.Caption = "Nhóm Dịch Vụ";
-            this.navTimekeeping.Expanded = true;
             this.navTimekeeping.ImageOptions.LargeImageIndex = 2;
             this.navTimekeeping.ImageOptions.SmallImageIndex = 1;
             this.navTimekeeping.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -684,6 +694,7 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDIC_Huyen),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDIC_XaPhuong)});
             this.navEmployee.Name = "navEmployee";
+            this.navEmployee.TopVisibleLinkIndex = 3;
             // 
             // bbiPosition
             // 
@@ -772,9 +783,9 @@
             this.ppiDIC_Province.ImageOptions.SmallImageIndex = 3;
             this.ppiDIC_Province.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
             this.ppiDIC_Province.Name = "ppiDIC_Province";
-            toolTipTitleItem4.Text = "Danh Mục Tỉnh Thành";
-            superToolTip4.Items.Add(toolTipTitleItem4);
-            this.ppiDIC_Province.SuperTip = superToolTip4;
+            toolTipTitleItem1.Text = "Danh Mục Tỉnh Thành";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            this.ppiDIC_Province.SuperTip = superToolTip1;
             this.ppiDIC_Province.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ppiDIC_Province_LinkClicked);
             // 
             // bbiDIC_Huyen
@@ -796,22 +807,23 @@
             // navOrganization
             // 
             this.navOrganization.Caption = "Nhóm Dược";
+            this.navOrganization.Expanded = true;
             this.navOrganization.ImageOptions.LargeImageIndex = 1;
             this.navOrganization.ImageOptions.SmallImageIndex = 2;
             this.navOrganization.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiSubsidiary),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDUOC),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiNhaCungCap),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiDepartment),
             new DevExpress.XtraNavBar.NavBarItemLink(this.bbiGroup)});
             this.navOrganization.Name = "navOrganization";
             // 
-            // bbiSubsidiary
+            // bbiDUOC
             // 
-            this.bbiSubsidiary.Caption = "Dược";
-            this.bbiSubsidiary.ImageOptions.SmallImageIndex = 4;
-            this.bbiSubsidiary.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
-            this.bbiSubsidiary.Name = "bbiSubsidiary";
-            this.bbiSubsidiary.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiSubsidiary_LinkClicked);
+            this.bbiDUOC.Caption = "Dược";
+            this.bbiDUOC.ImageOptions.SmallImageIndex = 4;
+            this.bbiDUOC.ImageOptions.SmallImageSize = new System.Drawing.Size(24, 24);
+            this.bbiDUOC.Name = "bbiDUOC";
+            this.bbiDUOC.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.bbiDUOC_LinkClicked);
             // 
             // bbiNhaCungCap
             // 

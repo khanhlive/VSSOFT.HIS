@@ -11,18 +11,18 @@ using Vssoft.Dictionary.UI.Core.Actions;
 
 namespace Vssoft.Dictionary.UI.Core
 {
-    public class ucDIC_DICHVU : Common.xucBaseBasic
+    public partial class ucDIC_DUOC : Common.xucBaseBasic
     {
-        frmAddDIC_DICHVU frmAdd_dichvu;
-        private object m_Dichvu = null;
-        public event FocusedRowChangedEventHandler FocusedRowChanged;
-
-        public ucDIC_DICHVU()
+        public ucDIC_DUOC()
         {
+            InitializeComponent();
             base.ucToolBar.SetInterface();
             this.gbList.FocusedRowChanged += new FocusedRowChangedEventHandler(this.gbList_FocusedRowChanged);
-            
         }
+        frmAddDIC_DUOC frmAdd_DUOC;
+        private object m_Dichvu = null;
+        public event FocusedRowChangedEventHandler FocusedRowChanged;
+        
         protected override void List_Init(AdvBandedGridView dt)
         {
             dt.OptionsView.ColumnAutoWidth = false;
@@ -48,15 +48,15 @@ namespace Vssoft.Dictionary.UI.Core
             {
                 band1.Columns.Clear();
             }
-            
+
             RepositoryItemLookUpEdit lookup = new RepositoryItemLookUpEdit();
             new TrongDanhMuc().AddRepositoryLookupEdit(lookup);
             RepositoryItemCheckEdit checkEdit = new RepositoryItemCheckEdit();
             checkEdit.ValueChecked = 1;
             checkEdit.ValueUnchecked = 0;
-            checkEdit.ValueGrayed= null;
+            checkEdit.ValueGrayed = null;
             RepositoryItemLookUpEdit lookupTieunhom = new RepositoryItemLookUpEdit();
-            using (DIC_TIEUNHOMDICHVU dic_tieunhomdichvu=new DIC_TIEUNHOMDICHVU())
+            using (DIC_TIEUNHOMDICHVU dic_tieunhomdichvu = new DIC_TIEUNHOMDICHVU())
             {
                 dic_tieunhomdichvu.AddRepositoryLookupEdit(lookupTieunhom);
             }
@@ -226,7 +226,7 @@ namespace Vssoft.Dictionary.UI.Core
 
         private void RaiseAddedEventHander(object sender, DIC_DICHVU model)
         {
-            
+
             this.ReLoad();
         }
 
@@ -237,9 +237,9 @@ namespace Vssoft.Dictionary.UI.Core
 
         protected override void Add()
         {
-            this.frmAdd_dichvu = new frmAddDIC_DICHVU( Common.Common.Class.Actions.Add);
-            this.frmAdd_dichvu.Added += new frmAddDIC_DICHVU.AddedEventHander(this.RaiseAddedEventHander);
-            this.frmAdd_dichvu.ShowDialog();
+            this.frmAdd_DUOC = new frmAddDIC_DUOC(Common.Common.Class.Actions.Add);
+            this.frmAdd_DUOC.Added += new frmAddDIC_DUOC.AddedEventHander(this.RaiseAddedEventHander);
+            this.frmAdd_DUOC.ShowDialog();
         }
 
         public override void Change()
@@ -247,25 +247,25 @@ namespace Vssoft.Dictionary.UI.Core
             object keyModel = this.gbList.GetRow(this.gbList.FocusedRowHandle);
             if (keyModel != null)
             {
-                this.frmAdd_dichvu = new frmAddDIC_DICHVU(Common.Common.Class.Actions.Update,(DIC_DICHVU)keyModel);
-                this.frmAdd_dichvu.Updated += new frmAddDIC_DICHVU.UpdatedEventHander(this.RaiseUpdatedEventHander);
-                this.frmAdd_dichvu.ShowDialog();
+                this.frmAdd_DUOC = new frmAddDIC_DUOC(Common.Common.Class.Actions.Update, (DIC_DICHVU)keyModel);
+                this.frmAdd_DUOC.Updated += new frmAddDIC_DUOC.UpdatedEventHander(this.RaiseUpdatedEventHander);
+                this.frmAdd_DUOC.ShowDialog();
             }
         }
 
         public override void Delete()
         {
-            if (this.m_Dichvu!=null)
+            if (this.m_Dichvu != null)
             {
                 DIC_DICHVU dichvu = (DIC_DICHVU)this.m_Dichvu;
                 var flag = dichvu.Delete();
-                if (flag== SqlResultType.OK)
+                if (flag == SqlResultType.OK)
                 {
                     this.ReLoad();
                 }
-                else if(flag!= SqlResultType.None)
+                else if (flag != SqlResultType.None)
                 {
-                    XtraMessageBox.Show("Không xóa được dịch vụ này", "Xóa dịch vụ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("Không xóa được dược này", "Xóa thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -304,30 +304,13 @@ namespace Vssoft.Dictionary.UI.Core
             base.SetWaitDialogCaption("Đang nạp dữ liệu...");
             using (DIC_DICHVU duocProvider = new DIC_DICHVU())
             {
-                base.gcList.DataSource = duocProvider.GetAllDichVu2(PhanLoaiDichVu.DichVu);
+                base.gcList.DataSource = duocProvider.GetAllDichVu2(PhanLoaiDichVu.Duoc);
             }
             base.SetWaitDialogCaption("Đang nạp cấu hình...");
             this.List_Init(base.gbList);
             base.SetWaitDialogCaption("Nạp quyền sử dụng...");
             base.SetWaitDialogCaption("Đã xong...");
             this.DoHide();
-        }
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // ucToolBar
-            // 
-            this.ucToolBar.Size = new System.Drawing.Size(1009, 43);
-            // 
-            // ucDIC_DICHVU
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.Name = "ucDIC_DICHVU";
-            this.Size = new System.Drawing.Size(1009, 559);
-            this.ResumeLayout(false);
-
         }
     }
 }

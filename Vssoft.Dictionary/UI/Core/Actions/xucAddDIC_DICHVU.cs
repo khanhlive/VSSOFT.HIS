@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Views.Base;
 using System;
 using System.Windows.Forms;
 using Vssoft.Common.Common.Class;
@@ -32,7 +31,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 if (XtraMessageBox.Show("Bạn có muốn xóa bản ghi này không?", "Xóa bản ghi", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     DIC_DICHVU dichvu = (DIC_DICHVU)this.Model;
-                    using (DIC_DICHVU dic_dichvu=new DIC_DICHVU())
+                    using (DIC_DICHVU dic_dichvu = new DIC_DICHVU())
                     {
                         SqlResultType resultType = new DIC_DICHVU().Delete(dichvu);
                         if (resultType == SqlResultType.OK)
@@ -65,7 +64,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         public override bool Validation()
         {
             this.isValidModel = true;
-            
+
             this.Validate_EmptyStringRule(this.txtMaNoiBo);
             this.Validate_EmptyStringRule(this.txtSoTTQD);
             this.Validate_EmptyStringRule(this.txtSoQDTT37);
@@ -89,8 +88,8 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         {
             using (DIC_DICHVU dichvu = new DIC_DICHVU())
             {
-                if(this.actions== Common.Common.Class.Actions.Update)
-                dichvu.MaDichVu = DataConverter.StringToInt(txtID.EditValue);
+                if (this.actions == Common.Common.Class.Actions.Update)
+                    dichvu.MaDichVu = DataConverter.StringToInt(txtID.EditValue);
                 dichvu.MaTam = txtMaNoiBo.Text;
                 dichvu.TenDichVu = txtName.Text;
                 dichvu.SoThuTuQuyetDinh = txtSoTTQD.Text;
@@ -152,7 +151,7 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 {
                     this.Success?.Invoke(this, dichvu);
                 }
-                else if(flag!= SqlResultType.None)
+                else if (flag != SqlResultType.None)
                 {
                     XtraMessageBox.Show("Không lưu được thông tin dịch vụ, kiểm tra lại thông tin.");
                 }
@@ -184,12 +183,12 @@ namespace Vssoft.Dictionary.UI.Core.Actions
                 cmbDonvitinh.EditValue = dichvu.DonViTinh;
                 cmbPhanLoai.EditValue = dichvu.PhanLoaiDichVu;
                 lookupNhomDichvu.EditValue = dichvu.MaNhom;
-                ckbDichvuKTC.Checked= dichvu.DichVuKyThuatCao==1;
+                ckbDichvuKTC.Checked = dichvu.DichVuKyThuatCao == 1;
                 speTyLeBHTT.EditValue = dichvu.BaoHiemThanhToan;
                 cmbLoai.EditValue = dichvu.Loai;
                 lookupTieunhom.EditValue = dichvu.MaTieuNhomDichVu;
-                ckbTrongDM.Checked = dichvu.TrongDanhMuc==1;
-                ckbStatus.Checked = dichvu.Status==1;
+                ckbTrongDM.Checked = dichvu.TrongDanhMuc == 1;
+                ckbStatus.Checked = dichvu.Status == 1;
                 ////gia
                 txtGiaTT37_d1.EditValue = dichvu.DonGia;
                 txtGiaTT37_d2.EditValue = dichvu.DonGiaBHYT;
@@ -265,19 +264,19 @@ namespace Vssoft.Dictionary.UI.Core.Actions
         {
             cmbDonvitinh.Properties.Items.AddRange(CommonVariable.DonViTinhs);
             cmbPhanLoai.Properties.Items.AddRange(new string[] { "2", "3" });
-            using (DIC_NHOMDICHVU dic_nhomdichvu=new DIC_NHOMDICHVU())
+            using (DIC_NHOMDICHVU dic_nhomdichvu = new DIC_NHOMDICHVU())
             {
                 dic_nhomdichvu.AddLookupEdit(lookupNhomDichvu);
             }
-            using (DIC_TIEUNHOMDICHVU dic_tieunhomdichvu=new DIC_TIEUNHOMDICHVU())
+            using (DIC_TIEUNHOMDICHVU dic_tieunhomdichvu = new DIC_TIEUNHOMDICHVU())
             {
                 dic_tieunhomdichvu.AddLookupEdit(lookupTieunhom);
             }
-            using (DIC_DTBN dic_dtbn=new DIC_DTBN())
+            using (DIC_DTBN dic_dtbn = new DIC_DTBN())
             {
                 dic_dtbn.AddCheckBoxListEdit(ckblDoiTuongBenhNhan);
             }
-            using (DIC_PHONGBAN dic_phongban=new DIC_PHONGBAN())
+            using (DIC_PHONGBAN dic_phongban = new DIC_PHONGBAN())
             {
                 dic_phongban.AddCheckBoxListEdit(ckblPhongbanSudung);
             }
@@ -293,6 +292,67 @@ namespace Vssoft.Dictionary.UI.Core.Actions
             if (this.isUpdated && !this.IsEdited)
             {
                 this.IsEdited = true;
+            }
+        }
+
+        private void cmbLoai_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+
+        }
+
+        private void lookupTieunhom_EditValueChanged(object sender, EventArgs e)
+        {
+            if (this.isUpdated)
+            {
+                cmbLoai.Properties.Items.Clear();
+                if (lookupTieunhom.EditValue != null && lookupTieunhom.EditValue.ToString() != "")
+                {
+                    object manhom = lookupTieunhom.GetColumnValue("MaNhom");
+                    lookupNhomDichvu.EditValue = manhom;
+                    string tenrg = "";
+                    if (lookupTieunhom.GetColumnValue("TenRutGon") != null)
+                        tenrg = lookupTieunhom.GetColumnValue("TenRutGon").ToString();
+                    switch (tenrg)
+                    {
+                        case "X-Quang":
+                            layoutControlItem_Loai.Text = "S.Lượng phim";
+                            cmbLoai.Properties.Items.Add(0);
+                            cmbLoai.Properties.Items.Add(1);
+                            cmbLoai.Properties.Items.Add(2);
+                            cmbLoai.Properties.Items.Add(3);
+                            cmbLoai.Properties.Items.Add(4);
+                            break;
+                        case "Siêu âm":
+                            layoutControlItem_Loai.Text = "Loại siêu âm";
+                            cmbLoai.Properties.Items.Add(PhanLoaiSieuAm.Sa2D);
+                            cmbLoai.Properties.Items.Add(PhanLoaiSieuAm.SaMau);
+                            cmbLoai.Properties.Items.Add(PhanLoaiSieuAm.Sa3D_4D);
+                            break;
+                        default:
+                            layoutControlItem_Loai.Text = "Loại";
+                            for (int i = 0; i < 50; i++)
+                                cmbLoai.Properties.Items.Add(i);
+                            break;
+                    }
+
+                }
+                else
+                {
+                    lookupNhomDichvu.EditValue = "";
+                }
+            }
+            if (this.isUpdated && !this.IsEdited)
+            {
+                this.IsEdited = true;
+            }
+        }
+
+        private void cmbLoai_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (isUpdated && cmbLoai.SelectedIndex == 0)
+            {
+                DialogResult _result = XtraMessageBox.Show("Phân loại là 3 chỉ dùng cho dịch vụ phục vụ trong đơn vị sử dụng chức năng nhập chi phí BHYT của các TYT XP, Bạn vẫn muốn thay đổi?", "Thay đổi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                
             }
         }
     }

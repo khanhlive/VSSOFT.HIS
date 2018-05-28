@@ -18,7 +18,7 @@ namespace Vssoft.Data.ERP.Dictionary
 
         #region Method
 
-        
+
         public override IEnumerable<DIC_DICHVU> GetAll()
         {
             throw new NotImplementedException();
@@ -36,7 +36,7 @@ namespace Vssoft.Data.ERP.Dictionary
                 }
                 catch (Exception e)
                 {
-                    this.sqlHelper.Close(); 
+                    this.sqlHelper.Close();
                     log.Error(string.Format("GetAll DICH VU(phanloai:{0})", (int)phanloai), e);
                     return null;
                 }
@@ -122,7 +122,7 @@ namespace Vssoft.Data.ERP.Dictionary
                         entity.MaDichVuBackUp, entity.MaPhongBanSD, entity.DongiaT7, entity.DonGiaBHYT,
                         entity.DanhSachDonGia, entity.GiaDichVuDot2, entity.GiaPhuThu, entity.DanhSachDoiTuongBenhNhan, entity.Status });
                 int kq = Convert.ToInt32(result);
-                return this.GetResult(kq>1?1:0);
+                return this.GetResult(kq > 1 ? 1 : 0);
             }
             catch (Exception e)
             {
@@ -167,6 +167,81 @@ namespace Vssoft.Data.ERP.Dictionary
         }
         #endregion
 
+        #region Method DUOC
+
+        public SqlResultType Insert_DUOC(DIC_DICHVU entity)
+        {
+            try
+            {
+                this.CreateConnection();
+                this.sqlHelper.CommandType = CommandType.StoredProcedure;
+                object result = this.sqlHelper.ExecuteScalar("InsertDichVu",
+                    new string[] { "@TenDichVu","@HamLuong","@DonViTinh","@DonGia","@TrongDanhMuc","@Loai","@BaoHiemThanhToan","@TenHoatChat",
+                        "@NuocSanXuat","@DuongDung","@MaTieuNhomDichVu","@SoDangKy","@DangBaoChe","@NhaSanXuat",
+                    "@QuyCachPhamChat","@BaoHiemYTe","@MaQuyetDinh","@TinhTrangNhap","@NguonGoc","@YCSD","@TyLeSoChePhucChe","@TyLeBaoQuan",
+                        "@BoPhanDung","@DongY","@MaNhaCungCap","@SoThuTu","@DonGia2","@SoThuTuQuyetDinh","@SoLuongMin",
+                    "@DonViNhap","@TyLeSuDung","@MaTam","@TieuChuan","@TuoiTho","@MaNhom","@MaDuongDung","@SoLuong","@SoQuyetDinh",
+                        "@NgayQuyetDinh","@MaCongTySanXuat","@MaCongTyDangKy","@MaDichVuBackUp","@MaPhongBanSD","@DinhMuc",
+                    "@MaATC","@DongiaT7","@MaHoatChat","@DonGiaBHYT","@DanhSachDonGia","@Status","@DonGiaGioiHanTT04","@GoiThau","@LoaiThau","@NhaThau","@LoaiThuoc","@NhomThau","@PhanLoaiDichVu"},
+                    new object[] { entity.TenDichVu,entity.HamLuong, entity.DonViTinh, entity.DonGia, entity.TrongDanhMuc, entity.Loai, entity.BaoHiemThanhToan,entity.TenHoatChat,entity.NuocSanXuat,
+                    entity.DuongDung,entity.MaTieuNhomDichVu,entity.SoDangKy,entity.DangBaoChe,entity.NhaSanXuat,entity.QuyCachPhamChat,entity.BaoHiemYTe,entity.MaQuyetDinh,entity.TinhTrangNhap,
+                    entity.NguonGoc,entity.YCSD,entity.TyLeSoChePhucChe,entity.TyLeBaoQuan,entity.BoPhanDung,entity.DongY,entity.MaNhaCungCap,entity.SoThuTu,entity.DonGia2, entity.SoThuTuQuyetDinh,
+                    entity.SoLuongMin,entity.DonViNhap,entity.TyLeSuDung,entity.MaTam,entity.TieuChuan,entity.TuoiTho,entity.MaNhom,entity.MaDuongDung,entity.SoLuong,entity.SoQuyetDinh,
+                    entity.NgayQuyetDinh,entity.MaCongTySanXuat,entity.MaCongTyDangKy,entity.MaDichVuBackUp,entity.MaPhongBanSD,entity.DinhMuc,entity.MaATC,entity.DongiaT7,
+                        entity.MaHoatChat,entity.DonGiaBHYT,entity.DanhSachDonGia,entity.Status,entity.DonGiaGioiHanTT04,entity.GoiThau,entity.Loai,entity.NhaThau,entity.LoaiThuoc,entity.NhomThau,entity.PhanLoaiDichVu
+                    });
+                int kq = Convert.ToInt32(result);
+                return this.GetResult(kq >= 1 ? 1 : 0);
+            }
+            catch (Exception e)
+            {
+                log.Error("Insert DUOC", e);
+                return SqlResultType.Exception;
+            }
+        }
+
+        public SqlResultType Insert_DUOC()
+        {
+            return this.Insert_DUOC(this);
+        }
+
+        public SqlResultType Update_DUOC(DIC_DICHVU entity)
+        {
+            try
+            {
+                this.CreateConnection();
+                this.sqlHelper.CommandType = CommandType.StoredProcedure;
+                object result = this.sqlHelper.ExecuteScalar("UpdateDichVu",
+                    new string[] { "@MaDichVu","@TenDichVu","@HamLuong","@DonViTinh","@DonGia","@TrongDanhMuc","@Loai","@BaoHiemThanhToan","@TenHoatChat",
+                        "@NuocSanXuat","@DuongDung","@MaTieuNhomDichVu","@SoDangKy","@DangBaoChe","@NhaSanXuat",
+                    "@QuyCachPhamChat","@BaoHiemYTe","@MaQuyetDinh","@TinhTrangNhap","@NguonGoc","@YCSD","@TyLeSoChePhucChe","@TyLeBaoQuan",
+                        "@BoPhanDung","@DongY","@MaNhaCungCap","@SoThuTu","@DonGia2","@SoThuTuQuyetDinh","@SoLuongMin",
+                    "@DonViNhap","@TyLeSuDung","@MaTam","@TieuChuan","@TuoiTho","@MaNhom","@MaDuongDung","@SoLuong","@SoQuyetDinh",
+                        "@NgayQuyetDinh","@MaCongTySanXuat","@MaCongTyDangKy","@MaDichVuBackUp","@MaPhongBanSD","@DinhMuc",
+                    "@MaATC","@DongiaT7","@MaHoatChat","@DonGiaBHYT","@DanhSachDonGia","@Status","@DonGiaGioiHanTT04","@GoiThau","@LoaiThau","@NhaThau","@LoaiThuoc","@NhomThau","@PhanLoaiDichVu"},
+                    new object[] {entity.MaDichVu, entity.TenDichVu,entity.HamLuong, entity.DonViTinh, entity.DonGia, entity.TrongDanhMuc, entity.Loai, entity.BaoHiemThanhToan,entity.TenHoatChat,entity.NuocSanXuat,
+                    entity.DuongDung,entity.MaTieuNhomDichVu,entity.SoDangKy,entity.DangBaoChe,entity.NhaSanXuat,entity.QuyCachPhamChat,entity.BaoHiemYTe,entity.MaQuyetDinh,entity.TinhTrangNhap,
+                    entity.NguonGoc,entity.YCSD,entity.TyLeSoChePhucChe,entity.TyLeBaoQuan,entity.BoPhanDung,entity.DongY,entity.MaNhaCungCap,entity.SoThuTu,entity.DonGia2, entity.SoThuTuQuyetDinh,
+                    entity.SoLuongMin,entity.DonViNhap,entity.TyLeSuDung,entity.MaTam,entity.TieuChuan,entity.TuoiTho,entity.MaNhom,entity.MaDuongDung,entity.SoLuong,entity.SoQuyetDinh,
+                    entity.NgayQuyetDinh,entity.MaCongTySanXuat,entity.MaCongTyDangKy,entity.MaDichVuBackUp,entity.MaPhongBanSD,entity.DinhMuc,entity.MaATC,entity.DongiaT7,
+                        entity.MaHoatChat,entity.DonGiaBHYT,entity.DanhSachDonGia,entity.Status,entity.DonGiaGioiHanTT04,entity.GoiThau,entity.Loai,entity.NhaThau,entity.LoaiThuoc,entity.NhomThau,entity.PhanLoaiDichVu
+                    });
+                int kq = Convert.ToInt32(result);
+                return this.GetResult(kq >= 1 ? 1 : 0);
+            }
+            catch (Exception e)
+            {
+                log.Error("Update DUOC", e);
+                return SqlResultType.Exception;
+            }
+        }
+
+        public SqlResultType Update_DUOC()
+        {
+            return this.Update_DUOC(this);
+        }
+        #endregion
+
         #region Properties
 
         public int MaDichVu { get; set; }
@@ -194,7 +269,7 @@ namespace Vssoft.Data.ERP.Dictionary
         public string TinhTrangNhap { get; set; }
         public string NguonGoc { get; set; }
         public string YCSD { get; set; }
-        public Nullable<double> TyLeSanPham { get; set; }
+        public Nullable<double> TyLeSoChePhucChe { get; set; }
         public Nullable<double> TyLeBaoQuan { get; set; }
         public string BoPhanDung { get; set; }
         public Nullable<bool> DongY { get; set; }
@@ -202,7 +277,7 @@ namespace Vssoft.Data.ERP.Dictionary
         public string MaNhaCungCap { get; set; }
         public Nullable<int> SoThuTu { get; set; }
 
-        
+
         public string SoThuTuQuyetDinh { get; set; }
         public Nullable<int> SoLuongMin { get; set; }
         public string DonViNhap { get; set; }
@@ -226,6 +301,12 @@ namespace Vssoft.Data.ERP.Dictionary
         public string DanhSachDonGia { get; set; }
         public Nullable<double> GiaDichVuDot2 { get; set; }
         public Nullable<double> GiaPhuThu { get; set; }
+        public Nullable<double> DonGiaGioiHanTT04 { get; set; }
+        public string GoiThau { get; set; }
+        public string LoaiThau { get; set; }
+        public string NhaThau { get; set; }
+        public string LoaiThuoc { get; set; }
+        public string NhomThau { get; set; }
         public string MaHoatChat { get; set; }
         public string DanhSachDoiTuongBenhNhan { get; set; }
         public string MaPhongBanSD { get; set; }
